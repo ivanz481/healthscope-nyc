@@ -1,0 +1,1818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700;6..72,800&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Healthscope NYC</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<style>
+:root{
+  --ink:#112b3c;
+  --ink-2:#193d50;
+  --sea:#0f7c7f;
+  --sea-2:#22a3a5;
+  --mint:#dff3ee;
+  --sky:#e9f3f8;
+  --sand:#f4efe5;
+  --coral:#d86b5f;
+  --gold:#b5842d;
+  --bg:#f7f8f5;
+  --paper:#fffdfa;
+  --text:#18313f;
+  --muted:#6f7d84;
+  --line:#dfe6e5;
+  --green:#2e7d61;
+  --red:#b64c54;
+  --shadow:0 14px 36px rgba(17,43,60,.07);
+}
+*{box-sizing:border-box}
+html,body,button,input,select,textarea,table{font-family:"Newsreader", Georgia, serif!important}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(34,163,165,.08), transparent 28rem),
+    var(--bg);
+  color:var(--text);
+}
+button,a{font:inherit}
+.shell{display:grid;grid-template-columns:286px minmax(0,1fr);min-height:100vh}
+
+/* distinctive, compact civic sidebar */
+aside{
+  min-height:100vh;
+  height:100vh;
+  position:sticky; top:0;
+  padding:22px 16px 18px;
+  background:var(--ink);
+  color:white;
+  border-right:1px solid rgba(255,255,255,.05);
+  overflow-y:auto;
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  padding:6px 8px 18px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+.logo{
+  width:42px;height:42px;border-radius:14px;
+  background:linear-gradient(145deg,#bfe8dc,#5ec2b3);
+  color:var(--ink);display:grid;place-items:center;
+  font-weight:900;letter-spacing:-.04em;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55);
+}
+.brand-copy strong{display:block;font-size:16px;line-height:1.05;letter-spacing:-.02em}
+.brand-copy span{display:block;margin-top:4px;font-size:11px;color:#a9c2cb}
+.navgroup{
+  margin:18px 10px 8px;
+  color:#8aa6b2;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:9px;
+  font-weight:800;
+}
+.nav{
+  width:100%;
+  display:grid;
+  grid-template-columns:34px 1fr 16px;
+  align-items:center;
+  gap:10px;
+  padding:10px 10px;
+  margin:4px 0;
+  border:0;
+  border-radius:13px;
+  color:#dce8ec;
+  background:transparent;
+  text-align:left;
+  cursor:pointer;
+  transition:.18s ease;
+}
+.nav:hover{background:rgba(255,255,255,.07);transform:translateX(2px)}
+.nav.active{
+  background:#f1f7f4;
+  color:var(--ink);
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.nav-icon{
+  width:34px;height:34px;border-radius:10px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.08);
+  font-size:16px;
+}
+.nav.active .nav-icon{background:var(--mint);color:var(--sea)}
+.nav-copy strong{display:block;font-size:13px}
+.nav-copy span{display:block;font-size:10px;color:#8fb0bb;margin-top:2px}
+.nav.active .nav-copy span{color:#6d838b}
+.nav-arrow{font-size:15px;opacity:.45}
+.source-side{
+  margin:18px 4px 0;
+  padding:12px;
+  border-radius:12px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.08);
+  color:#9eb7c1;
+  font-size:10.5px;
+  line-height:1.55;
+}
+
+/* content */
+main{
+  width:100%;
+  max-width:1500px;
+  padding:28px clamp(20px,3vw,46px) 50px;
+}
+.top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  padding-bottom:18px;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.eyebrow{
+  display:flex;align-items:center;gap:8px;
+  color:var(--sea);
+  font-size:11px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.12em;
+  margin-bottom:8px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px;height:2px;background:var(--sea);
+  border-radius:99px;
+}
+h1{
+  margin:0;
+  color:var(--ink);
+  font-family:"Newsreader", Georgia, serif;
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:-.035em;
+}
+.sub{color:var(--muted);margin-top:7px;font-size:13px}
+.top-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.badge,.freshness{
+  border-radius:999px;padding:8px 11px;
+  font-size:11px;font-weight:750;
+  white-space:nowrap;
+}
+.badge{background:var(--mint);color:#27685e;border:1px solid #c8e8df}
+.freshness{background:var(--paper);color:#61757e;border:1px solid var(--line)}
+.notice{
+  position:relative;
+  padding:13px 15px 13px 44px;
+  border-radius:14px;
+  background:#eef6f8;
+  border:1px solid #d7e8ed;
+  color:#345867;
+  font-size:12px;
+  margin-bottom:18px;
+}
+.notice::before{
+  content:"i";
+  position:absolute;left:14px;top:11px;
+  width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;
+  color:white;background:var(--sea);
+  font-family:Georgia,serif;font-weight:700;
+}
+.page{display:none}
+.page.active{display:block;animation:pageIn .2s ease}
+@keyframes pageIn{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+.kpis{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;margin-bottom:18px;
+}
+.card{
+  background:rgba(255,253,250,.92);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+.kpi{
+  position:relative;
+  min-height:142px;
+  padding:18px 18px 16px;
+  overflow:hidden;
+}
+.kpi::after{
+  content:"";
+  position:absolute;
+  width:84px;height:84px;border-radius:50%;
+  right:-38px;bottom:-45px;
+  background:var(--kpi-accent,#dff3ee);
+}
+.kpi:nth-child(1){--kpi-accent:#dff3ee}
+.kpi:nth-child(2){--kpi-accent:#e6eef6}
+.kpi:nth-child(3){--kpi-accent:#f7ead7}
+.kpi:nth-child(4){--kpi-accent:#f0e7ef}
+.label{
+  max-width:86%;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:12px;
+  text-transform:uppercase;
+  letter-spacing:.055em;
+  font-weight:750;
+}
+.value{
+  color:var(--ink);
+  font-family:"Newsreader", Georgia, serif;
+  font-size:31px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.04em;
+}
+.foot{font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.45}
+.grid2{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(310px,.78fr);gap:16px;margin-bottom:18px}
+.equal{grid-template-columns:1fr 1fr}
+.head{padding:18px 19px 0}
+.title{
+  color:var(--ink);
+  font-family:"Newsreader", Georgia, serif;
+  font-size:18px;
+  font-weight:700;
+}
+.desc{font-size:11px;color:var(--muted);margin-top:5px}
+.chart{height:310px;padding:13px 17px 18px}
+.tablebox{padding:12px 18px 18px;overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th{
+  text-align:left;padding:10px;
+  color:var(--muted);
+  font-size:9px;text-transform:uppercase;letter-spacing:.08em;
+  border-bottom:1px solid var(--line);
+}
+td{padding:12px 10px;border-bottom:1px solid #edf1ef}
+tbody tr:hover{background:#f7faf8}
+tr:last-child td{border-bottom:0}
+.source{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#f8faf8;
+  border:1px dashed #cfdbd8;
+  border-radius:12px;
+  font-size:11px;color:var(--muted);line-height:1.6;
+}
+.source::before{content:"Source note";font-weight:800;color:var(--ink);margin-right:8px}
+.source a{color:var(--sea);font-weight:750;text-decoration:none}
+.source a:hover{text-decoration:underline}
+.metriclist{padding:8px 18px 18px}
+.metric{
+  display:flex;justify-content:space-between;gap:20px;
+  padding:14px 0;border-bottom:1px solid #edf1ef;
+  font-size:12px;
+}
+.metric:last-child{border-bottom:0}
+.status-up{color:var(--red);font-weight:800}
+.status-stable{color:var(--green);font-weight:800}
+.callout{padding:22px}
+.callout h3{
+  margin:0 0 8px;color:var(--ink);
+  font-family:"Newsreader", Georgia, serif;
+  font-size:20px;
+}
+.callout p{color:var(--muted);line-height:1.7;margin:8px 0;font-size:12.5px}
+.bigstat{
+  font-family:"Newsreader", Georgia, serif;
+  font-size:48px;font-weight:700;color:var(--ink);letter-spacing:-.05em
+}
+.linkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.linkcard{
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+}
+.linkcard::before{
+  content:"";
+  display:block;width:34px;height:4px;border-radius:99px;
+  background:var(--sea);margin-bottom:14px;
+}
+.linkcard h3{
+  margin:0 0 7px;color:var(--ink);
+  font-family:"Newsreader", Georgia, serif;
+  font-size:17px;
+}
+.linkcard p{font-size:12px;color:var(--muted);line-height:1.6}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:7px;padding:9px 12px;
+  border-radius:999px;
+  background:var(--ink);color:white;
+  text-decoration:none;font-size:11px;font-weight:800;
+}
+.btn::after{content:"↗";opacity:.75}
+.btn:hover{background:var(--sea)}
+.quality{padding:18px}
+.quality-row{
+  display:grid;grid-template-columns:190px 1fr 150px;
+  gap:12px;padding:13px 0;border-bottom:1px solid #edf1ef;
+  font-size:12px;align-items:center;
+}
+.quality-row:last-child{border:0}
+.tag{
+  justify-self:start;
+  padding:6px 8px;border-radius:999px;
+  background:#eef4f2;color:#566c72;
+  font-size:10px;font-weight:700;
+}
+
+/* page intro strip */
+.section-ribbon{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:12px 15px;margin-bottom:16px;
+  background:linear-gradient(90deg,var(--ink),var(--ink-2));
+  color:white;border-radius:15px;
+}
+.section-ribbon span{font-size:11px;color:#bbced5}
+.section-ribbon strong{font-size:12px}
+
+/* accessible focus */
+.nav:focus-visible,.btn:focus-visible,a:focus-visible{
+  outline:3px solid #8fd5ca;outline-offset:2px;
+}
+
+/* mobile nav becomes horizontal scroll */
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  aside{
+    height:auto;min-height:0;position:sticky;z-index:20;
+    padding:10px 12px;background:var(--ink);
+  }
+  .brand{border:0;padding:2px 4px 8px}
+  .brand-copy span,.source-side,.navgroup{display:none}
+  .nav-wrap{
+    display:flex;overflow-x:auto;gap:6px;padding-bottom:4px;
+    scrollbar-width:none;
+  }
+  .nav-wrap::-webkit-scrollbar{display:none}
+  .nav{
+    width:auto;min-width:max-content;
+    grid-template-columns:28px 1fr;
+    padding:7px 9px;margin:0;
+  }
+  .nav-icon{width:28px;height:28px;border-radius:8px;font-size:13px}
+  .nav-copy span,.nav-arrow{display:none}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid2,.equal{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  main{padding:20px 13px 36px}
+  .top{flex-direction:column}
+  .top-meta{justify-content:flex-start}
+  h1{font-size:29px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi{min-height:132px;padding:16px}
+  .value{font-size:28px}
+  .linkgrid{grid-template-columns:1fr}
+  .quality-row{grid-template-columns:1fr;gap:5px}
+}
+@media(max-width:430px){
+  .kpis{grid-template-columns:1fr}
+}
+
+/* ---------- advanced exploration controls ---------- */
+.explorebar{
+  display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;
+  margin:0 0 18px;padding:13px;
+  background:rgba(255,253,250,.86);
+  border:1px solid var(--line);border-radius:15px;
+  box-shadow:0 8px 24px rgba(17,43,60,.045);
+}
+.control{display:flex;flex-direction:column;gap:5px}
+.control label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted)}
+.control select{
+  min-width:150px;padding:9px 30px 9px 10px;
+  border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);
+  font-size:11px;font-weight:700
+}
+.action{
+  border:0;border-radius:10px;padding:10px 12px;cursor:pointer;
+  background:var(--ink);color:white;font-size:11px;font-weight:800;
+}
+.action.secondary{background:#edf4f1;color:var(--ink);border:1px solid #d8e5e1}
+.action:hover{background:var(--sea);color:white}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3ca67b;margin-right:6px}
+.live-dot.warn{background:#d49a31}.live-dot.err{background:#c6535a}
+
+/* ---------- signal cards ---------- */
+.signals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 18px}
+.signal{padding:16px 17px}
+.signal-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:9px}
+.signal-head strong{font-size:12px;color:var(--ink)}
+.signal-level{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;padding:5px 7px;border-radius:999px}
+.signal-level.watch{background:#fff0d7;color:#8b6119}
+.signal-level.stable{background:#e5f3eb;color:#33705a}
+.signal-level.info{background:#e7f0f5;color:#456a7e}
+.signal-value{font-family:"Newsreader", Georgia, serif;font-size:24px;color:var(--ink)}
+.signal p{font-size:10.5px;color:var(--muted);line-height:1.5;margin:7px 0 0}
+
+/* ---------- reliable SVG map ---------- */
+.map-layout{
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);
+  gap:16px;margin-bottom:18px;
+}
+.map-shell{padding:18px}
+.map-toolbar{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.map-wrap{
+  position:relative;min-height:520px;
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 76% 20%,rgba(46,157,159,.10),transparent 13rem),
+    linear-gradient(160deg,#eaf4f4,#f8fbf9 58%,#eef4f5);
+  border:1px solid #d8e5e5;overflow:hidden;
+}
+#boroughSvg{width:100%;height:520px;display:block}
+.borough-shape{
+  stroke:#fff;stroke-width:5;stroke-linejoin:round;
+  cursor:pointer;transition:.18s ease;
+  filter:drop-shadow(0 4px 5px rgba(17,43,60,.06));
+}
+.borough-shape:hover,.borough-shape:focus{stroke:var(--ink);stroke-width:6;outline:none}
+.borough-shape.selected{stroke:var(--ink);stroke-width:7}
+.map-label{pointer-events:none;fill:var(--ink);font-size:14px;font-weight:900;text-anchor:middle}
+.map-sub-label{pointer-events:none;fill:#536c75;font-size:10px;font-weight:700;text-anchor:middle}
+.map-key{
+  position:absolute;left:13px;bottom:13px;
+  background:rgba(255,253,250,.94);border:1px solid var(--line);
+  border-radius:11px;padding:9px 10px;font-size:9.5px;color:var(--muted);
+}
+.map-key strong{color:var(--ink);display:block;margin-bottom:5px}
+.gradient{
+  width:130px;height:8px;border-radius:99px;
+  background:linear-gradient(90deg,#dcefeb,#83c7bd,#0f6669);margin-bottom:4px
+}
+.map-panel{padding:21px}
+.map-panel h2{
+  font-family:"Newsreader", Georgia, serif;
+  font-size:28px;margin:3px 0 5px;color:var(--ink);letter-spacing:-.03em
+}
+.map-kicker{font-size:9px;color:var(--sea);font-weight:900;text-transform:uppercase;letter-spacing:.12em}
+.map-stat{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;padding:14px 0;border-bottom:1px solid #edf1ef}
+.map-stat span{font-size:10.5px;color:var(--muted);max-width:150px}
+.map-stat strong{font-family:"Newsreader", Georgia, serif;font-size:21px;color:var(--ink)}
+.map-note{padding:11px 12px;margin-top:15px;background:#f2f7f5;border-radius:11px;font-size:10.5px;line-height:1.55;color:var(--muted)}
+
+/* status / pipeline */
+.pipeline{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:8px;margin-top:13px
+}
+.pipe-step{padding:12px;border-radius:12px;background:#f2f6f4;border:1px solid #e0e9e6;text-align:center}
+.pipe-step strong{display:block;font-size:10px;color:var(--ink)}
+.pipe-step span{display:block;font-size:9px;color:var(--muted);margin-top:4px}
+.status-line{display:grid;grid-template-columns:190px 1fr 125px 110px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #edf1ef;font-size:11px}
+.status-line:last-child{border-bottom:0}
+.status-pill{justify-self:start;padding:5px 8px;border-radius:999px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.06em}
+.status-pill.live{background:#e3f2e9;color:#27745b}
+.status-pill.cached{background:#fff0d7;color:#91671c}
+.status-pill.fail{background:#f8e2e3;color:#9b4148}
+
+/* methods */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.method{padding:17px}
+.method .num{font-family:"Newsreader", Georgia, serif;font-size:25px;color:var(--sea)}
+.method strong{display:block;color:var(--ink);font-size:12px;margin:6px 0}
+.method p{font-size:10.5px;color:var(--muted);line-height:1.55;margin:0}
+
+/* toast */
+.toast{
+  position:fixed;right:20px;bottom:20px;z-index:80;
+  max-width:330px;padding:12px 14px;border-radius:12px;
+  background:var(--ink);color:white;font-size:11px;line-height:1.45;
+  box-shadow:0 13px 30px rgba(17,43,60,.22);
+  opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s
+}
+.toast.show{opacity:1;transform:none}
+
+@media(max-width:1050px){
+  .signals,.method-grid{grid-template-columns:1fr}
+  .map-layout{grid-template-columns:1fr}
+  .pipeline{grid-template-columns:1fr 1fr}
+  .status-line{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .compare-grid{grid-template-columns:1fr}
+  #boroughSvg{height:410px}.map-wrap{min-height:410px}
+  .explorebar{align-items:stretch}
+  .control,.control select,.action{width:100%}
+}
+
+
+/* Newsreader typography tuning */
+body{font-size:16px;line-height:1.45}
+.nav-copy strong,.brand-copy strong,.badge,.freshness,.label,.navgroup,.map-kicker,.eyebrow,
+.signal-level,.status-pill,.tag,.action,.control label,th{
+  letter-spacing:.025em!important;
+}
+.nav-copy strong,.brand-copy strong,.badge,.freshness,.action,.control label{font-weight:700!important}
+.value,.bigstat,.compare-big,.map-stat strong,.signal-value{font-variation-settings:"opsz" 48}
+
+
+/* --- richer map styling --- */
+.map-wrap{
+  background:
+    radial-gradient(circle at 78% 20%, rgba(42,151,156,.14), transparent 12rem),
+    linear-gradient(180deg,#dfeff2 0%,#eaf4f2 46%,#f7faf7 100%)!important;
+}
+.map-wrap::before{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(25deg,transparent 48%,rgba(255,255,255,.38) 49%,transparent 50%),
+    linear-gradient(-22deg,transparent 48%,rgba(255,255,255,.28) 49%,transparent 50%);
+  background-size:120px 120px,160px 160px;
+  opacity:.28;
+}
+.map-water-label{
+  fill:#6f98a3;
+  font-size:12px;
+  font-style:italic;
+  opacity:.85;
+  text-anchor:middle;
+}
+.map-compass text{fill:#516c76;font-size:10px;font-weight:700;text-anchor:middle}
+.map-compass line{stroke:#516c76;stroke-width:2}
+.map-guide{
+  fill:none;
+  stroke:#cbdcdd;
+  stroke-width:2;
+  stroke-dasharray:5 6;
+  opacity:.9;
+}
+.map-borough-number{
+  pointer-events:none;
+  fill:#fff;
+  font-size:11px;
+  font-weight:800;
+  text-anchor:middle;
+  paint-order:stroke;
+  stroke:rgba(17,43,60,.25);
+  stroke-width:2px;
+}
+.map-sidecard{
+  position:absolute;right:14px;top:14px;
+  width:170px;padding:10px 11px;
+  background:rgba(255,253,250,.94);
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 7px 18px rgba(17,43,60,.07);
+  font-size:10px;color:var(--muted);
+}
+.map-sidecard strong{display:block;color:var(--ink);font-size:11px;margin-bottom:4px}
+.map-tip{
+  position:absolute;left:14px;top:14px;
+  padding:8px 10px;border-radius:999px;
+  background:rgba(17,43,60,.88);color:#fff;
+  font-size:10px;font-weight:700;
+}
+.map-panel{
+  background:
+    linear-gradient(180deg,rgba(255,253,250,.96),rgba(249,251,248,.96));
+}
+.map-panel .map-stat strong{min-width:90px;text-align:right}
+.borough-shape{opacity:.96}
+.borough-shape:hover{filter:drop-shadow(0 8px 9px rgba(17,43,60,.12))}
+.borough-shape.selected{
+  stroke:#112b3c!important;
+  stroke-width:8!important;
+  filter:drop-shadow(0 10px 14px rgba(17,43,60,.16));
+}
+
+
+/* ---- map polish v3 ---- */
+.map-wrap{
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255,255,255,.7), transparent 11rem),
+    linear-gradient(180deg,#d7eaf0 0%,#e7f2f3 48%,#edf4f1 100%)!important;
+}
+.map-wrap::after{
+  content:"";
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 22% 68%, rgba(255,255,255,.55) 0 2px, transparent 3px),
+    radial-gradient(circle at 70% 36%, rgba(255,255,255,.45) 0 2px, transparent 3px);
+  background-size:32px 32px,44px 44px;
+  opacity:.22;
+}
+.city-outline{
+  fill:none;
+  stroke:rgba(17,43,60,.10);
+  stroke-width:22;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+}
+.water-arc{
+  fill:none;
+  stroke:rgba(95,149,163,.22);
+  stroke-width:3;
+  stroke-dasharray:9 9;
+}
+.map-label{
+  font-size:15px!important;
+  font-weight:800!important;
+  paint-order:stroke;
+  stroke:rgba(255,255,255,.9);
+  stroke-width:4px;
+  stroke-linejoin:round;
+}
+.map-sub-label{
+  font-size:10px!important;
+  font-weight:700!important;
+  paint-order:stroke;
+  stroke:rgba(255,255,255,.88);
+  stroke-width:3px;
+}
+.borough-shape{
+  transition:transform .18s ease, filter .18s ease, fill .18s ease;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+.borough-shape:hover{
+  transform:scale(1.012);
+  filter:drop-shadow(0 10px 12px rgba(17,43,60,.16));
+}
+.borough-shape.selected{
+  stroke:#102c3d!important;
+  stroke-width:8!important;
+  filter:drop-shadow(0 12px 16px rgba(17,43,60,.20));
+}
+.map-sidecard{
+  width:184px!important;
+}
+.map-minirow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:6px;
+  padding-top:6px;
+  border-top:1px solid #e8efec;
+}
+.map-minirow strong{margin:0!important;font-size:10px!important}
+.map-minirow span{font-size:10px;color:var(--muted)}
+.map-tip{
+  box-shadow:0 6px 16px rgba(17,43,60,.14);
+}
+
+
+/* ---- final map polish ---- */
+.map-wrap{
+  position:relative;
+  min-height:520px;
+  border-radius:18px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,.72), transparent 12rem),
+    linear-gradient(180deg,#dcecf1 0%,#eaf3f3 54%,#f3f7f4 100%)!important;
+  border:1px solid #d7e3e3;
+}
+.map-wrap::before,
+.map-wrap::after{display:none!important}
+
+#boroughSvg{width:100%;height:520px;display:block}
+.borough-shape{
+  stroke:#fff;
+  stroke-width:5;
+  stroke-linejoin:round;
+  cursor:pointer;
+  transition:transform .16s ease,filter .16s ease,stroke .16s ease,fill .16s ease;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+.borough-shape:hover{
+  transform:scale(1.008);
+  stroke:#17384a;
+  stroke-width:6;
+  filter:drop-shadow(0 8px 10px rgba(17,43,60,.13));
+}
+.borough-shape.selected{
+  stroke:#102c3d!important;
+  stroke-width:7!important;
+  filter:drop-shadow(0 10px 15px rgba(17,43,60,.18));
+}
+
+.map-label{
+  pointer-events:none;
+  fill:#153345;
+  font-size:15px!important;
+  font-weight:800!important;
+  text-anchor:middle;
+  paint-order:stroke;
+  stroke:rgba(255,255,255,.96);
+  stroke-width:4px;
+  stroke-linejoin:round;
+}
+.map-sub-label{
+  pointer-events:none;
+  fill:#5d737c;
+  font-size:10px!important;
+  font-weight:700!important;
+  text-anchor:middle;
+  paint-order:stroke;
+  stroke:rgba(255,255,255,.94);
+  stroke-width:3px;
+}
+.map-water-label{
+  fill:#6e98a4;
+  font-size:11px;
+  font-style:italic;
+  text-anchor:middle;
+  opacity:.8;
+}
+.map-guide,.city-outline,.water-arc{display:none!important}
+.map-borough-number{display:none!important}
+
+.map-tip{
+  position:absolute;
+  left:16px;
+  top:16px;
+  z-index:3;
+  padding:8px 11px;
+  border-radius:999px;
+  background:rgba(17,43,60,.90);
+  color:#fff;
+  font-size:10px;
+  font-weight:700;
+  box-shadow:0 6px 15px rgba(17,43,60,.15);
+}
+.map-sidecard{
+  position:absolute;
+  right:16px;
+  top:16px;
+  z-index:3;
+  width:190px!important;
+  padding:11px 12px;
+  border-radius:12px;
+  background:rgba(255,253,250,.96);
+  border:1px solid var(--line);
+  box-shadow:0 8px 20px rgba(17,43,60,.09);
+  font-size:10px;
+  line-height:1.45;
+  color:var(--muted);
+}
+.map-sidecard strong{
+  display:block;
+  margin-bottom:5px;
+  color:var(--ink);
+  font-size:11px;
+}
+.map-minirow{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:6px;
+  padding-top:6px;
+  border-top:1px solid #e8efec;
+}
+.map-minirow strong{margin:0!important;font-size:10px!important}
+.map-minirow span{font-size:10px;color:var(--muted)}
+
+.map-key{
+  position:absolute;
+  right:16px;
+  bottom:16px;
+  left:auto!important;
+  z-index:3;
+  width:190px;
+  padding:10px 11px;
+  border-radius:12px;
+  background:rgba(255,253,250,.96);
+  border:1px solid var(--line);
+  box-shadow:0 8px 20px rgba(17,43,60,.09);
+  font-size:9.5px;
+  color:var(--muted);
+}
+.map-key strong{
+  display:block;
+  margin-bottom:6px;
+  color:var(--ink);
+  font-size:10.5px;
+}
+.gradient{
+  width:100%;
+  height:8px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#dcefeb,#83c7bd,#0f6669);
+  margin-bottom:5px;
+}
+
+.map-panel{
+  padding:22px;
+  background:linear-gradient(180deg,rgba(255,253,250,.98),rgba(249,251,248,.98));
+}
+.map-panel h2{
+  font-size:30px;
+  margin:4px 0 4px;
+}
+.map-stat{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-end;
+  padding:15px 0;
+  border-bottom:1px solid #edf1ef;
+}
+.map-stat span{
+  max-width:165px;
+  font-size:10.5px;
+  line-height:1.35;
+}
+.map-stat strong{
+  min-width:110px;
+  text-align:right;
+  font-size:21px;
+}
+.map-note{
+  margin-top:16px;
+  padding:12px 13px;
+  border-radius:11px;
+  background:#f2f7f5;
+  color:var(--muted);
+  font-size:10.5px;
+  line-height:1.55;
+}
+
+@media(max-width:900px){
+  .map-sidecard{display:none}
+  .map-key{width:170px}
+  #boroughSvg{height:430px}
+  .map-wrap{min-height:430px}
+}
+@media(max-width:560px){
+  .map-tip{left:10px;top:10px}
+  .map-key{
+    left:10px!important;
+    right:10px;
+    bottom:10px;
+    width:auto;
+  }
+}
+
+</style>
+
+</head>
+<body>
+<div class="shell">
+
+<aside>
+  <div class="brand">
+    <div class="logo">HS</div>
+    <div class="brand-copy">
+      <strong>Healthscope NYC</strong>
+      <span>New York City public health intelligence</span>
+    </div>
+  </div>
+
+  <div class="nav-wrap">
+    <div class="navgroup">Monitor</div>
+    <button class="nav active" data-page="dashboard" aria-label="Open public health overview">
+      <span class="nav-icon">⌂</span><span class="nav-copy"><strong>Overview</strong><span>Citywide snapshot</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="surveillance">
+      <span class="nav-icon">⌁</span><span class="nav-copy"><strong>Surveillance</strong><span>Respiratory trends</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="vaccination">
+      <span class="nav-icon">✚</span><span class="nav-copy"><strong>Vaccination</strong><span>Coverage & guidance</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="emergency">
+      <span class="nav-icon">＋</span><span class="nav-copy"><strong>Emergency care</strong><span>ED & response</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="environment">
+      <span class="nav-icon">♡</span><span class="nav-copy"><strong>Chronic conditions</strong><span>Long-term health burden</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="neurodegenerative">
+      <span class="nav-icon">◉</span><span class="nav-copy"><strong>Neurodegenerative</strong><span>Brain & nerve disorders</span></span><span class="nav-arrow">›</span>
+    </button>
+
+
+    <div class="navgroup">Explore</div>
+    <button class="nav" data-page="demographics">
+      <span class="nav-icon">◫</span><span class="nav-copy"><strong>Demographics</strong><span>Population context</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="geography">
+      <span class="nav-icon">⌖</span><span class="nav-copy"><strong>Geography</strong><span>Borough & neighborhood</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="quality">
+      <span class="nav-icon">✓</span><span class="nav-copy"><strong>Data quality</strong><span>Sources & freshness</span></span><span class="nav-arrow">›</span>
+    </button>
+  </div>
+
+  <div class="source-side">
+    Official-source interface using NYC Health and NYC Open Data. Every section retains its source notes and reporting dates.
+  </div>
+</aside>
+
+<main>
+<div class="top">
+  <div>
+    <div class="eyebrow">Healthscope NYC</div>
+    <h1 id="pageTitle">Healthscope NYC Overview</h1>
+    <div class="sub" id="pageSub">NYC public health indicators with transparent source dates</div>
+  </div>
+  <div class="top-meta">
+    <div class="freshness" id="freshnessLabel">Latest key data: Sep. 24, 2026</div>
+    <div class="badge">Verified public sources</div>
+  </div>
+</div>
+
+
+<section class="page active" id="dashboard"><div class="section-ribbon"><strong>At a glance</strong><span>Use the sidebar to move between surveillance, prevention, care, environment and source quality.</span></div>
+<div class="notice">These are official published figures, not estimates generated by this site. Different datasets have different publication schedules.</div>
+
+<div class="signals">
+  <div class="card signal">
+    <div class="signal-head"><strong>Respiratory activity</strong><span class="signal-level watch">Watch</span></div>
+    <div class="signal-value" id="respSignal">+11.8% week/week</div>
+    <p>Overall respiratory ED share increased from 6.59% to 7.37% in the latest published week.</p>
+  </div>
+  <div class="card signal">
+    <div class="signal-head"><strong>Emergency response</strong><span class="signal-level info">Borough variation</span></div>
+    <div class="signal-value" id="responseSignal">Bronx highest</div>
+    <p id="responseSignalText">Response-time values differ materially across boroughs in the latest 911 snapshot.</p>
+  </div>
+  <div class="card signal">
+    <div class="signal-head"><strong>Data pipeline</strong><span class="signal-level stable" id="pipelineLevel">Healthy</span></div>
+    <div class="signal-value" id="pipelineSignal">2 live sources</div>
+    <p id="pipelineText">911 data refreshes automatically when the dashboard is opened.</p>
+  </div>
+</div>
+
+<div class="kpis">
+<div class="card kpi"><div class="label">Respiratory illness share of ED visits</div><div class="value">7.37%</div><div class="foot">Week ending Sep. 19, 2026 • up from 6.59%</div></div>
+<div class="card kpi"><div class="label">COVID-19 share of ED visits</div><div class="value">0.66%</div><div class="foot">Week ending Sep. 19, 2026 • NYC Health</div></div>
+<div class="card kpi"><div class="label">Flu share of ED visits</div><div class="value">0.16%</div><div class="foot">Week ending Sep. 19, 2026 • NYC Health</div></div>
+<div class="card kpi"><div class="label">Child flu vaccination coverage</div><div class="value">40%</div><div class="foot">Ages 6 months–17 years • 2025–26 season through Jun. 30, 2026</div></div>
+</div>
+<div class="grid2">
+<div class="card"><div class="head"><div class="title">Respiratory ED Visit Trend</div><div class="desc">Percent of NYC ED visits with a respiratory illness diagnosis</div></div><div class="chart"><canvas id="overviewChart"></canvas></div></div>
+<div class="card"><div class="head"><div class="title">Current Virus Indicators</div><div class="desc">Week ending Sep. 19, 2026</div></div>
+<div class="metriclist">
+<div class="metric"><span>Overall respiratory illness</span><span class="status-up">7.37% ↑</span></div>
+<div class="metric"><span>COVID-19</span><span class="status-up">0.66% ↑</span></div>
+<div class="metric"><span>Influenza</span><span class="status-stable">0.16% →</span></div>
+<div class="metric"><span>RSV</span><span class="status-stable">0.02% →</span></div>
+</div></div>
+</div>
+<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Health Respiratory Illness Data</a>, data as of Sep. 24, 2026. Childhood vaccination source: <a href="https://www.nyc.gov/site/doh/data/data-sets/childhood-vaccination-data.page" target="_blank">NYC Childhood Vaccination Data Explorer</a>.</div>
+</section>
+
+<section class="page" id="surveillance"><div class="section-ribbon"><strong>Respiratory watch</strong><span>Emergency-department and laboratory signals shown on their published reporting cadence.</span></div>
+<div class="kpis">
+<div class="card kpi"><div class="label">Overall respiratory ED visits</div><div class="value">7.37%</div><div class="foot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">COVID-19 ED visits</div><div class="value">0.66%</div><div class="foot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">Flu ED visits</div><div class="value">0.16%</div><div class="foot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">RSV ED visits</div><div class="value">0.02%</div><div class="foot">Sep. 19, 2026</div></div>
+</div>
+<div class="card"><div class="head"><div class="title">NYC Respiratory Surveillance</div><div class="desc">Official weekly emergency-department percentages</div></div><div class="chart"><canvas id="surveillanceChart"></canvas></div></div>
+<div class="grid2 equal" style="margin-top:18px">
+<div class="card"><div class="head"><div class="title">Selected Laboratory Respiratory Panel</div><div class="desc">Percent positive • week of Sep. 19, 2026</div></div><div class="tablebox"><table><thead><tr><th>Virus</th><th>Positive</th></tr></thead><tbody>
+<tr><td>Adenovirus</td><td><strong>1%</strong></td></tr><tr><td>Human Coronavirus</td><td><strong>1%</strong></td></tr><tr><td>SARS-CoV-2</td><td><strong>4%</strong></td></tr><tr><td>Enterovirus/Rhinovirus</td><td><strong>17%</strong></td></tr><tr><td>Human Metapneumovirus</td><td><strong>0%</strong></td></tr><tr><td>Influenza</td><td><strong>1%</strong></td></tr><tr><td>Parainfluenza</td><td><strong>3%</strong></td></tr><tr><td>RSV</td><td><strong>0%</strong></td></tr>
+</tbody></table></div></div>
+<div class="card callout"><h3>Interpretation</h3><p>Emergency-department surveillance is timely, but it does not measure every infection in NYC. People who receive care elsewhere or do not seek care are not captured in this metric.</p><p>The NYC Health Department marks these data as preliminary and updates its respiratory pages weekly.</p></div>
+</div>
+<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Department of Health and Mental Hygiene — Respiratory Illness Data</a>. Published data as of Sep. 24, 2026.</div>
+</section>
+
+<section class="page" id="vaccination"><div class="section-ribbon"><strong>Prevention</strong><span>Coverage and guidance are kept separate so users can distinguish observed uptake from recommendations.</span></div>
+<div class="grid2 equal">
+<div class="card callout"><div class="label">2025–26 influenza season</div><div class="bigstat">40%</div><h3>NYC children and adolescents vaccinated for flu</h3><p>As of June 30, 2026, 40% of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the 2025–26 influenza season.</p></div>
+<div class="card callout"><h3>2026–27 respiratory season guidance</h3><p>NYC and New York State health departments endorse respiratory-virus immunization recommendations for the 2026–27 season. NYC Health states that most people 6 months and older should receive a COVID-19 vaccine, with particular importance for people at higher risk of severe disease.</p><p>Current vaccine-location information is available through the NYC Health Map.</p></div>
+</div>
+<div class="linkgrid">
+<div class="card linkcard"><h3>Childhood Vaccination Data Explorer</h3><p>Coverage by vaccine, age, race/ethnicity, borough and ZIP code.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/data-sets/childhood-vaccination-data.page">Open official explorer</a></div>
+<div class="card linkcard"><h3>Citywide Immunization Registry</h3><p>NYC’s official vaccination-record system for immunizations reported by health care providers.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/services/cir-parents-guardians.page">Vaccine records</a></div>
+</div>
+<div class="source">Sources: NYC Health Childhood Vaccination Data Explorer (flu coverage through Jun. 30, 2026) and NYC/NYS 2026–27 respiratory-virus immunization guidance.</div>
+</section>
+
+<section class="page" id="emergency"><div class="section-ribbon"><strong>Care access</strong><span>Emergency utilization and response metrics come from separate official systems.</span></div>
+<div class="notice">Emergency-care indicators below come from two different official NYC datasets: respiratory ED surveillance and citywide 911 response reporting.</div>
+<div class="grid2 equal">
+<div class="card"><div class="head"><div class="title">Life-Threatening Medical Emergency Response</div><div class="desc">Combined ambulance + fire response time • Aug. 2026</div></div><div class="tablebox"><table><thead><tr><th>Borough</th><th>Incidents</th><th>Response time*</th></tr></thead><tbody>
+<tr><td><strong>Brooklyn</strong></td><td>13,926</td><td>629.20</td></tr><tr><td><strong>Bronx</strong></td><td>11,716</td><td>926.40</td></tr><tr><td><strong>Manhattan</strong></td><td>11,891</td><td>813.17</td></tr><tr><td><strong>Queens</strong></td><td>10,367</td><td>762.60</td></tr><tr><td><strong>Staten Island</strong></td><td>2,208</td><td>681.30</td></tr>
+</tbody></table><div class="foot">*Displayed exactly as reported by NYC Open Data in the source dataset.</div></div></div>
+<div class="card callout"><div class="label">Respiratory diagnoses</div><div class="bigstat">7.37%</div><h3>of NYC emergency-department visits</h3><p>For the week ending September 19, 2026, respiratory illness diagnoses accounted for 7.37% of ED visits, up from 6.59% the previous week.</p></div>
+</div>
+<div class="source">Sources: <a target="_blank" href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html">NYC Health Respiratory Illness Data</a> and NYC Open Data 911 reporting, Aug. 2026.</div>
+</section>
+
+
+
+<section class="page" id="environment"><div class="section-ribbon"><strong>Long-term health</strong><span>Chronic conditions are often shaped by modifiable risks, early detection, and long-term management.</span></div>
+
+<div class="notice">Prevention is not equally possible for every condition. The guidance below distinguishes between preventing disease, lowering risk, and reducing severe symptoms or complications.</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Respiratory health</div>
+    <h3>Asthma</h3>
+    <p><strong>Can it be prevented?</strong> Asthma itself cannot always be prevented, but attacks and severe symptoms can often be reduced.</p>
+    <p><strong>Best-supported steps:</strong> identify and avoid personal triggers, avoid tobacco and secondhand smoke, reduce exposure to mold and dust mites when relevant, monitor air quality, follow prescribed controller therapy, and maintain an individualized asthma action plan.</p>
+    <a class="btn" target="_blank" href="https://www.cdc.gov/asthma/control/">CDC asthma control guidance</a>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Metabolic health</div>
+    <h3>Type 2 diabetes</h3>
+    <p><strong>Can it be prevented?</strong> Often, yes—especially when prediabetes is identified early.</p>
+    <p><strong>Best-supported steps:</strong> regular physical activity, healthy eating, and modest weight loss when a person has overweight. CDC's Diabetes Prevention Program uses a goal of about 5%–7% weight loss plus increased activity for people at elevated risk.</p>
+    <a class="btn" target="_blank" href="https://www.cdc.gov/diabetes/prevention-type-2/index.html">CDC diabetes prevention</a>
+  </div>
+</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Cardiovascular health</div>
+    <h3>Heart disease</h3>
+    <p><strong>Can it be prevented?</strong> Many cases can be delayed or prevented by addressing major cardiovascular risk factors.</p>
+    <p><strong>Best-supported steps:</strong> do not smoke, stay physically active, eat a heart-healthy diet, maintain a healthy weight, and manage blood pressure, cholesterol, and blood sugar with clinical care when needed.</p>
+    <a class="btn" target="_blank" href="https://www.cdc.gov/heart-disease/prevention/index.html">CDC heart disease prevention</a>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Blood pressure</div>
+    <h3>Hypertension</h3>
+    <p><strong>Can it be prevented?</strong> Risk can often be lowered, and existing hypertension can frequently be controlled.</p>
+    <p><strong>Best-supported steps:</strong> regular activity, limiting sodium, avoiding tobacco, maintaining a healthy weight, moderating alcohol, managing stress, checking blood pressure, and taking prescribed medication when lifestyle measures are not enough.</p>
+    <a class="btn" target="_blank" href="https://www.cdc.gov/high-blood-pressure/prevention/">CDC blood-pressure prevention</a>
+  </div>
+</div>
+
+<div class="card callout" style="margin-top:18px">
+  <div class="map-kicker">Shared prevention strategy</div>
+  <h3>The same core habits protect against several chronic diseases</h3>
+  <p>CDC highlights a short list of major modifiable risks shared across many chronic diseases: tobacco use, poor nutrition, physical inactivity, and excessive alcohol use. Preventive care and routine screening also help identify disease earlier, when intervention may have more impact.</p>
+  <a class="btn" target="_blank" href="https://www.cdc.gov/chronic-disease/prevention/index.html">CDC chronic-disease prevention</a>
+</div>
+
+<div class="source">Sources: CDC asthma, diabetes, heart disease, high blood pressure, and chronic-disease prevention guidance. These are general population-health recommendations, not individualized medical advice.</div>
+</section>
+
+
+
+
+<section class="page" id="neurodegenerative"><div class="section-ribbon"><strong>Brain & nervous system</strong><span>Different neurodegenerative diseases have very different causes, so prevention ranges from risk reduction to symptom management.</span></div>
+
+<div class="notice">There is currently no guaranteed way to prevent most neurodegenerative diseases. Where evidence supports it, this section uses the more accurate term <strong>risk reduction</strong> rather than promising prevention.</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Dementia & memory</div>
+    <h3>Alzheimer's disease</h3>
+    <p><strong>What it affects:</strong> memory, thinking, behavior, and eventually the ability to perform everyday activities.</p>
+    <p><strong>Can it be prevented?</strong> No strategy is proven to guarantee prevention. However, NIH/NIA identifies several potentially modifiable risk factors associated with dementia.</p>
+    <p><strong>Risk-reduction priorities:</strong> control high blood pressure, stay physically active, avoid smoking, manage diabetes and cholesterol, sleep well, address hearing loss, maintain social connection, and stay mentally engaged.</p>
+    <p><strong>Reducing severe impact:</strong> early evaluation can help identify treatable contributors to cognitive symptoms and may allow earlier use of supportive care or disease-specific treatment when appropriate.</p>
+    <a class="btn" target="_blank" href="https://www.nia.nih.gov/alzheimers/topics/risk-factors-prevention">NIA risk & prevention guidance</a>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Movement disorder</div>
+    <h3>Parkinson's disease</h3>
+    <p><strong>What it affects:</strong> movement, balance, coordination, and in some people cognition, mood, sleep, speech, or swallowing.</p>
+    <p><strong>Can it be prevented?</strong> There is no proven method that prevents Parkinson's disease.</p>
+    <p><strong>What may help after diagnosis:</strong> regular exercise can improve flexibility, balance, strength, and mobility. Physical, occupational, and speech therapy can help preserve function, communication, and independence.</p>
+    <p><strong>General health:</strong> a balanced diet and adequate fluids can help with issues such as constipation, while medication timing and protein intake may need to be individualized with a clinician.</p>
+    <a class="btn" target="_blank" href="https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease">NINDS Parkinson's overview</a>
+  </div>
+</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Motor neuron disease</div>
+    <h3>ALS</h3>
+    <p><strong>What it affects:</strong> motor neurons that control voluntary movement, eventually affecting walking, speaking, swallowing, and breathing.</p>
+    <p><strong>Can it be prevented?</strong> There is no established way to prevent ALS.</p>
+    <p><strong>Reducing complications:</strong> multidisciplinary care, physical and occupational therapy, speech and communication support, nutritional support, respiratory monitoring, and assistive technology can help preserve function and quality of life.</p>
+    <p><strong>Exercise:</strong> appropriately tailored low-impact activity and range-of-motion work may help maintain function, but exercise plans should be individualized to avoid overexertion.</p>
+    <a class="btn" target="_blank" href="https://www.ninds.nih.gov/current-research/focus-disorders/focus-amyotrophic-lateral-sclerosis">NINDS ALS information</a>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Inherited disease</div>
+    <h3>Huntington's disease</h3>
+    <p><strong>What it affects:</strong> movement, thinking, behavior, and emotional regulation.</p>
+    <p><strong>Can it be prevented?</strong> Huntington's disease is caused by an inherited mutation in the <em>HTT</em> gene. There is currently no proven way to prevent disease onset in someone who carries the disease-causing mutation.</p>
+    <p><strong>What can help:</strong> genetic counseling can help families understand inheritance and testing decisions. Once symptoms develop, multidisciplinary care may help manage movement, psychiatric, cognitive, nutritional, and safety concerns.</p>
+    <p><strong>Research direction:</strong> clinical studies are actively testing therapies intended to delay or slow disease onset and progression.</p>
+    <a class="btn" target="_blank" href="https://www.ninds.nih.gov/health-information/clinical-trials/preparing-prevention-huntingtons-disease-prevent-hd">NINDS Huntington's research</a>
+  </div>
+</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Shared brain-health strategy</div>
+    <h3>What is reasonable to do now?</h3>
+    <p>For diseases in which prevention is uncertain, the safest evidence-based approach is to protect overall brain and vascular health: manage blood pressure and diabetes, stay active, avoid smoking, protect hearing, sleep adequately, reduce head-injury risk, stay socially connected, and seek evaluation for persistent neurological changes.</p>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Important distinction</div>
+    <h3>Risk reduction is not a guarantee</h3>
+    <p>Age, genetics, environmental exposures, and still-unknown biological mechanisms play major roles in neurodegenerative disease. A person can follow healthy habits and still develop one of these conditions, while another person with risk factors may never develop it.</p>
+    <p>That is why this dashboard avoids claims such as “prevent Alzheimer's” or “prevent Parkinson's” when the evidence does not support them.</p>
+  </div>
+</div>
+
+<div class="source">Sources: National Institute on Aging and National Institute of Neurological Disorders and Stroke. Educational information only; diagnosis, genetic testing, and treatment decisions should be made with qualified clinicians and genetic counselors when appropriate.</div>
+</section>
+
+<section class="page" id="demographics"><div class="section-ribbon"><strong>Population context</strong><span>Validated demographic tools are prioritized over unsupported estimates.</span></div>
+<div class="card callout"><h3>Demographic analysis from official NYC sources</h3><p>NYC Health’s Community Health Survey and EpiQuery provide validated demographic breakdowns by age, sex, race/ethnicity and other characteristics. The city cautions that some survey estimates can be unreliable when sample sizes are small, so this site does not fabricate a demographic breakdown from incomplete respiratory surveillance data.</p></div>
+<div class="linkgrid" style="margin-top:18px">
+<div class="card linkcard"><h3>Community Health Survey</h3><p>Annual survey datasets covering health behaviors, chronic conditions, access to care and other population-health measures.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/data-sets/community-health-survey-public-use-data.page">Open survey data</a></div>
+<div class="card linkcard"><h3>NYC Health Data Tools</h3><p>Access EpiQuery, Community Health Profiles and other official analytic tools.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/tools.page">Open data tools</a></div>
+</div>
+<div class="source">NYC Health advises analysts to account for the Community Health Survey’s complex sampling design and to review reliability guidelines for small estimates.</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page" id="quality" style="margin-top:0;padding-top:0"><div class="section-ribbon" style="margin-top:0"><strong>Trust layer</strong><span>How the dashboard sources, validates, refreshes, and falls back when public data changes.</span></div>
+
+<div class="notice">Every metric on this dashboard should have a traceable source, reporting period, and update cadence. Different datasets update on different schedules, so the site keeps those dates separate instead of implying that every number is equally “live.”</div>
+
+<div class="grid2 equal">
+  <div class="card callout">
+    <div class="map-kicker">Source transparency</div>
+    <h3>Public-health data should be traceable</h3>
+    <p>Respiratory surveillance, vaccination, emergency response, chronic-disease guidance, and neurodegenerative-disease guidance all come from official public-health sources. Each source keeps its own publication schedule and level of certainty.</p>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Current dashboard behavior</div>
+    <h3>Verified values first</h3>
+    <p>The geography section can refresh NYC Open Data 911 data directly. Before live data replaces the current values, the dashboard checks that all five boroughs are present and that incident and response-time values are valid.</p>
+    <p>If a refresh fails, the site keeps the most recent verified snapshot instead of showing blanks or zeros.</p>
+  </div>
+</div>
+
+<div class="card quality" style="margin-top:18px">
+  <div class="title">Source & Freshness Register</div>
+
+  <div class="status-line">
+    <strong>Respiratory surveillance</strong>
+    <span>NYC Department of Health and Mental Hygiene</span>
+    <span>Weekly</span>
+    <span class="status-pill cached">Official snapshot</span>
+  </div>
+
+  <div class="status-line">
+    <strong>Vaccination</strong>
+    <span>NYC Childhood Vaccination Data Explorer / Citywide Immunization Registry</span>
+    <span>Periodic</span>
+    <span class="status-pill cached">Official source</span>
+  </div>
+
+  <div class="status-line" id="status911">
+    <strong>911 emergency response</strong>
+    <span>NYC Open Data • Local Law 119 dataset</span>
+    <span id="status911Date">Latest month</span>
+    <span class="status-pill live" id="status911Pill">Live API</span>
+  </div>
+
+  <div class="status-line">
+    <strong>Chronic conditions</strong>
+    <span>CDC + NYC Health Community Health Survey / EpiQuery</span>
+    <span>Guidance + survey cycle</span>
+    <span class="status-pill cached">Official source</span>
+  </div>
+
+  <div class="status-line">
+    <strong>Neurodegenerative diseases</strong>
+    <span>NIH / NIA / NINDS</span>
+    <span>Clinical guidance</span>
+    <span class="status-pill cached">Official source</span>
+  </div>
+</div>
+
+<div class="grid2 equal" style="margin-top:18px">
+  <div class="card callout">
+    <div class="map-kicker">Validation</div>
+    <h3>Checks before data is shown</h3>
+    <div class="pipeline">
+      <div class="pipe-step"><strong>1. Fetch</strong><span>Official public source</span></div>
+      <div class="pipe-step"><strong>2. Schema</strong><span>Expected fields exist</span></div>
+      <div class="pipe-step"><strong>3. Coverage</strong><span>All 5 boroughs present</span></div>
+      <div class="pipe-step"><strong>4. Values</strong><span>Numeric & non-negative</span></div>
+      <div class="pipe-step"><strong>5. Publish</strong><span>Replace only if valid</span></div>
+    </div>
+  </div>
+
+  <div class="card callout">
+    <div class="map-kicker">Fallback protection</div>
+    <h3>What happens if a source fails?</h3>
+    <p>If an endpoint is unavailable, blocked, or changes its structure, the dashboard retains the latest verified values. The source status changes to a cached/fallback state instead of silently presenting missing data as current.</p>
+  </div>
+</div>
+
+<div class="method-grid">
+  <div class="card method">
+    <div class="num">01</div>
+    <strong>Reporting periods</strong>
+    <p>Weekly surveillance, monthly emergency-response data, and periodic survey estimates remain on their own timelines.</p>
+  </div>
+
+  <div class="card method">
+    <div class="num">02</div>
+    <strong>Preliminary data</strong>
+    <p>Some surveillance values can be revised as new records are received. Reporting dates stay visible so users understand the context.</p>
+  </div>
+
+  <div class="card method">
+    <div class="num">03</div>
+    <strong>Health guidance</strong>
+    <p>Prevention and treatment information comes from CDC and NIH-family agencies and distinguishes prevention from risk reduction and supportive care.</p>
+  </div>
+</div>
+
+<div class="card callout" style="margin-top:18px">
+  <div class="map-kicker">Production architecture</div>
+  <h3>How a fully self-updating version should work</h3>
+  <p><strong>Official sources → scheduled collector → validation → versioned storage → dashboard API → website.</strong></p>
+  <p>A hosted backend could check respiratory data weekly, 911 data monthly, and other sources on their own schedules while preserving historical snapshots for reproducible trend analysis.</p>
+</div>
+
+<div class="source">Data-quality notes apply to the current prototype architecture. A production deployment should also log failed updates, preserve historical versions, and expose the exact source URL and retrieval timestamp for every published dataset.</div>
+</section>
+
+<section class="page" id="geography"><div class="section-ribbon"><strong>Place matters</strong><span>Explore borough metrics and connect to neighborhood-level public-health tools.</span></div>
+<div class="explorebar" aria-label="Map controls">
+  <div class="control">
+    <label for="globalPeriod">Time window</label>
+    <select id="globalPeriod">
+      <option value="latest">Latest</option>
+      <option value="3m">Last 3 months</option>
+      <option value="1y">Last 12 months</option>
+      <option value="all">All available</option>
+    </select>
+  </div>
+  <div class="control">
+    <label for="globalIndicator">Map indicator</label>
+    <select id="globalIndicator">
+      <option value="incidents">911 medical incidents</option>
+      <option value="response">Emergency response time</option>
+    </select>
+  </div>
+  <button class="action secondary" id="downloadBtn">Download current CSV</button>
+  <button class="action" id="refreshBtn"><span class="live-dot"></span>Refresh sources</button>
+</div>
+<div class="notice" id="periodNotice">Showing the latest available 911 reporting period.</div>
+<div class="desc" id="historyAvailability" style="margin:-8px 0 14px 2px">Loading historical monthly records…</div>
+
+
+<div class="map-layout">
+  <div class="card map-shell">
+    <div class="map-toolbar">
+      <div>
+        <div class="title">Interactive NYC Health Map</div>
+        <div class="desc">Reliable built-in map • click a borough to update the profile</div>
+      </div>
+      <span class="tag" id="mapDataTag">911 snapshot • Aug. 2026</span>
+    </div>
+    <div class="map-wrap">
+      <div class="map-tip">Click a borough to explore</div>
+      <div class="map-sidecard">
+      <strong>NYC borough view</strong>
+      <div>Shading reflects the selected indicator and time window.</div>
+      <div class="map-minirow"><strong>Source</strong><span>NYC Open Data</span></div>
+      <div class="map-minirow"><strong>Metric</strong><span id="mapSideMetric">Medical incidents</span></div>
+    </div>
+      <svg id="boroughSvg" viewBox="0 0 760 560" role="img" aria-label="Interactive schematic map of New York City boroughs">
+        
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        
+
+        <!-- Schematic geometry is built into the file so the map always renders. -->
+        <path id="map-Bronx" class="borough-shape" data-borough="Bronx" tabindex="0"
+          d="M365 55 L460 48 L515 94 L503 172 L447 205 L370 174 L338 112 Z"/>
+        <path id="map-Manhattan" class="borough-shape" data-borough="Manhattan" tabindex="0"
+          d="M345 135 L375 142 L353 332 L322 402 L304 386 L323 280 Z"/>
+        <path id="map-Queens" class="borough-shape" data-borough="Queens" tabindex="0"
+          d="M447 205 L520 166 L656 202 L704 280 L656 375 L542 393 L451 329 L402 263 Z"/>
+        <path id="map-Brooklyn" class="borough-shape" data-borough="Brooklyn" tabindex="0"
+          d="M402 263 L451 329 L542 393 L515 485 L412 516 L338 472 L322 402 L353 332 Z"/>
+        <path id="map-Staten-Island" class="borough-shape" data-borough="Staten Island" tabindex="0"
+          d="M118 355 L219 329 L275 369 L250 460 L164 510 L92 466 Z"/>
+
+        
+        <circle cx="425" cy="98" r="13" fill="rgba(17,43,60,.72)"/>
+        <circle cx="342" cy="290" r="13" fill="rgba(17,43,60,.72)"/>
+        <circle cx="590" cy="255" r="13" fill="rgba(17,43,60,.72)"/>
+        <circle cx="420" cy="392" r="13" fill="rgba(17,43,60,.72)"/>
+        <circle cx="180" cy="390" r="13" fill="rgba(17,43,60,.72)"/>
+
+        
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+      
+        <text class="map-water-label" x="118" y="286">New York Harbor</text>
+        <text class="map-water-label" x="645" y="175">Long Island Sound</text>
+
+        <text class="map-label" x="430" y="118">Bronx</text>
+        <text class="map-sub-label" x="430" y="136" id="label-Bronx"></text>
+
+        <text class="map-label" x="340" y="270" transform="rotate(-76 340 270)">Manhattan</text>
+
+        <text class="map-label" x="590" y="282">Queens</text>
+        <text class="map-sub-label" x="590" y="300" id="label-Queens"></text>
+
+        <text class="map-label" x="430" y="420">Brooklyn</text>
+        <text class="map-sub-label" x="430" y="438" id="label-Brooklyn"></text>
+
+        <text class="map-label" x="180" y="418">Staten Island</text>
+        <text class="map-sub-label" x="180" y="436" id="label-Staten-Island"></text>
+</svg>
+      <div class="map-key">
+        <strong id="legendTitle">Medical incidents</strong>
+        <div class="gradient"></div>
+        <span id="legendRange">Lower ← borough value → Higher</span>
+      </div>
+    </div>
+    <div class="desc" style="margin-top:9px">The built-in shapes are a simplified schematic for reliable interaction; values are official-source borough data. The time selector changes the underlying 911 aggregation used throughout this map view. On a hosted production build, official DCP boundary geometry can be loaded as an enhancement.</div>
+  </div>
+
+  <div class="card map-panel">
+    <div class="map-kicker">Borough profile</div>
+    <h2 id="selectedBorough">Brooklyn</h2>
+    <div class="desc" id="selectedContext">Latest verified borough snapshot</div>
+    <div class="map-stat"><span>Life-threatening medical incidents</span><strong id="selectedIncidents">13,926</strong></div>
+    <div class="map-stat"><span>Response time</span><strong id="selectedResponse">629.20 sec</strong></div>
+    <div class="map-stat"><span>Compared with NYC borough median</span><strong id="selectedCompare">—</strong></div>
+    <div class="map-note">
+      Hover or click a borough. Use the indicator control above to recolor the map. Official values are validated before replacing the last verified snapshot.
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="grid2 equal">
+  <div class="card">
+    <div class="head"><div class="title">Borough Comparison Chart</div><div class="desc" id="geoChartDesc">Life-threatening medical incidents • latest available month</div></div>
+    <div class="chart"><canvas id="geoChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="head"><div class="title">Filtered Borough Data</div><div class="desc" id="boroughTableDate">Latest verified 911 snapshot</div></div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Borough</th><th>Incidents</th><th>Response time</th></tr></thead>
+        <tbody id="boroughDataBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="linkgrid" style="margin-top:18px">
+  <div class="card linkcard"><h3>Community Health Profiles</h3><p>NYC Health publishes health and social-condition profiles for 59 community districts, including neighborhood comparisons.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/tools.page">Explore profiles</a></div>
+  <div class="card linkcard"><h3>NYC Open Data</h3><p>Search city datasets and use API access for geographic public-health analysis.</p><a class="btn" target="_blank" href="https://data.cityofnewyork.us/">Open NYC Open Data</a></div>
+</div>
+<div class="source">Borough metrics use the monthly NYC Open Data Local Law 119 dataset. The time selector changes the underlying 911 aggregation used by the map, chart, table and CSV export. The local schematic map is deliberately independent of external mapping libraries so it remains usable even when a map CDN or geometry endpoint fails.</div>
+</section>
+</main></div>
+<script>
+/* ==========================================================
+   NYC PUBLIC HEALTH ATLAS — REVISED DATA LAYER
+   - time-window selector now changes the actual 911 dataset
+   - PM2.5 borough values are fetched from NYC Open Data
+   - comparison feature removed
+   ========================================================== */
+
+const respiratory = [
+ ["2026-07-04",6.50,0.15,0.05,0.00],
+ ["2026-07-11",6.20,0.11,0.04,0.01],
+ ["2026-07-18",6.00,0.18,0.06,0.01],
+ ["2026-07-25",5.90,0.18,0.03,0.01],
+ ["2026-08-01",5.70,0.24,0.05,0.01],
+ ["2026-08-08",5.50,0.28,0.05,0.01],
+ ["2026-08-15",5.70,0.34,0.04,0.02],
+ ["2026-08-22",6.00,0.38,0.04,0.01],
+ ["2026-08-29",5.90,0.46,0.06,0.01],
+ ["2026-09-05",6.10,0.51,0.08,0.02],
+ ["2026-09-12",6.59,0.63,0.13,0.02],
+ ["2026-09-19",7.37,0.66,0.16,0.02]
+];
+
+const fallback911History = [
+ {month:"2026 / 08", rows:[
+  {borough:"Brooklyn",incidents:13926,response:629.20},
+  {borough:"Bronx",incidents:11716,response:926.40},
+  {borough:"Manhattan",incidents:11891,response:813.17},
+  {borough:"Queens",incidents:10367,response:762.60},
+  {borough:"Staten Island",incidents:2208,response:681.30}
+ ]}
+];
+
+let all911History = JSON.parse(JSON.stringify(fallback911History));
+let current911 = JSON.parse(JSON.stringify(fallback911History[0]));
+let selectedBorough = "Brooklyn";
+let liveState = {911:"loading"};
+let geoChart = null;
+
+const titles = {
+ dashboard:["Healthscope NYC Overview","NYC public health indicators with transparent source dates"],
+ surveillance:["Respiratory Surveillance","Emergency-department and laboratory respiratory indicators"],
+ vaccination:["Vaccination","Official NYC immunization coverage and guidance"],
+ emergency:["Emergency Care","Emergency-department surveillance and emergency response"],
+ environment:["Chronic Conditions","Prevention, risk reduction and long-term management"],
+ neurodegenerative:["Neurodegenerative Diseases","Brain and nervous-system disorders, risk reduction and supportive care"],
+ demographics:["Demographics","Validated NYC population-health data sources"],
+ geography:["Geography","Interactive borough exploration"],
+ quality:["Data Quality","Source provenance, refresh status and validation"]
+};
+
+const freshness = {
+ dashboard:"Latest key respiratory data: Sep. 24, 2026",
+ surveillance:"Respiratory data: Sep. 24, 2026",
+ vaccination:"Coverage through Jun. 30, 2026",
+ emergency:"911 source refreshes monthly",
+ environment:"CDC prevention guidance",
+ neurodegenerative:"NIH / NIA / NINDS evidence-based guidance",
+ demographics:"Survey-based official sources",
+ geography:"Borough data refreshes from NYC Open Data",
+ quality:"Live source register"
+};
+
+function toast(msg){
+ const t=document.getElementById("toast");
+ t.textContent=msg;t.classList.add("show");
+ clearTimeout(window.__toastTimer);
+ window.__toastTimer=setTimeout(()=>t.classList.remove("show"),2800);
+}
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function number(v,d=0){return Number(v).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function median(a){const x=[...a].sort((p,q)=>p-q),m=Math.floor(x.length/2);return x.length%2?x[m]:(x[m-1]+x[m])/2}
+function parseMonthKey(s){
+ const m=String(s||"").match(/(\d{4})\s*\/\s*(\d{1,2})/);
+ return m?new Date(+m[1],+m[2]-1,1):null;
+}
+function monthHuman(s){
+ const d=parseMonthKey(s);
+ return d?d.toLocaleDateString("en-US",{month:"short",year:"numeric"}):(s||"latest");
+}
+function get911(name){return current911.rows.find(r=>r.borough===name)}
+function selectedPeriod(){return document.getElementById("globalPeriod").value}
+
+function monthsForWindow(){
+ const hist=[...all911History].sort((a,b)=>parseMonthKey(a.month)-parseMonthKey(b.month));
+ if(!hist.length)return [];
+ const mode=selectedPeriod();
+ if(mode==="latest")return hist.slice(-1);
+ if(mode==="3m")return hist.slice(-3);
+ if(mode==="1y")return hist.slice(-12);
+ return hist;
+}
+
+function aggregate911(history){
+ if(!history.length)return JSON.parse(JSON.stringify(fallback911History[0]));
+ const boroughs=["Bronx","Brooklyn","Manhattan","Queens","Staten Island"];
+ const rows=boroughs.map(b=>{
+   const vals=history.map(h=>h.rows.find(r=>r.borough===b)).filter(Boolean);
+   const incidents=vals.reduce((s,r)=>s+(+r.incidents||0),0);
+   const weightedDen=vals.reduce((s,r)=>s+(+r.incidents||0),0);
+   const response=weightedDen
+     ? vals.reduce((s,r)=>s+(+r.response||0)*(+r.incidents||0),0)/weightedDen
+     : vals.reduce((s,r)=>s+(+r.response||0),0)/Math.max(vals.length,1);
+   return {borough:b,incidents,response};
+ });
+ const first=history[0].month,last=history[history.length-1].month;
+ return {month:history.length===1?last:`${monthHuman(first)} – ${monthHuman(last)}`,rows};
+}
+
+
+function applyTimeWindow(){
+ const hist=monthsForWindow();
+ current911=aggregate911(hist);
+
+ const mode=selectedPeriod();
+ const notice=document.getElementById("periodNotice");
+ const availability=document.getElementById("historyAvailability");
+ const availableCount=all911History.length;
+
+ if(availability){
+   availability.textContent = availableCount>1
+     ? `${availableCount} verified monthly 911 snapshots are loaded.`
+     : `Only ${availableCount} verified month is currently loaded; additional windows require the live NYC history feed.`;
+ }
+
+ if(mode==="latest"){
+   notice.textContent=`Latest month: ${monthHuman(hist.at(-1)?.month)}. Borough incidents and response times show that single reporting month.`;
+ }else if(mode==="3m"){
+   notice.textContent=`Last ${hist.length} month(s): incidents are summed across the window; response time is incident-weighted.`;
+ }else if(mode==="1y"){
+   notice.textContent=`Last ${hist.length} month(s): incidents are summed across the window; response time is incident-weighted.`;
+ }else{
+   notice.textContent=`All ${hist.length} loaded month(s): incidents are summed; response time is incident-weighted.`;
+ }
+
+ rerender();
+}
+
+function colorFor(v,min,max){
+ if(v==null||Number.isNaN(+v))return "#dfe8e5";
+ const t=max===min?.5:Math.max(0,Math.min(1,(+v-min)/(max-min)));
+ const a=[220,239,235],b=[15,102,105];
+ return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)})`;
+}
+
+function indicatorData(){
+ const key=document.getElementById("globalIndicator").value;
+ if(key==="response")return current911.rows.map(r=>({borough:r.borough,value:r.response}));
+ return current911.rows.map(r=>({borough:r.borough,value:r.incidents}));
+}
+function indicatorMeta(){
+ const key=document.getElementById("globalIndicator").value;
+ return key==="response"
+  ?{label:"Emergency response time",unit:" sec",dec:2}
+  :{label:"Medical incidents",unit:"",dec:0};
+}
+
+function renderMap(){
+ const vals=indicatorData().filter(x=>x.value!=null).map(x=>+x.value);
+ const min=vals.length?Math.min(...vals):0,max=vals.length?Math.max(...vals):1;
+ const meta=indicatorMeta();
+ indicatorData().forEach(d=>{
+   const id=d.borough.replaceAll(" ","-");
+   const p=document.getElementById("map-"+id);
+   if(p){
+     p.style.fill=colorFor(d.value,min,max);
+     p.classList.toggle("selected",d.borough===selectedBorough);
+     p.setAttribute("aria-label",`${d.borough}: ${d.value==null?"no value":number(d.value,meta.dec)+meta.unit}`);
+   }
+   const l=document.getElementById("label-"+id);
+   if(l)l.textContent=d.value==null?"":number(d.value,meta.dec)+meta.unit;
+ });
+ document.getElementById("legendTitle").textContent=meta.label;
+ const sideMetric=document.getElementById("mapSideMetric"); if(sideMetric)sideMetric.textContent=meta.label;
+ document.getElementById("legendRange").textContent=vals.length?`${number(min,meta.dec)} → ${number(max,meta.dec)}${meta.unit}`:"Awaiting data";
+ document.getElementById("mapDataTag").textContent = `911 • ${current911.month}`;
+}
+
+function renderSelected(){
+ const e=get911(selectedBorough);
+ document.getElementById("selectedBorough").textContent=selectedBorough;
+ document.getElementById("selectedIncidents").textContent=e?number(e.incidents):"—";
+ document.getElementById("selectedResponse").textContent=e?number(e.response,2)+" sec":"—";
+ const med=e?median(current911.rows.map(r=>r.response)):0;
+ const el=document.getElementById("selectedCompare");
+ if(e&&med){
+   const pct=(e.response-med)/med*100;
+   el.textContent=(pct>=0?"+":"")+pct.toFixed(1)+"%";
+   el.className=pct>0?"delta-up":"delta-down";
+ }else{el.textContent="—";el.className=""}
+ document.getElementById("selectedContext").textContent=`Selected time window • ${current911.month}`;
+ renderMap();
+}
+
+function renderTable(){
+ const body=document.getElementById("boroughDataBody");
+ body.innerHTML=current911.rows.map(r=>{
+   return `<tr><td><strong>${esc(r.borough)}</strong></td><td>${number(r.incidents)}</td><td>${number(r.response,2)} sec</td></tr>`;
+ }).join("");
+ document.getElementById("boroughTableDate").textContent=`911: ${current911.month}`;
+}
+
+function renderGeoChart(){
+ const meta=indicatorMeta(),data=indicatorData();
+ const canvas=document.getElementById("geoChart");
+ if(geoChart)geoChart.destroy();
+ geoChart=new Chart(canvas,{
+   type:"bar",
+   data:{labels:data.map(x=>x.borough),datasets:[{label:meta.label,data:data.map(x=>x.value),backgroundColor:"rgba(15,124,127,.82)",borderRadius:7}]},
+   options:{...common,plugins:{...common.plugins,legend:{display:false}}}
+ });
+ document.getElementById("geoChartDesc").textContent=`${meta.label} • ${current911.month}`;
+}
+
+function renderEmergencyTables(){
+ const tbl=[...document.querySelectorAll("#emergency tbody")][0];
+ if(tbl)tbl.innerHTML=current911.rows.map(r=>`<tr><td><strong>${esc(r.borough)}</strong></td><td>${number(r.incidents)}</td><td>${number(r.response,2)}</td></tr>`).join("");
+ const d=document.querySelector("#emergency .head .desc");
+ if(d)d.textContent=`Combined ambulance + fire response time • ${current911.month}`;
+}
+function renderSignals(){
+ const rows=current911.rows;
+ const worst=[...rows].sort((a,b)=>b.response-a.response)[0];
+ document.getElementById("responseSignal").textContent=worst.borough+" highest";
+ document.getElementById("responseSignalText").textContent=`${worst.borough} has the highest response-time value in the selected 911 time window.`;
+ const live=Object.values(liveState).filter(x=>x==="live").length;
+ const failed=Object.values(liveState).filter(x=>x==="fallback").length;
+ document.getElementById("pipelineSignal").textContent=`${live} live source${live===1?"":"s"}`;
+ document.getElementById("pipelineText").textContent=failed?`${failed} source is using cached fallback data.`:"The available live adapter passed validation.";
+ const lvl=document.getElementById("pipelineLevel");
+ lvl.textContent=failed?"Fallback active":"Healthy";
+ lvl.className="signal-level "+(failed?"watch":"stable");
+}
+function renderStatus(){
+ const p911=document.getElementById("status911Pill");
+ p911.textContent=liveState[911]==="live"?"Live API":"Cached fallback";
+ p911.className="status-pill "+(liveState[911]==="live"?"live":"cached");
+ document.getElementById("status911Date").textContent=current911.month;
+}
+function rerender(){
+ renderSelected();renderTable();renderGeoChart();renderEmergencyTables();renderSignals();renderStatus();
+}
+
+function validate911History(hist){
+ if(!Array.isArray(hist)||!hist.length)return false;
+ const needed=["Bronx","Brooklyn","Manhattan","Queens","Staten Island"];
+ return hist.every(h=>{
+   const names=new Set(h.rows.map(r=>r.borough));
+   return needed.every(n=>names.has(n))&&h.rows.every(r=>Number.isFinite(+r.incidents)&&+r.incidents>=0&&Number.isFinite(+r.response)&&+r.response>=0);
+ });
+}
+
+function save911History(hist){
+ try{
+   localStorage.setItem("nycHealthAtlas911HistoryV2",JSON.stringify(hist.slice(-60)));
+ }catch(e){}
+}
+
+function loadCaches(){
+ try{
+   const h=JSON.parse(localStorage.getItem("nycHealthAtlas911HistoryV2")||"null");
+   if(validate911History(h))all911History=h;
+ }catch(e){}
+}
+
+/* --- LIVE 911 HISTORY ---
+   Pull enough rows to reconstruct multiple months, then keep only
+   Aggregate / life-threatening medical emergency rows.
+*/
+async function refresh911(){
+ const description="Combined average response time to life threatening medical emergencies by ambulance and fire units";
+ const where = [
+   "agency='Aggregate'",
+   `description='${description.replaceAll("'","''")}'`,
+   "borough in('Bronx','Brooklyn','Manhattan','Queens','Staten Island')"
+ ].join(" AND ");
+
+ const url="https://data.cityofnewyork.us/resource/gpny-cuvw.json?"
+   + "$select=month_name,borough,of_incidents,value"
+   + "&$where=" + encodeURIComponent(where)
+   + "&$order=" + encodeURIComponent("month_name DESC")
+   + "&$limit=1000";
+
+ try{
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),9000);
+   const res=await fetch(url,{headers:{Accept:"application/json"},signal:controller.signal});
+   clearTimeout(timer);
+   if(!res.ok)throw new Error("HTTP "+res.status);
+   const raw=await res.json();
+
+   const groups={};
+   raw.forEach(r=>{
+     if(!r.month_name || !r.borough)return;
+     if(!groups[r.month_name])groups[r.month_name]=[];
+     groups[r.month_name].push({
+       borough:r.borough,
+       incidents:+r.of_incidents,
+       response:+r.value
+     });
+   });
+
+   const hist=Object.entries(groups)
+     .map(([month,rows])=>({month,rows}))
+     .filter(h=>h.rows.length===5)
+     .sort((a,b)=>parseMonthKey(a.month)-parseMonthKey(b.month));
+
+   if(!validate911History(hist))throw new Error("911 history validation failed");
+   all911History=hist;
+   liveState[911]="live";
+   save911History(hist);
+ }catch(err){
+   liveState[911]="fallback";
+   console.warn("911 refresh fallback:",err);
+ }
+}
+
+
+function syncPeriodOptions(){
+ const count=all911History.length;
+ const sel=document.getElementById("globalPeriod");
+ if(!sel)return;
+ [...sel.options].forEach(opt=>{
+   if(opt.value==="latest"){opt.disabled=false;return}
+   if(opt.value==="3m")opt.disabled=count<2;
+   if(opt.value==="1y")opt.disabled=count<2;
+   if(opt.value==="all")opt.disabled=count<2;
+ });
+ if(count<2 && sel.value!=="latest")sel.value="latest";
+}
+
+async function refreshAll(showToast=true){
+ const b=document.getElementById("refreshBtn");
+ b.disabled=true;b.textContent="Refreshing…";
+ await refresh911();
+ syncPeriodOptions();
+ applyTimeWindow();
+ b.disabled=false;b.innerHTML='<span class="live-dot"></span>Refresh sources';
+ if(showToast){
+   toast(Object.values(liveState).every(x=>x==="live")
+     ?"Official sources refreshed and validated."
+     :"Refresh complete. At least one source is using cached fallback data.");
+ }
+}
+
+function csvDownload(){
+ const lines=[["Borough","Time Window","Medical Incidents","Weighted Response Time Seconds"].join(",")];
+ current911.rows.forEach(r=>{
+   lines.push([r.borough,current911.month,r.incidents,r.response]
+     .map(v=>`"${String(v).replaceAll('"','""')}"`).join(","));
+ });
+ const blob=new Blob([lines.join("\n")],{type:"text/csv;charset=utf-8"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);a.download="nyc-public-health-borough-data.csv";a.click();
+ URL.revokeObjectURL(a.href);toast("Current filtered borough dataset downloaded.");
+}
+
+/* navigation */
+document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.page).classList.add("active");
+ document.getElementById("pageTitle").textContent=titles[b.dataset.page][0];
+ document.getElementById("pageSub").textContent=titles[b.dataset.page][1];
+ document.getElementById("freshnessLabel").textContent=freshness[b.dataset.page];
+ window.scrollTo({top:0,behavior:"smooth"});
+}));
+
+/* respiratory charts */
+const labels=respiratory.map(x=>new Date(x[0]+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"}));
+const common={
+ responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},
+ plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:7,boxHeight:7,padding:18,color:"#61727a",font:{size:11}}},
+ tooltip:{backgroundColor:"#112b3c",titleColor:"#fff",bodyColor:"#eaf2f3",padding:11,displayColors:true}},
+ scales:{x:{grid:{display:false},ticks:{color:"#738188",font:{size:10}}},y:{grid:{color:"#edf1ef"},border:{display:false},ticks:{color:"#738188",font:{size:10}}}}
+};
+new Chart(document.getElementById("overviewChart"),{
+ type:"line",data:{labels,datasets:[{label:"Respiratory illness",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",backgroundColor:"rgba(15,124,127,.10)",fill:true,tension:.35,pointRadius:2}]},options:common
+});
+new Chart(document.getElementById("surveillanceChart"),{
+ type:"line",data:{labels,datasets:[
+  {label:"Overall respiratory",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",tension:.3,pointRadius:2},
+  {label:"COVID-19",data:respiratory.map(x=>x[2]),borderColor:"#b64c54",tension:.3,pointRadius:2},
+  {label:"Flu",data:respiratory.map(x=>x[3]),borderColor:"#a96e0a",tension:.3,pointRadius:2},
+  {label:"RSV",data:respiratory.map(x=>x[4]),borderColor:"#5868a6",tension:.3,pointRadius:2}
+ ]},options:common
+});
+
+/* map interactions */
+document.querySelectorAll(".borough-shape").forEach(p=>{
+ const activate=()=>{selectedBorough=p.dataset.borough;renderSelected()};
+ p.addEventListener("click",activate);
+ p.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();activate()}});
+ p.addEventListener("mouseenter",()=>{
+   const meta=indicatorMeta(),d=indicatorData().find(x=>x.borough===p.dataset.borough);
+   document.getElementById("selectedContext").textContent=
+     d?.value==null?`${p.dataset.borough}: value unavailable`:`${p.dataset.borough} • ${meta.label}: ${number(d.value,meta.dec)}${meta.unit}`;
+ });
+ p.addEventListener("mouseleave",()=>renderSelected());
+});
+
+document.getElementById("globalIndicator").addEventListener("change",()=>{renderMap();renderGeoChart()});
+document.getElementById("globalPeriod").addEventListener("change",applyTimeWindow);
+document.getElementById("downloadBtn").addEventListener("click",csvDownload);
+document.getElementById("refreshBtn").addEventListener("click",()=>refreshAll(true));
+
+/* bootstrap */
+loadCaches();
+syncPeriodOptions();
+applyTimeWindow();
+refreshAll(false);
+</script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>
