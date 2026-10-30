@@ -1,28 +1,52 @@
 export default async function handler(req, res) {
   try {
     const url =
-      "https://api.github.com/repos/nychealth/respiratory-illness-data/contents/data";
+      "https://raw.githubusercontent.com/nychealth/respiratory-illness-data/main/data/OpenData_NYC_Respiratory_Illness_Data.csv";
 
     const response = await fetch(url, {
       headers: {
-        "Accept": "application/vnd.github+json",
         "User-Agent": "Healthscope-NYC"
       }
     });
 
     if (!response.ok) {
-      throw new Error(`GitHub returned ${response.status}`);
+      throw new Error(`NYC respiratory data returned ${response.status}`);
     }
 
-    const files = await response.json();
+    const csv = await response.text();
+
+    const lines = csv.trim().split(/\r?\n/);
+
+    if (lines.length < 2) {
+      throw new Error("CSV did not contain any data rows");
+    }
+
+    const headers = lines[0].split(",");
+
+    const rows = lines.slice(1, 6).map(line => {
+      const values = line.split(",");
+
+      const row = {};
+
+      headers.forEach((header, i) => {
+        row[header] = values[i];
+      });
+
+      return row;
+    });
+
+    res.setHeader(
+      "Cache-Control",
+      "s-maxage=3600, stale-while-revalidate=86400"
+    );
 
     res.status(200).json({
       success: true,
-      files: files.map(file => ({
-        name: file.name,
-        downloadUrl: file.download_url
-      }))
+      fetchedAt: new Date().toISOString(),
+      headers,
+      sampleRows: rows
     });
+
   } catch (error) {
     res.status(500).json({
       success: false,
