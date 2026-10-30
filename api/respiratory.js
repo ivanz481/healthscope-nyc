@@ -112,6 +112,18 @@ export default async function handler(req, res) {
     const latest = history[history.length - 1];
     const previous = history.length > 1 ? history[history.length - 2] : null;
 
+    const panelRows = rows
+      .filter(row =>
+        row.Metric === "Respiratory panel results" &&
+        isoDate(row.Date) === latest.date &&
+        Number.isFinite(Number(row.Value))
+      )
+      .map(row => ({
+        virus: row.Submetric,
+        value: Number(row.Value),
+        display: row.Display || "Percent"
+      }));
+
     res.setHeader(
       "Cache-Control",
       "s-maxage=3600, stale-while-revalidate=86400"
@@ -122,6 +134,7 @@ export default async function handler(req, res) {
       fetchedAt: new Date().toISOString(),
       latest,
       previous,
+      panel: panelRows,
       history
     });
   } catch (error) {
