@@ -944,7 +944,7 @@ body{font-size:16px;line-height:1.45}
 <div class="card kpi"><div class="label">Respiratory illness share of ED visits</div><div class="value" id="dashRespVal">7.37%</div><div class="foot" id="dashRespFoot">Week ending Sep. 19, 2026 • up from 6.59%</div></div>
 <div class="card kpi"><div class="label">COVID-19 share of ED visits</div><div class="value" id="dashCovidVal">0.66%</div><div class="foot" id="dashCovidFoot">Week ending Sep. 19, 2026 • NYC Health</div></div>
 <div class="card kpi"><div class="label">Flu share of ED visits</div><div class="value" id="dashFluVal">0.16%</div><div class="foot" id="dashFluFoot">Week ending Sep. 19, 2026 • NYC Health</div></div>
-<div class="card kpi"><div class="label">Child flu vaccination coverage</div><div class="value">40%</div><div class="foot">Ages 6 months–17 years • 2025–26 season through Jun. 30, 2026</div></div>
+<div class="card kpi"><div class="label">Child flu vaccination coverage</div><div class="value" id="dashVaxVal">40%</div><div class="foot" id="dashVaxFoot">Ages 6 months–17 years • 2025–26 season through Jun. 30, 2026</div></div>
 </div>
 <div class="grid2">
 <div class="card"><div class="head"><div class="title">Respiratory ED Visit Trend</div><div class="desc">Percent of NYC ED visits with a respiratory illness diagnosis</div></div><div class="chart"><canvas id="overviewChart"></canvas></div></div>
@@ -968,8 +968,8 @@ body{font-size:16px;line-height:1.45}
 </div>
 <div class="card"><div class="head"><div class="title">NYC Respiratory Surveillance</div><div class="desc">Official weekly emergency-department percentages</div></div><div class="chart"><canvas id="surveillanceChart"></canvas></div></div>
 <div class="grid2 equal" style="margin-top:18px">
-<div class="card"><div class="head"><div class="title">Selected Laboratory Respiratory Panel</div><div class="desc">Percent positive • week of Sep. 19, 2026</div></div><div class="tablebox"><table><thead><tr><th>Virus</th><th>Positive</th></tr></thead><tbody>
-<tr><td>Adenovirus</td><td><strong>1%</strong></td></tr><tr><td>Human Coronavirus</td><td><strong>1%</strong></td></tr><tr><td>SARS-CoV-2</td><td><strong>4%</strong></td></tr><tr><td>Enterovirus/Rhinovirus</td><td><strong>17%</strong></td></tr><tr><td>Human Metapneumovirus</td><td><strong>0%</strong></td></tr><tr><td>Influenza</td><td><strong>1%</strong></td></tr><tr><td>Parainfluenza</td><td><strong>3%</strong></td></tr><tr><td>RSV</td><td><strong>0%</strong></td></tr>
+<div class="card"><div class="head"><div class="title">Selected Laboratory Respiratory Panel</div><div class="desc" id="respPanelDate">Percent positive • latest published week</div></div><div class="tablebox"><table><thead><tr><th>Virus</th><th>Positive</th></tr></thead><tbody id="respPanelBody">
+<tr><td colspan="2">Loading latest respiratory panel…</td></tr>
 </tbody></table></div></div>
 <div class="card callout"><h3>Interpretation</h3><p>Emergency-department surveillance is timely, but it does not measure every infection in NYC. People who receive care elsewhere or do not seek care are not captured in this metric.</p><p>The NYC Health Department marks these data as preliminary and updates its respiratory pages weekly.</p></div>
 </div>
@@ -978,14 +978,14 @@ body{font-size:16px;line-height:1.45}
 
 <section class="page" id="vaccination"><div class="section-ribbon"><strong>Prevention</strong><span>Coverage and guidance are kept separate so users can distinguish observed uptake from recommendations.</span></div>
 <div class="grid2 equal">
-<div class="card callout"><div class="label">2025–26 influenza season</div><div class="bigstat">40%</div><h3>NYC children and adolescents vaccinated for flu</h3><p>As of June 30, 2026, 40% of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the 2025–26 influenza season.</p></div>
+<div class="card callout"><div class="label" id="vaxSeasonLabel">2025–26 influenza season</div><div class="bigstat" id="vaxBigStat">40%</div><h3>NYC children and adolescents vaccinated for flu</h3><p id="vaxSummary">As of June 30, 2026, 40% of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the 2025–26 influenza season.</p></div>
 <div class="card callout"><h3>2026–27 respiratory season guidance</h3><p>NYC and New York State health departments endorse respiratory-virus immunization recommendations for the 2026–27 season. NYC Health states that most people 6 months and older should receive a COVID-19 vaccine, with particular importance for people at higher risk of severe disease.</p><p>Current vaccine-location information is available through the NYC Health Map.</p></div>
 </div>
 <div class="linkgrid">
 <div class="card linkcard"><h3>Childhood Vaccination Data Explorer</h3><p>Coverage by vaccine, age, race/ethnicity, borough and ZIP code.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/data-sets/childhood-vaccination-data.page">Open official explorer</a></div>
 <div class="card linkcard"><h3>Citywide Immunization Registry</h3><p>NYC’s official vaccination-record system for immunizations reported by health care providers.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/services/cir-parents-guardians.page">Vaccine records</a></div>
 </div>
-<div class="source">Sources: NYC Health Childhood Vaccination Data Explorer (flu coverage through Jun. 30, 2026) and NYC/NYS 2026–27 respiratory-virus immunization guidance.</div>
+<div class="source">Sources: NYC Health Childhood Vaccination Data Explorer (<span id="vaxSourceDate">flu coverage through Jun. 30, 2026</span>) and NYC/NYS respiratory-virus immunization guidance.</div>
 </section>
 
 <section class="page" id="emergency"><div class="section-ribbon"><strong>Care access</strong><span>Emergency utilization and response metrics come from separate official systems.</span></div>
@@ -996,7 +996,7 @@ body{font-size:16px;line-height:1.45}
 </tbody></table><div class="foot">*Displayed exactly as reported by NYC Open Data in the source dataset.</div></div></div>
 <div class="card callout"><div class="label">Respiratory diagnoses</div><div class="bigstat" id="emergencyRespStat">7.37%</div><h3>of NYC emergency-department visits</h3><p id="emergencyRespText">For the week ending September 19, 2026, respiratory illness diagnoses accounted for 7.37% of ED visits, up from 6.59% the previous week.</p></div>
 </div>
-<div class="source">Sources: <a target="_blank" href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html">NYC Health Respiratory Illness Data</a> and NYC Open Data 911 reporting, Aug. 2026.</div>
+<div class="source">Sources: <a target="_blank" href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html">NYC Health Respiratory Illness Data</a> and NYC Open Data 911 reporting, <span id="emergency911SourceDate">latest available month</span>.</div>
 </section>
 
 
@@ -1166,15 +1166,15 @@ body{font-size:16px;line-height:1.45}
   <div class="status-line">
     <strong>Respiratory surveillance</strong>
     <span>NYC Department of Health and Mental Hygiene</span>
-    <span>Weekly</span>
-    <span class="status-pill cached">Official snapshot</span>
+    <span id="statusRespDate">Weekly</span>
+    <span class="status-pill live" id="statusRespPill">Live API</span>
   </div>
 
   <div class="status-line">
     <strong>Vaccination</strong>
     <span>NYC Childhood Vaccination Data Explorer / Citywide Immunization Registry</span>
-    <span>Periodic</span>
-    <span class="status-pill cached">Official source</span>
+    <span id="statusVaxDate">Periodic</span>
+    <span class="status-pill live" id="statusVaxPill">Live API</span>
   </div>
 
   <div class="status-line" id="status911">
@@ -1243,7 +1243,7 @@ body{font-size:16px;line-height:1.45}
   <div class="map-kicker">Production architecture</div>
   <h3>How a fully self-updating version should work</h3>
   <p><strong>Official sources → scheduled collector → validation → versioned storage → dashboard API → website.</strong></p>
-  <p>A hosted backend could check respiratory data weekly, 911 data monthly, and other sources on their own schedules while preserving historical snapshots for reproducible trend analysis.</p>
+  <p>The deployed backend now checks respiratory, vaccination, and 911 sources automatically when the dashboard loads or when users refresh sources. Each endpoint uses cache controls so newly published official values can replace older values without editing the site by hand.</p>
 </div>
 
 <div class="source">Data-quality notes apply to the current prototype architecture. A production deployment should also log failed updates, preserve historical versions, and expose the exact source URL and retrieval timestamp for every published dataset.</div>
@@ -1439,7 +1439,7 @@ const fallback911History = [
 let all911History = JSON.parse(JSON.stringify(fallback911History));
 let current911 = JSON.parse(JSON.stringify(fallback911History[0]));
 let selectedBorough = "Brooklyn";
-let liveState = {911:"loading",respiratory:"loading"};
+let liveState = {911:"loading",respiratory:"loading",vaccination:"loading"};
 let geoChart = null;
 
 const titles = {
@@ -1622,6 +1622,7 @@ function renderEmergencyTables(){
  if(tbl)tbl.innerHTML=current911.rows.map(r=>`<tr><td><strong>${esc(r.borough)}</strong></td><td>${number(r.incidents)}</td><td>${number(r.response,2)}</td></tr>`).join("");
  const d=document.querySelector("#emergency .head .desc");
  if(d)d.textContent=`Combined ambulance + fire response time • ${current911.month}`;
+ setText("emergency911SourceDate",monthHuman(current911.month));
 }
 function renderSignals(){
  const rows=current911.rows;
@@ -1641,6 +1642,17 @@ function renderStatus(){
  p911.textContent=liveState[911]==="live"?"Live API":"Cached fallback";
  p911.className="status-pill "+(liveState[911]==="live"?"live":"cached");
  document.getElementById("status911Date").textContent=current911.month;
+
+ const pr=document.getElementById("statusRespPill");
+ if(pr){
+   pr.textContent=liveState.respiratory==="live"?"Live API":"Cached fallback";
+   pr.className="status-pill "+(liveState.respiratory==="live"?"live":"cached");
+ }
+ const pv=document.getElementById("statusVaxPill");
+ if(pv){
+   pv.textContent=liveState.vaccination==="live"?"Live API":"Cached fallback";
+   pv.className="status-pill "+(liveState.vaccination==="live"?"live":"cached");
+ }
 }
 function rerender(){
  renderSelected();renderTable();renderGeoChart();renderEmergencyTables();renderSignals();renderStatus();
@@ -1783,7 +1795,16 @@ async function refreshRespiratory(){
 
    setText("dashboardRespSourceDate",`data as of ${sourceHuman}`);
    setText("surveillanceRespSourceDate",`Published data as of ${sourceHuman}.`);
+   setText("statusRespDate",`Data as of ${sourceHuman}`);
    setText("emergencyRespStat",pct(latest.respiratory));
+
+   const panelBody=document.getElementById("respPanelBody");
+   if(panelBody && Array.isArray(result.panel)){
+     panelBody.innerHTML=result.panel
+       .map(x=>`<tr><td>${esc(x.virus)}</td><td><strong>${number(x.value)}%</strong></td></tr>`)
+       .join("");
+   }
+   setText("respPanelDate",`Percent positive • week of ${latestHuman}`);
    setText("emergencyRespText",`For the week ending ${latestLong}, respiratory illness diagnoses accounted for ${pct(latest.respiratory)} of ED visits${previous?`, compared with ${pct(previous.respiratory)} the previous week`:""}.`);
 
    if(previous && previous.respiratory){
@@ -1821,6 +1842,43 @@ async function refreshRespiratory(){
  }
 }
 
+
+async function refreshVaccination(){
+ try{
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),9000);
+   const res=await fetch("/api/vaccination",{headers:{Accept:"application/json"},signal:controller.signal});
+   clearTimeout(timer);
+   if(!res.ok)throw new Error("HTTP "+res.status);
+   const result=await res.json();
+   if(!result.success||!Number.isFinite(+result.coverage)||!result.coverageDate)throw new Error("Vaccination validation failed");
+
+   const coverage=+result.coverage;
+   const coverageText=coverage.toFixed(1).replace(/\.0$/,"")+"%";
+   const seasonText=String(result.season||"").replace("-", "–");
+   const through=result.dataThrough||result.coverageDate;
+
+   setText("dashVaxVal",coverageText);
+   setText("dashVaxFoot",`Ages 6 months–17 years • ${seasonText} season through ${through}`);
+   setText("vaxSeasonLabel",`${seasonText} influenza season`);
+   setText("vaxBigStat",coverageText);
+   setText("vaxSummary",`As of ${result.coverageDate}, ${coverageText} of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the ${seasonText} influenza season.`);
+   setText("vaxSourceDate",`flu coverage through ${through}`);
+   setText("statusVaxDate",`Data through ${through}`);
+
+   freshness.vaccination=`Coverage through ${through}`;
+   const activePage=document.querySelector(".nav.active")?.dataset.page;
+   if(activePage==="vaccination"){
+     document.getElementById("freshnessLabel").textContent=freshness.vaccination;
+   }
+
+   liveState.vaccination="live";
+ }catch(err){
+   liveState.vaccination="fallback";
+   console.warn("Vaccination refresh fallback:",err);
+ }
+}
+
 function syncPeriodOptions(){
  const count=all911History.length;
  const sel=document.getElementById("globalPeriod");
@@ -1837,7 +1895,7 @@ function syncPeriodOptions(){
 async function refreshAll(showToast=true){
  const b=document.getElementById("refreshBtn");
  b.disabled=true;b.textContent="Refreshing…";
- await Promise.all([refresh911(),refreshRespiratory()]);
+ await Promise.all([refresh911(),refreshRespiratory(),refreshVaccination()]);
  syncPeriodOptions();
  applyTimeWindow();
  b.disabled=false;b.innerHTML='<span class="live-dot"></span>Refresh sources';
