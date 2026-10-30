@@ -1680,11 +1680,7 @@ async function refresh911(){
    "borough in('Bronx','Brooklyn','Manhattan','Queens','Staten Island')"
  ].join(" AND ");
 
- const url="https://data.cityofnewyork.us/resource/gpny-cuvw.json?"
-   + "$select=month_name,borough,of_incidents,value"
-   + "&$where=" + encodeURIComponent(where)
-   + "&$order=" + encodeURIComponent("month_name DESC")
-   + "&$limit=1000";
+const url="/api/911";
 
  try{
    const controller=new AbortController();
@@ -1692,7 +1688,8 @@ async function refresh911(){
    const res=await fetch(url,{headers:{Accept:"application/json"},signal:controller.signal});
    clearTimeout(timer);
    if(!res.ok)throw new Error("HTTP "+res.status);
-   const raw=await res.json();
+const result=await res.json();
+const raw=result.data;
 
    const groups={};
    raw.forEach(r=>{
