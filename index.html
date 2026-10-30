@@ -926,7 +926,7 @@ body{font-size:16px;line-height:1.45}
   <div class="card signal">
     <div class="signal-head"><strong>Respiratory activity</strong><span class="signal-level watch">Watch</span></div>
     <div class="signal-value" id="respSignal">+11.8% week/week</div>
-    <p>Overall respiratory ED share increased from 6.59% to 7.37% in the latest published week.</p>
+    <p id="respSignalText">Overall respiratory ED share increased from 6.59% to 7.37% in the latest published week.</p>
   </div>
   <div class="card signal">
     <div class="signal-head"><strong>Emergency response</strong><span class="signal-level info">Borough variation</span></div>
@@ -941,30 +941,30 @@ body{font-size:16px;line-height:1.45}
 </div>
 
 <div class="kpis">
-<div class="card kpi"><div class="label">Respiratory illness share of ED visits</div><div class="value">7.37%</div><div class="foot">Week ending Sep. 19, 2026 • up from 6.59%</div></div>
-<div class="card kpi"><div class="label">COVID-19 share of ED visits</div><div class="value">0.66%</div><div class="foot">Week ending Sep. 19, 2026 • NYC Health</div></div>
-<div class="card kpi"><div class="label">Flu share of ED visits</div><div class="value">0.16%</div><div class="foot">Week ending Sep. 19, 2026 • NYC Health</div></div>
+<div class="card kpi"><div class="label">Respiratory illness share of ED visits</div><div class="value" id="dashRespVal">7.37%</div><div class="foot" id="dashRespFoot">Week ending Sep. 19, 2026 • up from 6.59%</div></div>
+<div class="card kpi"><div class="label">COVID-19 share of ED visits</div><div class="value" id="dashCovidVal">0.66%</div><div class="foot" id="dashCovidFoot">Week ending Sep. 19, 2026 • NYC Health</div></div>
+<div class="card kpi"><div class="label">Flu share of ED visits</div><div class="value" id="dashFluVal">0.16%</div><div class="foot" id="dashFluFoot">Week ending Sep. 19, 2026 • NYC Health</div></div>
 <div class="card kpi"><div class="label">Child flu vaccination coverage</div><div class="value">40%</div><div class="foot">Ages 6 months–17 years • 2025–26 season through Jun. 30, 2026</div></div>
 </div>
 <div class="grid2">
 <div class="card"><div class="head"><div class="title">Respiratory ED Visit Trend</div><div class="desc">Percent of NYC ED visits with a respiratory illness diagnosis</div></div><div class="chart"><canvas id="overviewChart"></canvas></div></div>
-<div class="card"><div class="head"><div class="title">Current Virus Indicators</div><div class="desc">Week ending Sep. 19, 2026</div></div>
+<div class="card"><div class="head"><div class="title">Current Virus Indicators</div><div class="desc" id="currentVirusDate">Week ending Sep. 19, 2026</div></div>
 <div class="metriclist">
-<div class="metric"><span>Overall respiratory illness</span><span class="status-up">7.37% ↑</span></div>
-<div class="metric"><span>COVID-19</span><span class="status-up">0.66% ↑</span></div>
-<div class="metric"><span>Influenza</span><span class="status-stable">0.16% →</span></div>
-<div class="metric"><span>RSV</span><span class="status-stable">0.02% →</span></div>
+<div class="metric"><span>Overall respiratory illness</span><span class="status-up" id="metricResp">7.37% ↑</span></div>
+<div class="metric"><span>COVID-19</span><span class="status-up" id="metricCovid">0.66% ↑</span></div>
+<div class="metric"><span>Influenza</span><span class="status-stable" id="metricFlu">0.16% →</span></div>
+<div class="metric"><span>RSV</span><span class="status-stable" id="metricRsv">0.02% →</span></div>
 </div></div>
 </div>
-<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Health Respiratory Illness Data</a>, data as of Sep. 24, 2026. Childhood vaccination source: <a href="https://www.nyc.gov/site/doh/data/data-sets/childhood-vaccination-data.page" target="_blank">NYC Childhood Vaccination Data Explorer</a>.</div>
+<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Health Respiratory Illness Data</a>, <span id="dashboardRespSourceDate">data as of Sep. 24, 2026</span>. Childhood vaccination source: <a href="https://www.nyc.gov/site/doh/data/data-sets/childhood-vaccination-data.page" target="_blank">NYC Childhood Vaccination Data Explorer</a>.</div>
 </section>
 
 <section class="page" id="surveillance"><div class="section-ribbon"><strong>Respiratory watch</strong><span>Emergency-department and laboratory signals shown on their published reporting cadence.</span></div>
 <div class="kpis">
-<div class="card kpi"><div class="label">Overall respiratory ED visits</div><div class="value">7.37%</div><div class="foot">Sep. 19, 2026</div></div>
-<div class="card kpi"><div class="label">COVID-19 ED visits</div><div class="value">0.66%</div><div class="foot">Sep. 19, 2026</div></div>
-<div class="card kpi"><div class="label">Flu ED visits</div><div class="value">0.16%</div><div class="foot">Sep. 19, 2026</div></div>
-<div class="card kpi"><div class="label">RSV ED visits</div><div class="value">0.02%</div><div class="foot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">Overall respiratory ED visits</div><div class="value" id="survRespVal">7.37%</div><div class="foot" id="survRespFoot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">COVID-19 ED visits</div><div class="value" id="survCovidVal">0.66%</div><div class="foot" id="survCovidFoot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">Flu ED visits</div><div class="value" id="survFluVal">0.16%</div><div class="foot" id="survFluFoot">Sep. 19, 2026</div></div>
+<div class="card kpi"><div class="label">RSV ED visits</div><div class="value" id="survRsvVal">0.02%</div><div class="foot" id="survRsvFoot">Sep. 19, 2026</div></div>
 </div>
 <div class="card"><div class="head"><div class="title">NYC Respiratory Surveillance</div><div class="desc">Official weekly emergency-department percentages</div></div><div class="chart"><canvas id="surveillanceChart"></canvas></div></div>
 <div class="grid2 equal" style="margin-top:18px">
@@ -973,7 +973,7 @@ body{font-size:16px;line-height:1.45}
 </tbody></table></div></div>
 <div class="card callout"><h3>Interpretation</h3><p>Emergency-department surveillance is timely, but it does not measure every infection in NYC. People who receive care elsewhere or do not seek care are not captured in this metric.</p><p>The NYC Health Department marks these data as preliminary and updates its respiratory pages weekly.</p></div>
 </div>
-<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Department of Health and Mental Hygiene — Respiratory Illness Data</a>. Published data as of Sep. 24, 2026.</div>
+<div class="source">Source: <a href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html" target="_blank">NYC Department of Health and Mental Hygiene — Respiratory Illness Data</a>. <span id="surveillanceRespSourceDate">Published data as of Sep. 24, 2026.</span></div>
 </section>
 
 <section class="page" id="vaccination"><div class="section-ribbon"><strong>Prevention</strong><span>Coverage and guidance are kept separate so users can distinguish observed uptake from recommendations.</span></div>
@@ -994,7 +994,7 @@ body{font-size:16px;line-height:1.45}
 <div class="card"><div class="head"><div class="title">Life-Threatening Medical Emergency Response</div><div class="desc">Combined ambulance + fire response time • Aug. 2026</div></div><div class="tablebox"><table><thead><tr><th>Borough</th><th>Incidents</th><th>Response time*</th></tr></thead><tbody>
 <tr><td><strong>Brooklyn</strong></td><td>13,926</td><td>629.20</td></tr><tr><td><strong>Bronx</strong></td><td>11,716</td><td>926.40</td></tr><tr><td><strong>Manhattan</strong></td><td>11,891</td><td>813.17</td></tr><tr><td><strong>Queens</strong></td><td>10,367</td><td>762.60</td></tr><tr><td><strong>Staten Island</strong></td><td>2,208</td><td>681.30</td></tr>
 </tbody></table><div class="foot">*Displayed exactly as reported by NYC Open Data in the source dataset.</div></div></div>
-<div class="card callout"><div class="label">Respiratory diagnoses</div><div class="bigstat">7.37%</div><h3>of NYC emergency-department visits</h3><p>For the week ending September 19, 2026, respiratory illness diagnoses accounted for 7.37% of ED visits, up from 6.59% the previous week.</p></div>
+<div class="card callout"><div class="label">Respiratory diagnoses</div><div class="bigstat" id="emergencyRespStat">7.37%</div><h3>of NYC emergency-department visits</h3><p id="emergencyRespText">For the week ending September 19, 2026, respiratory illness diagnoses accounted for 7.37% of ED visits, up from 6.59% the previous week.</p></div>
 </div>
 <div class="source">Sources: <a target="_blank" href="https://www.nyc.gov/assets/doh/respiratory-illness-data/index.html">NYC Health Respiratory Illness Data</a> and NYC Open Data 911 reporting, Aug. 2026.</div>
 </section>
@@ -1411,7 +1411,7 @@ body{font-size:16px;line-height:1.45}
    - comparison feature removed
    ========================================================== */
 
-const respiratory = [
+let respiratory = [
  ["2026-07-04",6.50,0.15,0.05,0.00],
  ["2026-07-11",6.20,0.11,0.04,0.01],
  ["2026-07-18",6.00,0.18,0.06,0.01],
@@ -1439,7 +1439,7 @@ const fallback911History = [
 let all911History = JSON.parse(JSON.stringify(fallback911History));
 let current911 = JSON.parse(JSON.stringify(fallback911History[0]));
 let selectedBorough = "Brooklyn";
-let liveState = {911:"loading"};
+let liveState = {911:"loading",respiratory:"loading"};
 let geoChart = null;
 
 const titles = {
@@ -1718,6 +1718,109 @@ const raw=result.data;
 }
 
 
+
+function humanDate(iso){
+ const d=new Date(iso+"T00:00:00");
+ return d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+}
+function humanDateLong(iso){
+ const d=new Date(iso+"T00:00:00");
+ return d.toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
+}
+function sourceDateHuman(mmddyyyy){
+ const [m,d,y]=String(mmddyyyy||"").split("/");
+ if(!m||!d||!y)return mmddyyyy||"unknown";
+ return new Date(+y,+m-1,+d).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+}
+function trendLabel(current,previous){
+ if(!Number.isFinite(current)||!Number.isFinite(previous))return "→";
+ if(current>previous)return "↑";
+ if(current<previous)return "↓";
+ return "→";
+}
+function setText(id,value){
+ const el=document.getElementById(id);
+ if(el)el.textContent=value;
+}
+async function refreshRespiratory(){
+ try{
+   const controller=new AbortController();
+   const timer=setTimeout(()=>controller.abort(),9000);
+   const res=await fetch("/api/respiratory",{headers:{Accept:"application/json"},signal:controller.signal});
+   clearTimeout(timer);
+   if(!res.ok)throw new Error("HTTP "+res.status);
+   const result=await res.json();
+   if(!result.success||!Array.isArray(result.history)||!result.history.length)throw new Error("Respiratory validation failed");
+
+   respiratory=result.history.map(x=>[x.date,+x.respiratory,+x.covid,+x.flu,+x.rsv]);
+   const latest=result.latest||result.history.at(-1);
+   const previous=result.previous||result.history.at(-2);
+   if(!latest)throw new Error("Missing latest respiratory observation");
+
+   const latestHuman=humanDate(latest.date);
+   const latestLong=humanDateLong(latest.date);
+   const sourceHuman=sourceDateHuman(latest.dataAsOf);
+   const pct=v=>Number(v).toFixed(2).replace(/\.00$/,"")+"%";
+
+   setText("dashRespVal",pct(latest.respiratory));
+   setText("dashCovidVal",pct(latest.covid));
+   setText("dashFluVal",pct(latest.flu));
+   setText("dashRespFoot",`Week ending ${latestHuman} • previous ${previous?pct(previous.respiratory):"—"}`);
+   setText("dashCovidFoot",`Week ending ${latestHuman} • NYC Health`);
+   setText("dashFluFoot",`Week ending ${latestHuman} • NYC Health`);
+   setText("currentVirusDate",`Week ending ${latestHuman}`);
+
+   setText("metricResp",`${pct(latest.respiratory)} ${trendLabel(latest.respiratory,previous?.respiratory)}`);
+   setText("metricCovid",`${pct(latest.covid)} ${trendLabel(latest.covid,previous?.covid)}`);
+   setText("metricFlu",`${pct(latest.flu)} ${trendLabel(latest.flu,previous?.flu)}`);
+   setText("metricRsv",`${pct(latest.rsv)} ${trendLabel(latest.rsv,previous?.rsv)}`);
+
+   setText("survRespVal",pct(latest.respiratory));
+   setText("survCovidVal",pct(latest.covid));
+   setText("survFluVal",pct(latest.flu));
+   setText("survRsvVal",pct(latest.rsv));
+   ["survRespFoot","survCovidFoot","survFluFoot","survRsvFoot"].forEach(id=>setText(id,latestHuman));
+
+   setText("dashboardRespSourceDate",`data as of ${sourceHuman}`);
+   setText("surveillanceRespSourceDate",`Published data as of ${sourceHuman}.`);
+   setText("emergencyRespStat",pct(latest.respiratory));
+   setText("emergencyRespText",`For the week ending ${latestLong}, respiratory illness diagnoses accounted for ${pct(latest.respiratory)} of ED visits${previous?`, compared with ${pct(previous.respiratory)} the previous week`:""}.`);
+
+   if(previous && previous.respiratory){
+     const wow=(latest.respiratory-previous.respiratory)/previous.respiratory*100;
+     setText("respSignal",`${wow>=0?"+":""}${wow.toFixed(1)}% week/week`);
+     setText("respSignalText",`Overall respiratory ED share ${wow>=0?"increased":"decreased"} from ${pct(previous.respiratory)} to ${pct(latest.respiratory)} in the latest published week.`);
+   }
+
+   freshness.dashboard=`Respiratory data as of ${sourceHuman}`;
+   freshness.surveillance=`Respiratory data as of ${sourceHuman}`;
+   const activePage=document.querySelector(".nav.active")?.dataset.page;
+   if(activePage==="dashboard"||activePage==="surveillance"){
+     document.getElementById("freshnessLabel").textContent=freshness[activePage];
+   }
+
+   const labels=respiratory.map(x=>humanDate(x[0]).replace(", "+new Date(x[0]+"T00:00:00").getFullYear(),""));
+   if(overviewRespChart){
+     overviewRespChart.data.labels=labels;
+     overviewRespChart.data.datasets[0].data=respiratory.map(x=>x[1]);
+     overviewRespChart.update();
+   }
+   if(surveillanceRespChart){
+     surveillanceRespChart.data.labels=labels;
+     surveillanceRespChart.data.datasets[0].data=respiratory.map(x=>x[1]);
+     surveillanceRespChart.data.datasets[1].data=respiratory.map(x=>x[2]);
+     surveillanceRespChart.data.datasets[2].data=respiratory.map(x=>x[3]);
+     surveillanceRespChart.data.datasets[3].data=respiratory.map(x=>x[4]);
+     surveillanceRespChart.update();
+   }
+
+   liveState.respiratory="live";
+ }catch(err){
+   liveState.respiratory="fallback";
+   console.warn("Respiratory refresh fallback:",err);
+ }
+}
+
 function syncPeriodOptions(){
  const count=all911History.length;
  const sel=document.getElementById("globalPeriod");
@@ -1734,7 +1837,7 @@ function syncPeriodOptions(){
 async function refreshAll(showToast=true){
  const b=document.getElementById("refreshBtn");
  b.disabled=true;b.textContent="Refreshing…";
- await refresh911();
+ await Promise.all([refresh911(),refreshRespiratory()]);
  syncPeriodOptions();
  applyTimeWindow();
  b.disabled=false;b.innerHTML='<span class="live-dot"></span>Refresh sources';
@@ -1775,10 +1878,10 @@ const common={
  tooltip:{backgroundColor:"#112b3c",titleColor:"#fff",bodyColor:"#eaf2f3",padding:11,displayColors:true}},
  scales:{x:{grid:{display:false},ticks:{color:"#738188",font:{size:10}}},y:{grid:{color:"#edf1ef"},border:{display:false},ticks:{color:"#738188",font:{size:10}}}}
 };
-new Chart(document.getElementById("overviewChart"),{
+let overviewRespChart=new Chart(document.getElementById("overviewChart"),{
  type:"line",data:{labels,datasets:[{label:"Respiratory illness",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",backgroundColor:"rgba(15,124,127,.10)",fill:true,tension:.35,pointRadius:2}]},options:common
 });
-new Chart(document.getElementById("surveillanceChart"),{
+let surveillanceRespChart=new Chart(document.getElementById("surveillanceChart"),{
  type:"line",data:{labels,datasets:[
   {label:"Overall respiratory",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",tension:.3,pointRadius:2},
   {label:"COVID-19",data:respiratory.map(x=>x[2]),borderColor:"#b64c54",tension:.3,pointRadius:2},
