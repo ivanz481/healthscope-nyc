@@ -376,3 +376,6 @@
  #hsLanguageScreen .hs-language-option{animation:none!important;transition:none!important}
  .hx-tip-link{transition:none!important}
 }
+
+/* Hide has priority even on narrow touch layouts. */
+#hsIntro #hsLanguageScreen[hidden],#hsIntro #hsLoading[hidden]{display:none!important}
