@@ -1406,6 +1406,288 @@ aside{
   .section-ribbon span{max-width:none}
 }
 
+
+/* ===== Healthscope ultra-minimal editorial pass ===== */
+body{
+  background:#f7f9f8;
+}
+main{
+  max-width:1480px;
+  padding:34px clamp(24px,3vw,50px) 56px;
+}
+.top{
+  padding:0 0 22px;
+  margin-bottom:20px;
+}
+.top::after{
+  background:#dfe7e4;
+}
+h1{
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-.05em;
+  max-width:780px;
+}
+.sub{
+  color:#738188;
+  font-size:13px;
+}
+.badge,.freshness{
+  background:#fff;
+  border:1px solid #dde6e3;
+  box-shadow:none;
+  backdrop-filter:none;
+}
+.badge{
+  color:#0d7475;
+}
+aside{
+  background:#0d2a3a;
+  box-shadow:none;
+  border-right:0;
+}
+.brand{
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.logo{
+  background:#f5faf8;
+  box-shadow:none;
+  border:0;
+}
+.nav{
+  border-radius:12px;
+  border:0;
+  transition:background .15s ease,color .15s ease;
+}
+.nav:hover{
+  transform:none;
+  background:rgba(255,255,255,.055);
+}
+.nav.active{
+  background:#f4f8f6;
+  box-shadow:none;
+  border:0;
+}
+.nav-icon{
+  border:0;
+  background:rgba(255,255,255,.07);
+}
+.nav.active .nav-icon{
+  background:#e4f2ed;
+  box-shadow:none;
+}
+.source-side{
+  background:transparent;
+  border-color:rgba(255,255,255,.08);
+}
+.section-ribbon{
+  min-height:auto;
+  padding:11px 14px;
+  border-radius:12px;
+  background:#123447;
+  box-shadow:none;
+}
+.section-ribbon::after{display:none}
+.notice{
+  background:#f4f8f7;
+  border:1px solid #dfe9e6;
+  border-left:3px solid #66b8ad;
+  border-radius:12px;
+  box-shadow:none;
+}
+.card{
+  background:#fff;
+  border:1px solid #e1e8e6;
+  border-radius:16px;
+  box-shadow:none;
+  transition:border-color .15s ease,transform .15s ease;
+}
+.card:hover{
+  transform:translateY(-1px);
+  box-shadow:none;
+  border-color:#cfdcda;
+}
+.signals{
+  gap:12px;
+}
+.signal{
+  padding:16px;
+}
+.signal::after{display:none}
+.signal-head strong{
+  font-size:10px;
+  letter-spacing:.07em;
+  color:#66777e;
+}
+.signal-value{
+  font-size:26px;
+}
+.kpis{
+  gap:12px;
+}
+.kpi{
+  min-height:138px;
+  padding:17px;
+  background:#fff;
+}
+.kpi::before{
+  display:none;
+}
+.kpi::after{
+  display:none;
+}
+.kpi .label,.kpi .value,.kpi .foot{
+  margin-left:0;
+}
+.label{
+  font-size:10px;
+  max-width:90%;
+}
+.value{
+  font-size:35px;
+}
+.grid2{
+  gap:14px;
+}
+.head{
+  padding:18px 18px 0;
+}
+.title{
+  font-size:18px;
+}
+.chart{
+  height:315px;
+  padding:12px 16px 17px;
+}
+.metriclist{
+  padding:8px 17px 16px;
+}
+.metric{
+  padding:13px 0;
+}
+.metric span:last-child{
+  background:transparent;
+  min-width:auto;
+  padding:0;
+}
+.callout{
+  padding:20px;
+}
+.callout::after{display:none}
+.callout h3{
+  font-size:20px;
+}
+.bigstat{
+  color:#123447;
+  background:none;
+  -webkit-background-clip:initial;
+  font-size:50px;
+}
+.linkcard{
+  background:#fff;
+  padding:18px;
+}
+.linkcard::before{
+  width:28px;
+  height:3px;
+  background:#0d7f82;
+}
+.btn{
+  background:#123447;
+  box-shadow:none;
+  border:0;
+  border-radius:10px;
+  padding:9px 12px;
+}
+.btn:hover{
+  transform:none;
+  box-shadow:none;
+  background:#0d7f82;
+}
+.explorebar{
+  background:#fff;
+  border:1px solid #e1e8e6;
+  border-radius:14px;
+  box-shadow:none;
+  backdrop-filter:none;
+  padding:12px;
+}
+.control select{
+  border-radius:10px;
+  box-shadow:none;
+}
+.action{
+  box-shadow:none;
+  border-radius:10px;
+}
+.source{
+  background:#fafcfa;
+  border:1px solid #e1e8e6;
+  border-left:3px solid #82c8bd;
+  border-radius:10px;
+}
+.tablebox{
+  padding:10px 16px 16px;
+}
+th{
+  background:transparent;
+}
+tbody tr:hover{
+  background:#f8faf9;
+}
+.map-wrap{
+  border-radius:16px;
+  box-shadow:none;
+  background:#eaf2f1!important;
+}
+.map-sidecard,.map-key{
+  background:#fff;
+  backdrop-filter:none;
+  box-shadow:none;
+}
+.map-panel{
+  background:#fff;
+  border-radius:16px;
+}
+.pipe-step{
+  background:#f7f9f8;
+  border-radius:10px;
+}
+.method{
+  padding:16px;
+}
+.method .num{
+  width:auto;height:auto;
+  display:block;
+  background:none;
+  border-radius:0;
+  font-size:22px;
+  color:#0d7f82;
+}
+.status-pill{
+  border-radius:999px;
+}
+@media(min-width:1081px){
+  .page.active > .section-ribbon,
+  .page.active > .notice,
+  .page.active > .signals,
+  .page.active > .kpis,
+  .page.active > .grid2,
+  .page.active > .linkgrid,
+  .page.active > .source,
+  .page.active > .explorebar,
+  .page.active > .map-layout,
+  .page.active > .card,
+  .page.active > .quality,
+  .page.active > .method-grid{
+    animation:none;
+  }
+}
+@media(max-width:650px){
+  h1{font-size:32px}
+  .card{border-radius:14px}
+}
+
 </style>
 
 </head>
