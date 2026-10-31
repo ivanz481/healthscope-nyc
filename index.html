@@ -1161,6 +1161,251 @@ tbody tr:hover{background:#f3f9f7}
   .chart{height:290px}
 }
 
+
+/* ===== Healthscope premium minimal pass ===== */
+body{
+  background:
+    radial-gradient(circle at 78% -8%,rgba(69,185,174,.10),transparent 26rem),
+    linear-gradient(180deg,#fbfcfb 0%,#f4f7f6 100%);
+}
+main{padding-top:36px}
+.top{
+  position:relative;
+  padding:4px 0 26px;
+  margin-bottom:22px;
+}
+.top::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,rgba(13,127,130,.34),rgba(13,39,54,.08) 45%,transparent);
+}
+h1{
+  font-size:41px;
+  line-height:.98;
+  max-width:760px;
+}
+.sub{
+  max-width:680px;
+  line-height:1.55;
+}
+.top-meta{gap:9px}
+.badge,.freshness{
+  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,.72);
+}
+.badge{
+  color:#176c68;
+  border-color:#cfe9e3;
+  background:linear-gradient(135deg,rgba(226,248,241,.95),rgba(255,255,255,.82));
+}
+.section-ribbon{
+  min-height:48px;
+  padding:14px 17px;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 88% 15%,rgba(102,214,197,.16),transparent 9rem),
+    linear-gradient(115deg,#0b2939,#143f50 68%,#0f686c);
+}
+.section-ribbon strong{
+  font-size:12.5px;
+  letter-spacing:.01em;
+}
+.section-ribbon span{
+  max-width:660px;
+  text-align:right;
+  line-height:1.45;
+}
+.card{
+  border-color:rgba(13,39,54,.07);
+  box-shadow:0 12px 28px rgba(13,39,54,.065);
+}
+.card:hover{
+  transform:translateY(-1px);
+  box-shadow:0 18px 38px rgba(13,39,54,.09);
+}
+.signals .card{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,251,250,.96));
+}
+.signal-head{
+  margin-bottom:12px;
+}
+.signal-head strong{
+  text-transform:uppercase;
+  letter-spacing:.055em;
+  font-size:10.5px;
+  color:#5f737c;
+}
+.signal-value{
+  font-size:28px;
+  color:#102e3e;
+}
+.kpi{
+  background:
+    linear-gradient(180deg,#fff 0%,#fcfdfc 100%);
+}
+.kpi::before{
+  top:15px;bottom:15px;width:3px;border-radius:99px;
+}
+.kpi .label{
+  margin-left:8px;
+  max-width:80%;
+}
+.kpi .value,
+.kpi .foot{
+  margin-left:8px;
+}
+.value{
+  font-size:36px;
+}
+.grid2 > .card,
+.equal > .card{
+  min-width:0;
+}
+.title{
+  font-size:20px;
+  letter-spacing:-.02em;
+}
+.head{
+  padding-top:22px;
+}
+.chart{
+  padding-top:18px;
+}
+.metric{
+  align-items:center;
+}
+.metric span:first-child{
+  color:#314d5a;
+}
+.metric span:last-child{
+  min-width:74px;
+  text-align:center;
+  font-size:11px;
+}
+.notice{
+  border-left:4px solid #68bfb3;
+  padding-left:46px;
+}
+.notice::before{
+  left:15px;
+}
+.callout{
+  position:relative;
+  overflow:hidden;
+}
+.callout::after{
+  content:"";
+  position:absolute;
+  width:180px;height:180px;border-radius:50%;
+  right:-100px;top:-110px;
+  background:radial-gradient(circle,rgba(76,184,170,.10),transparent 70%);
+  pointer-events:none;
+}
+.linkcard{
+  background:linear-gradient(180deg,#fff,#fbfcfb);
+}
+.btn{
+  border:1px solid rgba(255,255,255,.08);
+}
+.explorebar{
+  border:1px solid rgba(13,39,54,.07);
+  box-shadow:0 10px 24px rgba(13,39,54,.045);
+}
+.control label{
+  color:#58707a;
+}
+.control select{
+  border-color:#d8e5e2;
+}
+.map-wrap{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(255,255,255,.9),transparent 11rem),
+    linear-gradient(180deg,#dbecef,#e8f2f1 58%,#f4f7f5 100%)!important;
+}
+.map-sidecard,.map-key{
+  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,.88);
+}
+.map-panel{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.99),rgba(247,250,249,.98));
+}
+.quality-row,
+.status-line{
+  border-bottom-color:#e7efec;
+}
+.status-pill.live{
+  background:#e5f5ee;
+  border:1px solid #cce8dc;
+}
+.status-pill.cached{
+  border:1px solid #f0ddb2;
+}
+.source{
+  padding:13px 15px;
+  font-size:11.25px;
+}
+.source::before{
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  font-size:9.5px;
+}
+aside{
+  padding-left:14px;
+  padding-right:14px;
+}
+.brand{
+  margin:0 2px;
+}
+.navgroup{
+  margin-top:21px;
+}
+.nav{
+  min-height:52px;
+}
+.nav-copy strong{
+  font-size:13.25px;
+}
+.nav-copy span{
+  line-height:1.35;
+}
+.source-side{
+  margin-top:22px;
+}
+@media(min-width:1081px){
+  .page.active > .section-ribbon,
+  .page.active > .notice,
+  .page.active > .signals,
+  .page.active > .kpis,
+  .page.active > .grid2,
+  .page.active > .linkgrid,
+  .page.active > .source,
+  .page.active > .explorebar,
+  .page.active > .map-layout,
+  .page.active > .card,
+  .page.active > .quality,
+  .page.active > .method-grid{
+    animation:premiumIn .34s ease both;
+  }
+  .page.active > *:nth-child(2){animation-delay:.025s}
+  .page.active > *:nth-child(3){animation-delay:.05s}
+  .page.active > *:nth-child(4){animation-delay:.075s}
+}
+@keyframes premiumIn{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:none}
+}
+@media(max-width:1080px){
+  h1{font-size:36px}
+  .section-ribbon span{text-align:left}
+}
+@media(max-width:650px){
+  h1{font-size:32px;line-height:1.02}
+  .section-ribbon{align-items:flex-start;flex-direction:column;gap:4px}
+  .section-ribbon span{max-width:none}
+}
+
 </style>
 
 </head>
