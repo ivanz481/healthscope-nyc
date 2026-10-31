@@ -5141,7 +5141,7 @@ function dynamicTranslate(s){
 }
 function updateTextNode(node){
   const tag=node.parentElement;
-  if(!tag||tag.closest("#hsIntro,script,style,svg,pre,code,textarea"))return;
+  if(!tag||tag.closest("#hsIntro,script,style,svg,pre,code,textarea,.hx-i18n-managed"))return;
   const existing=node.nodeValue;
   if(!existing||!existing.trim())return;
   const old=rendered.get(node);
