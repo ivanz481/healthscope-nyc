@@ -3860,6 +3860,38 @@ const es={
 "Open NYC Open Data":"Abrir NYC Open Data",
 "Borough metrics use the monthly NYC Open Data Local Law 119 dataset. The time selector changes the underlying 911 aggregation used by the map, chart, table and CSV export. The local schematic map is deliberately independent of external mapping libraries so it remains usable even when a map CDN or geometry endpoint fails.":"Los indicadores usan datos mensuales de la Ley Local 119 de NYC Open Data. El período elegido cambia la agregación del 911 en mapa, gráfico, tabla y CSV. El mapa integrado no depende de bibliotecas externas y sigue funcionando cuando falla un proveedor de mapas."
 };
+Object.assign(es,{
+"Overall respiratory ED share increased from 6.59% to 7.37% in the latest published week.":"La proporción de visitas respiratorias a urgencias subió del 6,59 % al 7,37 % en la última semana publicada.",
+"For the week ending September 19, 2026, respiratory illness diagnoses accounted for 7.37% of ED visits, up from 6.59% the previous week.":"En la semana terminada el 19 de septiembre de 2026, los diagnósticos respiratorios representaron el 7,37 % de las visitas a urgencias, frente al 6,59 % de la semana anterior.",
+"NYC Childhood Vaccination Data Explorer / Citywide Immunization Registry":"Explorador de vacunación infantil de NYC / Registro municipal de vacunación",
+"CDC + NYC Health Community Health Survey / EpiQuery":"CDC + Encuesta Comunitaria de Salud de NYC / EpiQuery",
+"Latest key data: Sep. 24, 2026":"Datos clave al 24 de septiembre de 2026",
+"Week ending Sep. 19, 2026 • up from 6.59%":"Semana terminada el 19 de septiembre de 2026 • desde 6,59 %",
+"Week ending Sep. 19, 2026 • NYC Health":"Semana terminada el 19 de septiembre de 2026 • NYC Health",
+"Week ending Sep. 19, 2026":"Semana terminada el 19 de septiembre de 2026",
+"data as of Sep. 24, 2026":"datos al 24 de septiembre de 2026",
+"Published data as of Sep. 24, 2026.":"Datos publicados al 24 de septiembre de 2026.",
+"flu coverage through Jun. 30, 2026":"cobertura de gripe hasta el 30 de junio de 2026",
+"Combined ambulance + fire response time • Aug. 2026":"Tiempo conjunto de ambulancia y bomberos • agosto de 2026",
+"911 snapshot • Aug. 2026":"Datos del 911 • agosto de 2026",
+"Life-threatening medical incidents • latest available month":"Incidentes médicos potencialmente mortales • último mes disponible",
+"Ages 6 months–17 years • 2025–26 season through Jun. 30, 2026":"De 6 meses a 17 años • temporada 2025–26 hasta el 30 de junio de 2026",
+"Language":"Idioma"
+});
+
+window.hsTranslateCharts=function(locale){
+  try{
+    if(typeof overviewRespChart!=="undefined"&&overviewRespChart){
+      overviewRespChart.data.datasets[0].label=locale==="es"?"Enfermedades respiratorias":"Respiratory illness";
+      overviewRespChart.update("none");
+    }
+    if(typeof surveillanceRespChart!=="undefined"&&surveillanceRespChart){
+      const names=locale==="es"?["Respiratorios en general","COVID-19","Gripe","VRS"]:["Overall respiratory","COVID-19","Flu","RSV"];
+      surveillanceRespChart.data.datasets.forEach((d,i)=>{if(names[i])d.label=names[i]});
+      surveillanceRespChart.update("none");
+    }
+  }catch(e){}
+};
 const originals=new WeakMap(), rendered=new WeakMap();
 let lang="en", scheduled=false;
 function normalized(x){return x.replace(/\s+/g," ").trim()}
@@ -3880,7 +3912,16 @@ function dynamicTranslate(s){
     .replace(/^Overall respiratory/,"Respiratorios en general")
     .replace(/^No data available/,"No hay datos disponibles")
     .replace(/^Latest available month/,"Último mes disponible")
-    .replace(/^Current filtered borough dataset downloaded\./,"Se descargaron los datos filtrados por distrito.");
+    .replace(/^Current filtered borough dataset downloaded\./,"Se descargaron los datos filtrados por distrito.")
+    .replace(/^Ages 6 months–17 years/,"De 6 meses a 17 años")
+    .replace(/^911 snapshot/,"Datos del 911")
+    .replace(/^Life-threatening medical incidents/,"Incidentes médicos potencialmente mortales")
+    .replace(/\bup from\b/,"subió desde")
+    .replace(/\bthrough\b/,"hasta")
+    .replace(/\bseason\b/,"temporada")
+    .replace(/\bweek\/week\b/,"semana a semana")
+    .replace(/\bsec\b/,"seg")
+    .replace(/\blatest available month\b/,"último mes disponible");
 }
 function updateTextNode(node){
   const tag=node.parentElement;
@@ -3904,7 +3945,7 @@ function translatePage(){
   const selector=document.getElementById("hsLocaleSelect");
   if(selector)selector.value=lang;
   const lbl=document.querySelector('.hs-language-control label');
-  if(lbl)lbl.textContent=lang==="es"?"Idioma":"Language";
+  if(lbl){const nextLabel=lang==="es"?"Idioma":"Language";if(lbl.textContent!==nextLabel)lbl.textContent=nextLabel;}
   document.documentElement.lang=lang;
   if(typeof window.hsTranslateCharts==="function") window.hsTranslateCharts(lang);
 }
