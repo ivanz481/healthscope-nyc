@@ -2820,6 +2820,117 @@ body{overflow-x:clip}
   .nav{padding:6px 9px}
 }
 
+
+/* Dedicated visitor feedback tab — 2026 */
+.hs-feedback-hero{
+  padding:clamp(22px,3vw,35px) 3px clamp(22px,3vw,32px);
+  max-width:760px;
+}
+.hs-feedback-eyebrow,.hs-feedback-step{
+  font-family:Inter,system-ui,sans-serif!important;
+  font-weight:750;font-size:10px;letter-spacing:.13em;color:#0b7e79;
+}
+.hs-feedback-eyebrow{display:flex;align-items:center;gap:9px}
+.hs-feedback-dot{width:7px;height:7px;background:#0d988e;border-radius:50%;box-shadow:0 0 0 5px #d9f0e9}
+.hs-feedback-hero h2{
+  margin:12px 0 10px;color:#0b2737;
+  font-family:"Newsreader",Georgia,serif!important;
+  font-size:clamp(31px,4vw,49px);letter-spacing:-.035em;line-height:1.04;
+}
+.hs-feedback-hero p{margin:0;max-width:610px;line-height:1.7;font-size:13px;color:#697e87}
+.hs-feedback-layout{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(260px,.72fr);gap:16px;align-items:start}
+.hs-feedback-panel,.hs-feedback-aside{padding:clamp(22px,3vw,32px);border-radius:18px}
+.hs-feedback-panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:25px}
+.hs-feedback-panel-head h3,.hs-feedback-aside h3{
+  color:#102e3c;font:600 28px/1.1 "Newsreader",Georgia,serif!important;
+  letter-spacing:-.02em;margin:7px 0 0
+}
+.hs-feedback-private{font:600 10px/1.5 system-ui,sans-serif!important;color:#59837b;background:#eaf6f1;border-radius:99px;padding:8px 11px;white-space:nowrap}
+.hs-f-formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}
+.hs-f-span2{grid-column:1/-1}
+.hs-f-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hs-f-field label,.hs-f-rating legend{
+  font:700 12px/1.3 Inter,system-ui,sans-serif!important;color:#294654
+}
+.hs-f-field label>span:not(.hs-f-optional){color:#0f9890}
+.hs-f-optional,.hs-f-rating small{font-size:10px;color:#819198;font-weight:500}
+.hs-f-field input,.hs-f-field select,.hs-f-field textarea{
+  display:block;width:100%;min-width:0;
+  font:400 13px/1.5 Inter,system-ui,sans-serif!important;
+  color:#193a48;
+  padding:12px 14px;background:#f9fbfa;border:1px solid #dce7e3;
+  border-radius:11px;outline:none;transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.hs-f-field select{min-height:45px;cursor:pointer}
+.hs-f-field textarea{resize:vertical;min-height:135px;max-height:370px}
+.hs-f-field input:focus,.hs-f-field select:focus,.hs-f-field textarea:focus{
+  background:white;border-color:#29a899;box-shadow:0 0 0 3px rgba(41,168,153,.11)
+}
+.hs-f-fieldhint{display:flex;justify-content:space-between;gap:8px;font:400 10px/1.5 Inter,system-ui,sans-serif!important;color:#87949a}
+.hs-f-fieldhint span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hs-f-rating{border:0;margin:0;padding:0;min-width:0}
+.hs-f-rating-options{display:flex;gap:9px;margin-top:11px}
+.hs-f-rating-options label{cursor:pointer;position:relative}
+.hs-f-rating-options input{position:absolute;width:1px;height:1px;opacity:0}
+.hs-f-rating-options span{
+  width:44px;height:42px;display:grid;place-items:center;
+  border:1px solid #dce7e3;border-radius:10px;background:#f9fbfa;color:#667e86;
+  font:700 13px Inter,system-ui,sans-serif!important;transition:all .17s
+}
+.hs-f-rating-options input:checked+span{background:#0b3947;border-color:#0b3947;color:white}
+.hs-f-rating-options label:hover span{border-color:#2a9c91}
+.hs-f-rating-options input:focus-visible+span{outline:3px solid #61c5b6;outline-offset:2px}
+.hs-f-rating-hint{display:flex;justify-content:space-between;width:min(253px,100%);font:400 10px/1.4 Inter,system-ui,sans-serif!important;color:#84959b;margin:7px 0 0}
+.hs-f-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none}
+.hs-f-footer{border-top:1px solid #e9efed;margin-top:25px;padding-top:22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.hs-f-privacy{max-width:360px;font:400 11px/1.65 Inter,system-ui,sans-serif!important;color:#72848d}
+.hs-f-submit{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex:0 0 auto;
+  min-height:45px;border:0;border-radius:11px;padding:12px 16px;
+  color:#fff;background:#0e3948;cursor:pointer;
+  font:700 12px Inter,system-ui,sans-serif!important;
+  transition:background .15s,transform .15s;
+}
+.hs-f-submit:hover{background:#096e72;transform:translateY(-1px)}
+.hs-f-submit:focus-visible{outline:3px solid #75d5c8;outline-offset:2px}
+.hs-f-submit:disabled{cursor:wait;opacity:.55;transform:none}
+.hs-f-formstatus{margin:14px 0 0;font:600 12px/1.65 Inter,system-ui,sans-serif!important;min-height:0}
+.hs-f-formstatus[data-kind="error"]{color:#a33f4a}
+.hs-f-formstatus[data-kind="success"]{color:#197960}
+.hs-feedback-aside{
+  background:#102f3d!important;color:white!important;
+  border-color:#102f3d!important;
+  position:static!important;min-height:505px;overflow:hidden
+}
+.hs-feedback-aside:hover{border-color:#102f3d!important;transform:none!important}
+.hs-feedback-aside .hs-feedback-step{color:#88d2c3}
+.hs-feedback-aside h3{color:#fff;font-size:30px;line-height:1.17;margin:10px 0 15px}
+.hs-feedback-aside>p{font:400 12px/1.8 Inter,system-ui,sans-serif!important;color:#acc5c9}
+.hs-f-aside-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(168,228,216,.25);border-radius:14px;color:#8ce3ce;font-size:25px;margin:0 0 30px}
+.hs-f-aside-divider{height:1px;background:rgba(220,246,237,.13);margin:28px 0 22px}
+.hs-f-aside-item{display:flex;gap:14px;margin:17px 0}
+.hs-f-aside-item>span{color:#75c9ba;font:700 10px Inter,system-ui,sans-serif!important;padding-top:2px}
+.hs-f-aside-item strong{color:white;font:700 12px Inter,system-ui,sans-serif!important}
+.hs-f-aside-item p{color:#9eb9c1;font:400 11px/1.6 Inter,system-ui,sans-serif!important;margin:5px 0 0}
+@media(max-width:1080px){
+  .hs-feedback-layout{grid-template-columns:minmax(0,1.5fr) minmax(220px,.8fr);gap:12px}
+  .hs-feedback-private{display:none}
+}
+@media(max-width:760px){
+  .hs-feedback-layout{grid-template-columns:1fr}
+  .hs-feedback-aside{min-height:0}
+  .hs-feedback-panel,.hs-feedback-aside{padding:20px}
+}
+@media(max-width:440px){
+  .hs-f-formgrid{grid-template-columns:1fr}
+  .hs-f-footer{align-items:stretch;flex-direction:column}
+  .hs-f-submit{width:100%;min-height:48px}
+  .hs-f-rating-options{justify-content:space-between;gap:5px}
+  .hs-f-rating-options label{flex:1}
+  .hs-f-rating-options span{width:100%}
+  .hs-f-rating-hint{width:100%}
+}
+
 </style>
 
 </head>
@@ -2902,6 +3013,9 @@ body{overflow-x:clip}
     </button>
     <button class="nav" data-page="quality">
       <span class="nav-icon">✓</span><span class="nav-copy"><strong>Data quality</strong><span>Sources & freshness</span></span><span class="nav-arrow">›</span>
+    </button>
+    <button class="nav" data-page="feedback" aria-label="Open website feedback form">
+      <span class="nav-icon">✎</span><span class="nav-copy"><strong>Feedback</strong><span>Help improve Healthscope</span></span><span class="nav-arrow">›</span>
     </button>
   </div>
 
@@ -3407,6 +3521,79 @@ body{overflow-x:clip}
 </div>
 <div class="source">Borough metrics use the monthly NYC Open Data Local Law 119 dataset. The time selector changes the underlying 911 aggregation used by the map, chart, table and CSV export. The local schematic map is deliberately independent of external mapping libraries so it remains usable even when a map CDN or geometry endpoint fails.</div>
 </section>
+
+<!-- Visitor feedback: no external service secrets in client code -->
+<section class="page" id="feedback">
+  <div class="section-ribbon"><strong>Your voice matters</strong><span>Help make public-health data clearer, more accurate, and more accessible.</span></div>
+  <div class="hs-feedback-hero">
+    <div class="hs-feedback-eyebrow"><span class="hs-feedback-dot"></span> HEALTHSCOPE COMMUNITY</div>
+    <h2>Help shape Healthscope NYC.</h2>
+    <p>Found something confusing, noticed an issue, or have an idea? Share it here. Your input helps improve this public-health resource.</p>
+  </div>
+  <div class="hs-feedback-layout">
+    <div class="card hs-feedback-panel">
+      <div class="hs-feedback-panel-head">
+        <div><span class="hs-feedback-step">01 / SHARE YOUR THOUGHTS</span><h3>Send feedback</h3></div>
+        <span class="hs-feedback-private">Direct to the site team</span>
+      </div>
+      <form id="hsFeedbackForm" novalidate>
+        <div class="hs-f-formgrid">
+          <div class="hs-f-field hs-f-span2">
+            <label for="hsFeedbackType">What is your feedback about? <span aria-hidden="true">*</span></label>
+            <select id="hsFeedbackType" name="type" required>
+              <option value="" disabled selected>Select a topic</option>
+              <option value="suggestion">Suggestion or new feature</option>
+              <option value="bug">Bug or broken feature</option>
+              <option value="data">Data or information accuracy</option>
+              <option value="accessibility">Accessibility or translation</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div class="hs-f-field hs-f-span2">
+            <label for="hsFeedbackMessage">Tell us more <span aria-hidden="true">*</span></label>
+            <textarea id="hsFeedbackMessage" name="message" rows="6" minlength="12" maxlength="4000" required placeholder="Tell us what worked well, what could be clearer, or what you'd like to see…"></textarea>
+            <div class="hs-f-fieldhint"><span>Specific suggestions are especially helpful.</span><span id="hsFeedbackCount">0 / 4,000</span></div>
+          </div>
+          <fieldset class="hs-f-rating hs-f-span2">
+            <legend>How helpful is this website? <small>(optional)</small></legend>
+            <div class="hs-f-rating-options" aria-label="Rate the website from 1 to 5">
+              <label><input type="radio" name="rating" value="1"><span>1</span></label>
+              <label><input type="radio" name="rating" value="2"><span>2</span></label>
+              <label><input type="radio" name="rating" value="3"><span>3</span></label>
+              <label><input type="radio" name="rating" value="4"><span>4</span></label>
+              <label><input type="radio" name="rating" value="5"><span>5</span></label>
+            </div>
+            <p class="hs-f-rating-hint"><span>Needs work</span><span>Very helpful</span></p>
+          </fieldset>
+          <div class="hs-f-field">
+            <label for="hsFeedbackName">Your name <span class="hs-f-optional">(optional)</span></label>
+            <input id="hsFeedbackName" name="name" type="text" maxlength="100" autocomplete="name" placeholder="How should we call you?">
+          </div>
+          <div class="hs-f-field">
+            <label for="hsFeedbackEmail">Email for a reply <span class="hs-f-optional">(optional)</span></label>
+            <input id="hsFeedbackEmail" name="email" type="email" maxlength="180" autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="hs-f-honeypot" aria-hidden="true"><label for="hsFeedbackWebsite">Website</label><input id="hsFeedbackWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        </div>
+        <div class="hs-f-footer">
+          <div class="hs-f-privacy">Please don't include personal medical information. Your name and email are optional and are only used to respond to feedback.</div>
+          <button type="submit" class="hs-f-submit" id="hsFeedbackSubmit"><span>Send feedback</span><span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="hs-f-formstatus" id="hsFeedbackStatus" aria-live="polite" role="status"></p>
+      </form>
+    </div>
+    <aside class="card hs-feedback-aside">
+      <div class="hs-f-aside-icon" aria-hidden="true">✳</div>
+      <span class="hs-feedback-step">02 / BETTER TOGETHER</span>
+      <h3>Built to be useful. Improved by you.</h3>
+      <p>Healthscope turns public data into an accessible view of New York City's health. Feedback helps identify the next improvements.</p>
+      <div class="hs-f-aside-divider"></div>
+      <div class="hs-f-aside-item"><span aria-hidden="true">01</span><div><strong>Clarity</strong><p>Make charts, terminology and explanations easier to understand.</p></div></div>
+      <div class="hs-f-aside-item"><span aria-hidden="true">02</span><div><strong>Accuracy</strong><p>Flag outdated numbers, broken links or source issues.</p></div></div>
+      <div class="hs-f-aside-item"><span aria-hidden="true">03</span><div><strong>Accessibility</strong><p>Improve navigation, mobile use and language support.</p></div></div>
+    </aside>
+  </div>
+</section>
 </main></div>
 <script>
 /* ==========================================================
@@ -3456,7 +3643,8 @@ const titles = {
  neurodegenerative:["Neurodegenerative Diseases","Brain and nervous-system disorders, risk reduction and supportive care"],
  demographics:["Demographics","Validated NYC population-health data sources"],
  geography:["Geography","Interactive borough exploration"],
- quality:["Data Quality","Source provenance, refresh status and validation"]
+ quality:["Data Quality","Source provenance, refresh status and validation"],
+ feedback:["Feedback","Help improve the website and share your ideas"]
 };
 
 const freshness = {
@@ -3468,7 +3656,8 @@ const freshness = {
  neurodegenerative:"NIH / NIA / NINDS evidence-based guidance",
  demographics:"Survey-based official sources",
  geography:"Borough data refreshes from NYC Open Data",
- quality:"Live source register"
+ quality:"Live source register",
+ feedback:"Share ideas and report issues"
 };
 
 function toast(msg){
@@ -3970,6 +4159,69 @@ document.getElementById("globalIndicator").addEventListener("change",()=>{render
 document.getElementById("globalPeriod").addEventListener("change",applyTimeWindow);
 document.getElementById("downloadBtn").addEventListener("click",csvDownload);
 document.getElementById("refreshBtn").addEventListener("click",()=>refreshAll(true));
+
+
+/* Feedback is submitted to a same-origin Vercel endpoint; email credentials stay on the server. */
+(function(){
+ const form=document.getElementById("hsFeedbackForm");
+ if(!form)return;
+ const message=document.getElementById("hsFeedbackMessage");
+ const counter=document.getElementById("hsFeedbackCount");
+ const status=document.getElementById("hsFeedbackStatus");
+ const button=document.getElementById("hsFeedbackSubmit");
+ let startedAt=Date.now();
+ const setStatus=(text,kind)=>{status.textContent=text;status.dataset.kind=kind||"";};
+ message.addEventListener("input",()=>{counter.textContent=message.value.length.toLocaleString("en-US")+" / 4,000";});
+ form.addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(button.disabled)return;
+  const data=new FormData(form);
+  const text=String(data.get("message")||"").trim();
+  const email=String(data.get("email")||"").trim();
+  if(!data.get("type")){setStatus("Please select a topic.","error");form.querySelector("#hsFeedbackType").focus();return;}
+  if(text.length<12||text.length>4000){setStatus("Please enter at least 12 characters (up to 4,000).","error");message.focus();return;}
+  if(email&&!form.querySelector("#hsFeedbackEmail").checkValidity()){
+   setStatus("Please check your email address.","error");form.querySelector("#hsFeedbackEmail").focus();return;
+  }
+  button.disabled=true;
+  const label=button.querySelector("span");
+  const old=label.textContent;label.textContent="Sending…";
+  setStatus("Sending your feedback…","");
+  try{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),16000);
+    let response;
+    try{
+     response=await fetch("/api/feedback",{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       signal:controller.signal,
+       body:JSON.stringify({
+         type:data.get("type"),
+         message:text,
+         name:data.get("name")||"",
+         email,
+         rating:data.get("rating")||"",
+         website:data.get("website")||"",
+         page:"Feedback",
+         locale:typeof window.hsCurrentLanguage==="function"?window.hsCurrentLanguage():"en",
+         startedAt
+       })
+     });
+    }finally{clearTimeout(timeout);}
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok||!result.ok){
+      throw new Error(result.error||"We couldn't send your message right now. Please try again later.");
+    }
+    setStatus("Thanks! Your feedback has been sent successfully.","success");
+    form.reset();counter.textContent="0 / 4,000";startedAt=Date.now();
+  }catch(e){
+    setStatus(e.name==="AbortError"?"The connection timed out. Please try again.":(e.message||"Feedback could not be sent."),"error");
+  }finally{
+    button.disabled=false;label.textContent=old;
+  }
+ });
+})();
 
 /* bootstrap */
 loadCaches();
