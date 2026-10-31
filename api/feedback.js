@@ -15,8 +15,15 @@ const clean=(v,max)=>typeof v==="string"?v.trim().replace(/[\u0000-\u0008\u000b\
 export default async function handler(req,res){
   res.setHeader("Cache-Control","no-store");
   res.setHeader("X-Content-Type-Options","nosniff");
+  if(req.method==="GET"){
+    // Exposes only whether delivery is available, never addresses or API keys.
+    return res.status(200).json({
+      ok:true,
+      enabled:Boolean(process.env.RESEND_API_KEY&&process.env.FEEDBACK_TO_EMAIL&&process.env.FEEDBACK_FROM_EMAIL)
+    });
+  }
   if(req.method!=="POST"){
-    res.setHeader("Allow","POST");
+    res.setHeader("Allow","GET, POST");
     return res.status(405).json({ok:false,error:"Method not allowed."});
   }
   // Reject cross-site browser submissions; public API still requires anti-spam safeguards.
