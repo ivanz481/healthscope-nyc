@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700;6..72,800&display=swap" rel="stylesheet">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Healthscope NYC</title>
+<script>document.documentElement.classList.add('hs-gated');</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 
 <style>
@@ -2387,10 +2388,113 @@ aside{
   }
 }
 
+
+/* Language arrival experience — isolated from dashboard functionality */
+html.hs-gated{overflow:hidden}
+html.hs-gated .shell{visibility:hidden}
+#hsIntro[hidden],#hsLoading[hidden],#hsLanguageScreen[hidden]{display:none!important}
+#hsIntro{
+ position:fixed;inset:0;z-index:9999;background:#071e2a;color:#f4fbf8;
+ display:grid;place-items:center;padding:26px;isolation:isolate;
+ font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif!important;
+}
+#hsIntro::before{
+ content:"";position:absolute;inset:0;z-index:-1;
+ background:radial-gradient(ellipse at 20% 85%,rgba(35,191,174,.17),transparent 45%),
+ radial-gradient(ellipse at 85% 5%,rgba(76,143,161,.19),transparent 45%);
+}
+#hsIntro::after{
+ content:"";position:absolute;inset:0;z-index:-1;opacity:.18;pointer-events:none;
+ background-image:linear-gradient(rgba(182,236,222,.17) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(182,236,222,.17) 1px,transparent 1px);
+ background-size:62px 62px;
+ mask-image:linear-gradient(90deg,transparent,black 28%,black 72%,transparent);
+}
+.hs-intro-inner{width:min(100%,570px);text-align:center}
+.hs-intro-mark{
+ display:grid;place-items:center;margin:0 auto 28px;width:72px;height:72px;
+ border-radius:21px;background:linear-gradient(145deg,#d2f8ed,#6ac9b9);
+ color:#0a2a38;font-family:Georgia,serif!important;font-size:32px;font-weight:800;
+ letter-spacing:-.08em;box-shadow:0 0 0 8px rgba(166,244,221,.055),0 20px 70px rgba(24,197,178,.13)
+}
+.hs-overline{font:700 10px/1.6 system-ui,sans-serif!important;letter-spacing:.22em;color:#91cfc6;text-transform:uppercase}
+.hs-intro-inner h2{
+ margin:13px 0 12px;font:500 clamp(35px,6vw,59px)/1.05 Georgia,serif!important;
+ letter-spacing:-.05em;color:#fff
+}
+.hs-intro-inner p{max-width:410px;margin:0 auto;color:#abc1c5;line-height:1.7;font:400 14px/1.7 system-ui,sans-serif!important}
+.hs-loading-track{width:180px;height:3px;margin:37px auto 14px;background:#24414b;border-radius:99px;overflow:hidden}
+.hs-loading-track span{
+ display:block;width:42%;height:100%;background:#63cfba;border-radius:99px;
+ animation:hs-load 1s ease-in-out infinite alternate
+}
+.hs-loading-caption{font:500 10px/1.5 system-ui,sans-serif!important;letter-spacing:.13em;color:#8ca8b2;text-transform:uppercase}
+@keyframes hs-load{from{transform:translateX(-100%)}to{transform:translateX(340%)}}
+#hsLanguageScreen{animation:hs-reveal .42s ease both}
+@keyframes hs-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hs-language-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:34px auto 0;max-width:455px}
+.hs-language-option{
+ min-height:115px;border:1px solid #41616b;border-radius:16px;
+ padding:18px 16px;background:rgba(255,255,255,.055);color:#fff;
+ text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;
+ transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.hs-language-option:hover,.hs-language-option:focus-visible{
+ background:rgba(106,207,185,.13);border-color:#83dfce;transform:translateY(-2px);
+ outline:none;
+}
+.hs-language-option strong{font:600 18px/1.2 system-ui,sans-serif!important}
+.hs-language-option span{font:400 12px/1.3 system-ui,sans-serif!important;color:#a9c4c8}
+.hs-language-option .hs-option-arrow{align-self:flex-end;font-size:20px;color:#87ddcb}
+.hs-intro-note{margin-top:20px!important;color:#89a9b2!important;font-size:11px!important}
+#hsIntro.hs-leaving{animation:hs-dismiss .34s ease forwards;pointer-events:none}
+@keyframes hs-dismiss{to{opacity:0;visibility:hidden}}
+.hs-language-control{
+ display:inline-flex;align-items:center;gap:7px;border:1px solid #dbe4e1;
+ background:#fff;border-radius:9px;padding:6px 8px;color:#224451;
+}
+.hs-language-control label{font:700 10px/1 system-ui,sans-serif!important;color:#42636e}
+.hs-language-control select{
+ font:600 11px/1 system-ui,sans-serif!important;border:0;outline:0;
+ color:#123947;background:transparent;cursor:pointer;max-width:106px
+}
+.hs-language-control:focus-within{outline:2px solid #5fcbb6;outline-offset:2px}
+@media(max-width:540px){
+ .hs-language-options{grid-template-columns:1fr;max-width:320px}
+ .hs-language-option{min-height:79px;flex-direction:row;align-items:center}
+ .hs-intro-inner h2{font-size:38px}
+ .hs-intro-mark{width:65px;height:65px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hs-loading-track span,#hsLanguageScreen,#hsIntro.hs-leaving{animation:none!important}
+ .hs-language-option{transition:none}
+}
+
 </style>
 
 </head>
 <body>
+<div id="hsIntro" role="dialog" aria-modal="true" aria-label="Choose a website language">
+ <div class="hs-intro-inner" id="hsLoading">
+  <div class="hs-intro-mark" aria-hidden="true">HS</div>
+  <div class="hs-overline">Healthscope / New York City</div>
+  <h2>Health, in perspective.</h2>
+  <p>Connecting New York City's public-health data in one clear view.</p>
+  <div class="hs-loading-track" aria-hidden="true"><span></span></div>
+  <div class="hs-loading-caption">Preparing your dashboard</div>
+ </div>
+ <div class="hs-intro-inner" id="hsLanguageScreen" hidden>
+  <div class="hs-intro-mark" aria-hidden="true">HS</div>
+  <div class="hs-overline">Healthscope / NYC</div>
+  <h2>Choose your language.</h2>
+  <p>Explore New York City health data in the language you're most comfortable with.</p>
+  <div class="hs-language-options" role="group" aria-label="Website language">
+   <button class="hs-language-option" type="button" data-hs-language="en"><span><strong>English</strong><span>Continue in English</span></span><span class="hs-option-arrow" aria-hidden="true">↗</span></button>
+   <button class="hs-language-option" type="button" data-hs-language="es"><span><strong>Español</strong><span>Continuar en español</span></span><span class="hs-option-arrow" aria-hidden="true">↗</span></button>
+  </div>
+  <p class="hs-intro-note">You can switch languages at any time inside the dashboard.</p>
+ </div>
+</div>
 <div class="shell">
 
 <aside>
@@ -2448,7 +2552,7 @@ aside{
     <h1 id="pageTitle">Healthscope NYC Overview</h1>
     <div class="sub" id="pageSub">NYC public health indicators with transparent source dates</div>
   </div>
-  <div class="top-meta">
+  <div class="top-meta"><div class="hs-language-control"><label for="hsLocaleSelect">Language</label><select id="hsLocaleSelect" aria-label="Website language"><option value="en">English</option><option value="es">Español</option></select></div>
     <div class="freshness" id="freshnessLabel">Latest key data: Sep. 24, 2026</div>
     <div class="badge">Verified public sources</div>
   </div>
