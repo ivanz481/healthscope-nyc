@@ -2141,6 +2141,252 @@ td{
   .kpis{grid-template-columns:1fr 1fr}
 }
 
+
+/* ===== Healthscope signature product pass ===== */
+body{
+  background:
+    radial-gradient(circle at 85% 0%,rgba(43,181,169,.10),transparent 24rem),
+    #f4f7f6;
+}
+
+main{
+  padding-top:28px;
+}
+
+.top{
+  margin-bottom:18px;
+  padding-bottom:18px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#e9f5f1;
+  color:#0b7473;
+  letter-spacing:.09em!important;
+}
+.eyebrow::before{display:none}
+
+h1{
+  font-size:44px;
+  line-height:.96;
+}
+
+.top-meta{
+  align-self:start;
+}
+
+.badge,.freshness{
+  border-radius:10px;
+  padding:8px 10px;
+}
+
+.section-ribbon{
+  background:
+    linear-gradient(90deg,#0a2230 0%,#12394b 72%,#0b706f 100%);
+  border-radius:14px;
+  padding:12px 14px;
+}
+.section-ribbon strong{
+  letter-spacing:.04em;
+}
+.section-ribbon span{
+  opacity:.9;
+}
+
+.signals{
+  gap:12px;
+}
+
+.signal{
+  border-radius:16px;
+  position:relative;
+  overflow:hidden;
+}
+.signal:first-child{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(75,204,189,.22),transparent 8rem),
+    linear-gradient(135deg,#0a2230,#123f50);
+}
+.signal:nth-child(2){
+  background:#eef6f8;
+}
+.signal:nth-child(3){
+  background:#eef7f2;
+}
+.signal:nth-child(2),
+.signal:nth-child(3){
+  border-color:transparent;
+}
+.signal-value{
+  font-size:29px;
+}
+.signal p{
+  opacity:.88;
+}
+
+.kpis{
+  gap:12px;
+}
+.kpi{
+  border-radius:16px;
+  border-top-width:0;
+  position:relative;
+  overflow:hidden;
+}
+.kpi::before{
+  content:"";
+  display:block;
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  background:#0a7f7c;
+}
+.kpi:nth-child(2)::before{background:#5e8eb4}
+.kpi:nth-child(3)::before{background:#c6974d}
+.kpi:nth-child(4)::before{background:#8b7191}
+
+.value{
+  font-size:38px;
+}
+
+.card{
+  border-radius:16px;
+}
+
+.grid2 > .card:first-child{
+  border-color:#d7e3df;
+}
+
+.title{
+  font-size:19px;
+}
+
+.chart{
+  height:320px;
+}
+
+.metric{
+  border-bottom-color:#edf2f0;
+}
+.metric span:last-child{
+  padding:4px 7px;
+  border-radius:8px;
+  background:#f2f7f5;
+}
+
+.callout{
+  border-radius:16px;
+}
+.callout h3{
+  font-size:20px;
+}
+.callout p{
+  line-height:1.65;
+}
+
+.bigstat{
+  font-size:54px;
+  letter-spacing:-.06em;
+}
+
+.linkcard{
+  border-radius:16px;
+}
+.linkcard::before{
+  border-radius:999px;
+}
+
+.btn{
+  border-radius:9px;
+  background:#0a2230;
+  transition:background .15s ease,transform .15s ease;
+}
+.btn:hover{
+  background:#0b7777;
+  transform:translateY(-1px);
+}
+
+.explorebar{
+  border-radius:14px;
+  padding:11px;
+}
+
+.control select{
+  border-radius:9px;
+}
+
+.map-layout{
+  gap:14px;
+}
+.map-wrap{
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 22% 16%,rgba(255,255,255,.9),transparent 10rem),
+    linear-gradient(180deg,#e2eeee,#edf4f2)!important;
+}
+.map-sidecard,
+.map-key{
+  border-radius:10px;
+}
+.map-panel{
+  border-radius:16px;
+}
+
+.source{
+  border-radius:10px;
+  background:#fafcfb;
+}
+
+.status-line{
+  border-bottom-color:#edf1f0;
+}
+.status-pill{
+  border-radius:7px;
+}
+
+.pipe-step{
+  border-radius:10px;
+}
+
+.method{
+  border-radius:14px;
+}
+
+aside{
+  background:
+    linear-gradient(180deg,#092330 0%,#0b2836 100%);
+}
+.nav{
+  border-radius:11px;
+}
+.nav.active{
+  background:#eff6f3;
+}
+.nav-icon{
+  border-radius:8px;
+}
+
+.logo{
+  border-radius:12px;
+}
+
+@media(min-width:1081px){
+  .page.active > .signals .card,
+  .page.active > .kpis .card,
+  .page.active > .grid2 .card,
+  .page.active > .linkgrid .card{
+    transition:transform .16s ease,border-color .16s ease;
+  }
+  .page.active > .signals .card:hover,
+  .page.active > .kpis .card:hover,
+  .page.active > .grid2 .card:hover,
+  .page.active > .linkgrid .card:hover{
+    transform:translateY(-2px);
+  }
+}
+
 </style>
 
 </head>
