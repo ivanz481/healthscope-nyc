@@ -28,10 +28,10 @@
     borough:"Borough",aqiHeader:"U.S. AQI",
     sourceCaveat:"Source: Open-Meteo / CAMS (~11 km grid). These are estimates at borough reference points, not measurements or borough averages. Times are NYC local.",
     sourceLink:"Method & source ↗",loading:"Loading current modeled air-quality estimates…",
-    ready:"Modeled air quality",missing:"Air-quality estimates are temporarily unavailable. Select Refresh to retry.",
+    ready:"Modeled air quality",missing:"Air-quality estimates are temporarily unavailable. Select Refresh to retry.",stale:"Refresh failed. Showing the last retrieved model data",
     unrecorded:"Model value unavailable",mapDesc:"Explore modeled air pollution near representative borough locations.",
     mapNote:"Schematic borough map. The shading compares model values near a reference point in each borough, not borough-wide averages. The model resolution is approximately 11 km; local conditions may differ.",
-    estimated:"Estimate near",at:"NYC local",sourceName:"Open-Meteo / CAMS",modeled:"model estimate",
+    estimated:"Estimate near",at:"NYC local",sourceName:"Open-Meteo / CAMS",mapSideExplanation:"Shading compares modeled reference-point values (not a borough average).",modeled:"model estimate",
     result:"Model data",boroughEstimate:"Reference-point estimate"
    },
    es:{
@@ -43,10 +43,10 @@
     borough:"Distrito",aqiHeader:"ICA de EE. UU.",
     sourceCaveat:"Fuente: Open-Meteo / CAMS (malla de ~11 km). Son estimaciones en puntos de referencia, no mediciones ni promedios del distrito. Hora local de NYC.",
     sourceLink:"Fuente y método ↗",loading:"Cargando estimaciones actuales…",
-    ready:"Calidad del aire estimada",missing:"Los datos no están disponibles. Pulsa Actualizar datos para reintentar.",
+    ready:"Calidad del aire estimada",missing:"Los datos no están disponibles. Pulsa Actualizar datos para reintentar.",stale:"Error al actualizar. Se muestran los últimos datos disponibles",
     unrecorded:"Valor no disponible",mapDesc:"Explora la contaminación estimada cerca de puntos representativos de cada distrito.",
     mapNote:"Mapa esquemático. El sombreado compara valores del modelo en puntos de referencia, no promedios de distritos. La resolución es de unos 11 km.",
-    estimated:"Estimación cerca de",at:"hora de NYC",sourceName:"Open-Meteo / CAMS",modeled:"estimación",result:"Datos estimados",boroughEstimate:"Estimación puntual"
+    estimated:"Estimación cerca de",at:"hora de NYC",sourceName:"Open-Meteo / CAMS",mapSideExplanation:"Los colores comparan estimaciones en puntos de referencia.",modeled:"estimación",result:"Datos estimados",boroughEstimate:"Estimación puntual"
    },
    "zh-CN":{
     emergencyMode:"紧急响应",pollutionMode:"空气污染",metricLabel:"空气污染物",
@@ -57,10 +57,10 @@
     borough:"行政区",aqiHeader:"美国空气质量指数",
     sourceCaveat:"数据来源：Open-Meteo / CAMS（约11公里网格）。代表性位置的模型估计，并非实测值或行政区平均值。时间为纽约当地时间。",
     sourceLink:"数据来源及方法 ↗",loading:"正在加载空气质量估计值…",
-    ready:"空气质量模型估计",missing:"暂时无法获取空气质量数据，请点击刷新重试。",
+    ready:"空气质量模型估计",missing:"暂时无法获取空气质量数据，请点击刷新重试。",stale:"刷新失败，显示上次获取的模型数据",
     unrecorded:"暂无模型数据",mapDesc:"查看纽约市各行政区代表性位置附近的空气污染估计值。",
     mapNote:"此地图为示意图。颜色代表各行政区参考位置的模型数据，并非全区平均值。模型网格约11公里。",
-    estimated:"附近估计值：",at:"纽约当地时间",sourceName:"Open-Meteo / CAMS",modeled:"模型估计",result:"模型数据",boroughEstimate:"参考位置估计值"
+    estimated:"附近估计值：",at:"纽约当地时间",sourceName:"Open-Meteo / CAMS",mapSideExplanation:"地图颜色比较各区参考位置的模型估计值。",modeled:"模型估计",result:"模型数据",boroughEstimate:"参考位置估计值"
    },
    "yue-Hant-HK":{
     emergencyMode:"緊急應變",pollutionMode:"空氣污染",metricLabel:"空氣污染物",
@@ -71,10 +71,10 @@
     borough:"行政區",aqiHeader:"美國空氣質素指數",
     sourceCaveat:"資料來源：Open-Meteo / CAMS（約11公里網格）。係代表位置嘅模型估計，唔係實測或全區平均值。時間為紐約當地時間。",
     sourceLink:"資料來源及方法 ↗",loading:"載入空氣質素估計中…",
-    ready:"空氣質素模型估計",missing:"暫時攞唔到空氣質素資料，請按更新重試。",
+    ready:"空氣質素模型估計",missing:"暫時攞唔到空氣質素資料，請按更新重試。",stale:"更新失敗，顯示上次取得嘅模型數據",
     unrecorded:"暫無模型數據",mapDesc:"睇下各行政區代表位置附近嘅空氣污染估計。",
     mapNote:"呢幅係示意地圖。顏色顯示各區代表位置嘅模型估計，唔係全區平均值。模型網格約11公里。",
-    estimated:"附近估計：",at:"紐約當地時間",sourceName:"Open-Meteo / CAMS",modeled:"模型估計",result:"模型數據",boroughEstimate:"參考位置估計值"
+    estimated:"附近估計：",at:"紐約當地時間",sourceName:"Open-Meteo / CAMS",mapSideExplanation:"地圖顏色比較各區參考位置嘅模型估計。",modeled:"模型估計",result:"模型數據",boroughEstimate:"參考位置估計值"
    }
  };
  let data=null,active=false,loading=false,lastError=false;
@@ -82,6 +82,7 @@
  const originalDesc=byId("hsMapDescription").textContent,
  originalNote=byId("hsMapMethodNote").textContent;
  const originalSource=byId("hsMapSourceName").textContent;
+ const originalSideExplanation=byId("hsMapSideExplanation").textContent;
  function language(){
   const key=typeof window.hsCurrentLanguage==="function"?window.hsCurrentLanguage():"en";
   return translations[key]?key:"en";
@@ -103,6 +104,7 @@
     setText("hsMapDescription",tr("mapDesc"));
     setText("hsMapMethodNote",tr("mapNote"));
     setText("hsMapSourceName",tr("sourceName"));
+    setText("hsMapSideExplanation",tr("mapSideExplanation"));
     renderAll();
   }
  }
@@ -110,7 +112,8 @@
   if(!active)return;
   state.dataset.status=lastError?"error":loading?"loading":"ready";
   if(loading)state.textContent=tr("loading");
-  else if(lastError||!data)state.textContent=tr("missing");
+  else if(lastError)state.textContent=data?tr("stale")+" · "+stamp():tr("missing");
+  else if(!data)state.textContent=tr("missing");
   else state.textContent=tr("ready")+" · "+stamp();
  }
  function valid(data){
@@ -131,7 +134,7 @@
    if(!valid(result))throw Error("Invalid pollution data");
    data=result;lastError=false;
   }catch(e){
-   if(!data)lastError=true;
+   lastError=true;
   }finally{
    clearTimeout(timeout);loading=false;refresh.disabled=false;updateStatus();renderAll();
   }
@@ -164,7 +167,7 @@
   setText("legendTitle",metrics[key].label+" · "+tr("modeled"));
   setText("legendRange",min===null?tr("unrecorded"):format(min,key)+" → "+format(max,key)+" "+metrics[key].unit);
   setText("mapSideMetric",metrics[key].label);
-  setText("mapDataTag",data?stamp():tr("loading"));
+  setText("mapDataTag",data?stamp():lastError?tr("missing"):tr("loading"));
  }
  function renderSelected(name){
   if(!active)return;
@@ -236,6 +239,7 @@
    setText("hsMapDescription",originalDesc);
    setText("hsMapMethodNote",originalNote);
    setText("hsMapSourceName",originalSource);
+   setText("hsMapSideExplanation",originalSideExplanation);
    rerender(); // the original 911 geometry, profile, chart and table
   }
  }
