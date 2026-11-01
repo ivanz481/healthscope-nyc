@@ -3005,6 +3005,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
 <link rel="stylesheet" href="/assets/healthscope-experience.css?v=2">
 <link rel="stylesheet" href="/assets/healthscope-fieldnotes.css?v=3">
 <link rel="stylesheet" href="/assets/healthscope-night.css?v=3">
+<link rel="stylesheet" href="/assets/healthscope-pollution.css?v=1">
 </head>
 <body>
 <div id="hsIntro" role="dialog" aria-modal="true" aria-label="Choose a website language">
@@ -3070,7 +3071,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
 
 <aside>
   <div class="brand">
-    <div class="logo"><img src="data:image/png;base64,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" alt="Healthscope NYC logo"></div>
+    <a class="logo" href="#dashboard" aria-label="Go to Healthscope NYC overview" title="Healthscope NYC · Overview"><img src="data:image/png;base64,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" alt="Healthscope NYC logo"></a>
     <div class="brand-copy">
       <strong>Healthscope NYC</strong>
       <span>New York City public health intelligence</span>
@@ -3471,7 +3472,23 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
 </section>
 
 <section class="page" id="geography"><div class="section-ribbon"><strong>Place matters</strong><span>Explore borough metrics and connect to neighborhood-level public-health tools.</span></div>
-<div class="explorebar" aria-label="Map controls">
+<div class="hs-geo-modes hsp-i18n-managed" role="group" aria-label="Map dataset">
+ <button type="button" class="hs-geo-mode active" id="hsGeoEmergency" aria-pressed="true" data-hsp-i18n="emergencyMode">Emergency response</button>
+ <button type="button" class="hs-geo-mode" id="hsGeoPollution" aria-pressed="false" data-hsp-i18n="pollutionMode">Air pollution</button>
+</div>
+<div class="hs-pollution-controls hsp-i18n-managed" id="hsPollutionControls" hidden>
+ <div class="control"><label for="hsPollutant" data-hsp-i18n="metricLabel">Air contaminant</label>
+ <select id="hsPollutant">
+  <option value="pm25">Fine particles · PM2.5</option>
+  <option value="pm10">Particles · PM10</option>
+  <option value="no2">Nitrogen dioxide · NO₂</option>
+  <option value="o3">Ozone · O₃</option>
+  <option value="aqi">U.S. Air Quality Index</option>
+ </select></div>
+ <div class="hs-pollution-state" id="hsPollutionState" role="status" aria-live="polite">Select Air pollution to load borough estimates.</div>
+ <button type="button" class="action secondary" id="hsPollutionRefresh" data-hsp-i18n="refresh">Refresh data</button>
+</div>
+<div class="explorebar hs-geo-emergency-only" aria-label="Map controls">
   <div class="control">
     <label for="globalPeriod">Time window</label>
     <select id="globalPeriod">
@@ -3491,8 +3508,8 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <button class="action secondary" id="downloadBtn">Download current CSV</button>
   <button class="action" id="refreshBtn"><span class="live-dot"></span>Refresh sources</button>
 </div>
-<div class="notice" id="periodNotice">Showing the latest available 911 reporting period.</div>
-<div class="desc" id="historyAvailability" style="margin:-8px 0 14px 2px">Loading historical monthly records…</div>
+<div class="notice hs-geo-emergency-only" id="periodNotice">Showing the latest available 911 reporting period.</div>
+<div class="desc hs-geo-emergency-only" id="historyAvailability" style="margin:-8px 0 14px 2px">Loading historical monthly records…</div>
 
 
 <div class="map-layout">
@@ -3500,16 +3517,16 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
     <div class="map-toolbar">
       <div>
         <div class="title">Interactive NYC Health Map</div>
-        <div class="desc">Reliable built-in map • click a borough to update the profile</div>
+        <div class="desc" id="hsMapDescription">Reliable built-in map • click a borough to update the profile</div>
       </div>
       <span class="tag" id="mapDataTag">911 snapshot • Aug. 2026</span>
     </div>
-    <div class="map-wrap">
+    <div class="map-wrap" id="hsMapViewport">
       <div class="map-tip">Click a borough to explore</div>
       <div class="map-sidecard">
       <strong>NYC borough view</strong>
       <div>Shading reflects the selected indicator and time window.</div>
-      <div class="map-minirow"><strong>Source</strong><span>NYC Open Data</span></div>
+      <div class="map-minirow"><strong>Source</strong><span id="hsMapSourceName">NYC Open Data</span></div>
       <div class="map-minirow"><strong>Metric</strong><span id="mapSideMetric">Medical incidents</span></div>
     </div>
       <svg id="boroughSvg" viewBox="0 0 760 560" role="img" aria-label="Interactive schematic map of New York City boroughs">
@@ -3584,10 +3601,10 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
         <span id="legendRange">Lower ← borough value → Higher</span>
       </div>
     </div>
-    <div class="desc" style="margin-top:9px">The built-in shapes are a simplified schematic for reliable interaction; values are official-source borough data. The time selector changes the underlying 911 aggregation used throughout this map view. On a hosted production build, official DCP boundary geometry can be loaded as an enhancement.</div>
+    <div class="desc" id="hsMapMethodNote" style="margin-top:9px">The built-in shapes are a simplified schematic for reliable interaction; values are official-source borough data. The time selector changes the underlying 911 aggregation used throughout this map view. On a hosted production build, official DCP boundary geometry can be loaded as an enhancement.</div>
   </div>
 
-  <div class="card map-panel">
+  <div class="card map-panel hs-geo-emergency-only" id="hsEmergencyBoroughPanel">
     <div class="map-kicker">Borough profile</div>
     <h2 id="selectedBorough">Brooklyn</h2>
     <div class="desc" id="selectedContext">Latest verified borough snapshot</div>
@@ -3598,9 +3615,28 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
       Hover or click a borough. Use the indicator control above to recolor the map. Official values are validated before replacing the last verified snapshot.
     </div>
   </div>
+  <div class="card map-panel hs-pollution-panel hsp-i18n-managed" id="hsPollutionBoroughPanel" hidden>
+   <div class="map-kicker" data-hsp-i18n="modelLabel">MODELED AIR QUALITY</div>
+   <h2 id="hsPollutionBoroughName">Brooklyn</h2>
+   <div class="desc" data-hsp-i18n="pointNote">Estimates near the borough's representative point</div>
+   <div class="hs-pollution-value" id="hsPollutionSelectedValue">—</div>
+   <div class="hs-pollution-unit" id="hsPollutionSelectedUnit">µg/m³</div>
+   <div class="hs-pollution-metrics" id="hsPollutionMetricList"></div>
+   <div class="map-note" data-hsp-i18n="modelDisclaimer">Grid-model estimates near representative borough locations, not sensor readings or borough-wide averages. Values vary across each borough.</div>
+  </div>
 </div>
-
-<div class="grid2 equal">
+<div class="hs-pollution-comparison hsp-i18n-managed" id="hsPollutionComparison" hidden>
+ <div class="hs-pollution-comparison-head">
+  <div><h3 data-hsp-i18n="comparisonHeading">Air contaminants by borough</h3><p data-hsp-i18n="comparisonSub">Modeled concentrations at one reference point in each borough.</p></div>
+  <span id="hsPollutionTimestamp">—</span>
+ </div>
+ <div class="hs-pollution-table-scroll"><table class="hs-pollution-table">
+  <thead><tr><th data-hsp-i18n="borough">Borough</th><th>PM2.5</th><th>PM10</th><th>NO₂</th><th>O₃</th><th data-hsp-i18n="aqiHeader">U.S. AQI</th></tr></thead>
+  <tbody id="hsPollutionRows"></tbody>
+ </table></div>
+ <div class="hs-pollution-source"><span data-hsp-i18n="sourceCaveat">Source: Open-Meteo / CAMS. Approximately 11 km model grid at representative borough locations; not measurements or borough averages. Timestamp in NYC local time.</span> <a href="https://open-meteo.com/en/docs/air-quality-api" target="_blank" rel="noopener noreferrer" data-hsp-i18n="sourceLink">Method & source ↗</a></div>
+</div>
+<div class="grid2 equal hs-geo-emergency-only" id="hsEmergencyComparison">
   <div class="card">
     <div class="head"><div class="title">Borough Comparison Chart</div><div class="desc" id="geoChartDesc">Life-threatening medical incidents • latest available month</div></div>
     <div class="chart"><canvas id="geoChart"></canvas></div>
@@ -3620,7 +3656,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <div class="card linkcard"><h3>Community Health Profiles</h3><p>NYC Health publishes health and social-condition profiles for 59 community districts, including neighborhood comparisons.</p><a class="btn" target="_blank" href="https://www.nyc.gov/site/doh/data/tools.page">Explore profiles</a></div>
   <div class="card linkcard"><h3>NYC Open Data</h3><p>Search city datasets and use API access for geographic public-health analysis.</p><a class="btn" target="_blank" href="https://data.cityofnewyork.us/">Open NYC Open Data</a></div>
 </div>
-<div class="source">Borough metrics use the monthly NYC Open Data Local Law 119 dataset. The time selector changes the underlying 911 aggregation used by the map, chart, table and CSV export. The local schematic map is deliberately independent of external mapping libraries so it remains usable even when a map CDN or geometry endpoint fails.</div>
+<div class="source hs-geo-emergency-only">Borough metrics use the monthly NYC Open Data Local Law 119 dataset. The time selector changes the underlying 911 aggregation used by the map, chart, table and CSV export. The local schematic map is deliberately independent of external mapping libraries so it remains usable even when a map CDN or geometry endpoint fails.</div>
 </section>
 
 <!-- Visitor feedback: no external service secrets in client code -->
@@ -3857,6 +3893,7 @@ function indicatorMeta(){
 }
 
 function renderMap(){
+ if(window.hsPollution&&window.hsPollution.active){window.hsPollution.renderMap();return;}
  const vals=indicatorData().filter(x=>x.value!=null).map(x=>+x.value);
  const min=vals.length?Math.min(...vals):0,max=vals.length?Math.max(...vals):1;
  const meta=indicatorMeta();
@@ -3878,6 +3915,7 @@ function renderMap(){
 }
 
 function renderSelected(){
+ if(window.hsPollution&&window.hsPollution.active){window.hsPollution.renderSelected(selectedBorough);return;}
  const e=get911(selectedBorough);
  document.getElementById("selectedBorough").textContent=selectedBorough;
  document.getElementById("selectedIncidents").textContent=e?number(e.incidents):"—";
@@ -3902,6 +3940,7 @@ function renderTable(){
 }
 
 function renderGeoChart(){
+ if(window.hsPollution&&window.hsPollution.active)return;
  const meta=indicatorMeta(),data=indicatorData();
  const canvas=document.getElementById("geoChart");
  if(geoChart)geoChart.destroy();
@@ -5147,7 +5186,7 @@ function dynamicTranslate(s){
 }
 function updateTextNode(node){
   const tag=node.parentElement;
-  if(!tag||tag.closest("#hsIntro,script,style,svg,pre,code,textarea,.hx-i18n-managed,.hf-i18n"))return;
+  if(!tag||tag.closest("#hsIntro,script,style,svg,pre,code,textarea,.hx-i18n-managed,.hf-i18n,.hsp-i18n-managed"))return;
   const existing=node.nodeValue;
   if(!existing||!existing.trim())return;
   const old=rendered.get(node);
@@ -5299,5 +5338,6 @@ setTimeout(()=>{
 })();
 </script>
 <script defer src="/assets/healthscope-experience.js?v=1"></script>
+<script defer src="/assets/healthscope-pollution.js?v=1"></script>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body></html>
