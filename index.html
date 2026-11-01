@@ -3005,6 +3005,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
 </style>
 <link rel="stylesheet" href="/assets/healthscope-experience.css?v=1">
 <link rel="stylesheet" href="/assets/healthscope-fieldnotes.css?v=2">
+<link rel="stylesheet" href="/assets/healthscope-night.css?v=1">
 </head>
 <body>
 <div id="hsIntro" role="dialog" aria-modal="true" aria-label="Choose a website language">
@@ -3840,7 +3841,7 @@ function applyTimeWindow(){
 function colorFor(v,min,max){
  if(v==null||Number.isNaN(+v))return "#dfe8e5";
  const t=max===min?.5:Math.max(0,Math.min(1,(+v-min)/(max-min)));
- const a=[220,239,235],b=[15,102,105];
+ const a=[49,96,87],b=[105,192,159];
  return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)})`;
 }
 
@@ -3907,7 +3908,7 @@ function renderGeoChart(){
  if(geoChart)geoChart.destroy();
  geoChart=new Chart(canvas,{
    type:"bar",
-   data:{labels:data.map(x=>x.borough),datasets:[{label:meta.label,data:data.map(x=>x.value),backgroundColor:"rgba(15,124,127,.82)",borderRadius:7}]},
+   data:{labels:data.map(x=>x.borough),datasets:[{label:meta.label,data:data.map(x=>x.value),backgroundColor:"rgba(140,217,180,.83)",borderColor:"rgba(167,242,207,.9)",borderWidth:1,borderRadius:5}]},
    options:{...common,plugins:{...common.plugins,legend:{display:false}}}
  });
  document.getElementById("geoChartDesc").textContent=`${meta.label} • ${current911.month}`;
@@ -4228,19 +4229,19 @@ document.querySelectorAll(".nav").forEach(b=>b.addEventListener("click",()=>{
 const labels=respiratory.map(x=>new Date(x[0]+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"}));
 const common={
  responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},
- plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:7,boxHeight:7,padding:18,color:"#61727a",font:{size:11}}},
- tooltip:{backgroundColor:"#112b3c",titleColor:"#fff",bodyColor:"#eaf2f3",padding:11,displayColors:true}},
- scales:{x:{grid:{display:false},ticks:{color:"#738188",font:{size:10}}},y:{grid:{color:"#edf1ef"},border:{display:false},ticks:{color:"#738188",font:{size:10}}}}
+ plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:7,boxHeight:7,padding:18,color:"#aecac0",font:{size:11}}},
+ tooltip:{backgroundColor:"#21383b",titleColor:"#f0faf2",bodyColor:"#d7ece2",borderColor:"#48665f",borderWidth:1,padding:11,displayColors:true}},
+ scales:{x:{grid:{display:false},ticks:{color:"#aac2b8",font:{size:10}}},y:{grid:{color:"rgba(125,169,151,.17)"},border:{display:false},ticks:{color:"#aac2b8",font:{size:10}}}}
 };
 let overviewRespChart=new Chart(document.getElementById("overviewChart"),{
- type:"line",data:{labels,datasets:[{label:"Respiratory illness",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",backgroundColor:"rgba(15,124,127,.10)",fill:true,tension:.35,pointRadius:2}]},options:common
+ type:"line",data:{labels,datasets:[{label:"Respiratory illness",data:respiratory.map(x=>x[1]),borderColor:"#89e1bc",backgroundColor:"rgba(103,200,157,.12)",fill:true,tension:.3,borderWidth:2.5,pointRadius:2,pointHoverRadius:5}]},options:common
 });
 let surveillanceRespChart=new Chart(document.getElementById("surveillanceChart"),{
  type:"line",data:{labels,datasets:[
-  {label:"Overall respiratory",data:respiratory.map(x=>x[1]),borderColor:"#0f7c7f",tension:.3,pointRadius:2},
-  {label:"COVID-19",data:respiratory.map(x=>x[2]),borderColor:"#b64c54",tension:.3,pointRadius:2},
-  {label:"Flu",data:respiratory.map(x=>x[3]),borderColor:"#a96e0a",tension:.3,pointRadius:2},
-  {label:"RSV",data:respiratory.map(x=>x[4]),borderColor:"#5868a6",tension:.3,pointRadius:2}
+  {label:"Overall respiratory",data:respiratory.map(x=>x[1]),borderColor:"#89e1bc",tension:.3,borderWidth:2.4,pointRadius:2},
+  {label:"COVID-19",data:respiratory.map(x=>x[2]),borderColor:"#f1a6a0",tension:.3,borderWidth:2.2,pointRadius:2},
+  {label:"Flu",data:respiratory.map(x=>x[3]),borderColor:"#e7c28b",tension:.3,borderWidth:2.2,pointRadius:2},
+  {label:"RSV",data:respiratory.map(x=>x[4]),borderColor:"#9aa8ef",tension:.3,borderWidth:2.2,pointRadius:2}
  ]},options:common
 });
 
