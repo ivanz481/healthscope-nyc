@@ -438,7 +438,7 @@ html,body{background:#0f1722!important}
   border-right-color:#2a3d4a!important;
 }
 .shell > main{background:#0f1722!important}
-.page .card,.card,.signaIs .signal,
+.page .card,.card,
 .signals .signal,.kpi,.page .kpi,
 .map-shell,.map-panel{
   background:#1a2a38!important;
@@ -563,3 +563,39 @@ tbody tr:hover{background:#243e4b!important}
 @media(max-width:1080px){
  .shell > aside{background:#121e2b!important;border-bottom-color:#2f4552!important}
 }
+
+/* The welcome sequence belongs to the same visual identity. */
+#hsIntro{
+  --hx-aqua:#82d3de;
+  --hx-soft:#c9edf1;
+  --hx-line:rgba(139,211,226,.17);
+  background:#0d1725!important;
+}
+#hsIntro::before{
+  background:radial-gradient(ellipse at 50% 77%,rgba(49,114,139,.13),transparent 64%),#0d1725!important;
+}
+#hsLanguageScreen h2 em{color:#a4dfe7!important}
+#hsIntro .hs-overline,#hsIntro .hx-entry-count{color:#9acdd7!important}
+#hsIntro .hx-pulse{background:#87dce7!important;box-shadow:0 0 0 5px rgba(112,202,221,.12)!important}
+#hsIntro .hx-language-choices{
+  background:rgba(26,45,65,.55)!important;
+  border-color:rgba(145,193,208,.19)!important;
+}
+#hsLanguageScreen .hs-language-option{
+  background:rgba(22,40,57,.7)!important;
+  border-color:rgba(150,194,206,.18)!important;
+}
+#hsLanguageScreen .hs-language-option:hover,
+#hsLanguageScreen .hs-language-option:focus-visible{
+  background:rgba(65,128,148,.16)!important;
+  border-color:rgba(137,217,226,.66)!important;
+}
+#hsLanguageScreen .hs-language-option.hx-preferred{
+  border-color:rgba(137,217,226,.48)!important;
+}
+#hsLanguageScreen .hs-language-option .hs-option-arrow{color:#97dfe8!important}
+#hsLanguageScreen .hx-option-num{color:#a5d6df!important}
+#hsIntro .hx-tip-kicker{color:#98d8df!important}
+#hsIntro .hx-tip-link{color:#9cdae6!important}
+#hsIntro .hx-tip-link:hover{color:#e0f9fc!important}
+#hsIntro .hx-loading-tip{border-color:rgba(148,196,208,.2)!important;background:rgba(18,46,65,.28)!important}
