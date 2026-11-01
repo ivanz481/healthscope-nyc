@@ -21,7 +21,7 @@
   --green:#287153;
   --red:#aa5549;
   --shadow:none;
-  --quiet-sans:"IBM Plex Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --quiet-sans:"Roboto","Noto Sans SC","Noto Sans TC",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 html,body,button,input,select,textarea,table{
   font-family:var(--quiet-sans)!important;
