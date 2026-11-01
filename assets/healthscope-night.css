@@ -1,0 +1,411 @@
+/*
+  HEALTHSCOPE NYC / NIGHT STUDY
+  Quiet, information-first dark palette. Strong emphasis only on
+  primary measurements and status meaning, not every surface.
+  Layered after Quiet Interface so the layout stays unchanged.
+*/
+:root{
+  color-scheme:dark;
+  --ink:#e4f0eb;
+  --ink-2:#c7ddd4;
+  --sea:#8ad6b7;
+  --sea-2:#64b79d;
+  --mint:#183b34;
+  --sky:#20353d;
+  --sand:#242f2d;
+  --coral:#e29a8d;
+  --gold:#e8c388;
+  --bg:#111b20;
+  --paper:#19282d;
+  --text:#e2eeea;
+  --muted:#a0b7b2;
+  --line:#2d4245;
+  --green:#8bd5b0;
+  --red:#efa9a1;
+  --shadow:none;
+}
+html{background:#111b20!important;color-scheme:dark}
+body{background:#111b20!important;color:#dae7e2!important}
+body::before{display:none!important}
+a{color:#9adbc1}
+a:hover{color:#c9f5df}
+.shell{background:#111b20!important}
+/* Sidebar and the reading surface remain distinct without hard contrast. */
+.shell > aside{
+  background:#131f23!important;
+  border-right:1px solid #27383c!important;
+  color:#ccdcd6!important;
+}
+.shell > aside .brand{border-bottom-color:#293b3d!important}
+.shell > aside .logo{
+  background:#243d36!important;border-color:#35574c!important;
+}
+.shell > aside .brand-copy strong{color:#e8f3ed!important}
+.shell > aside .brand-copy span{color:#8fa8a0!important}
+.shell > aside .navgroup{color:#829b95!important}
+.shell > aside .nav{
+  background:transparent!important;border-color:transparent!important;
+  color:#9db4ae!important;
+}
+.shell > aside .nav .nav-copy strong{color:inherit!important}
+.shell > aside .nav .nav-icon{color:#87a49b!important}
+.shell > aside .nav:hover{
+  color:#e0f0e9!important;background:#1e3333!important;
+}
+.shell > aside .nav.active,.shell > aside .nav.active:hover{
+  color:#d8fae7!important;background:#22463d!important;
+  border-color:#306653!important;
+}
+.shell > aside .nav.active .nav-icon{color:#9be6c0!important}
+.shell > aside .source-side{
+  border-top-color:#293b3d!important;color:#8fa8a0!important;
+}
+.shell > main{background:#111b20!important}
+.top{border-bottom-color:#2c4143!important}
+.top .eyebrow{color:#91beac!important}
+.top h1{color:#eef5f1!important}
+.top .sub{color:#9cafaa!important}
+.top-meta .badge,.top-meta .freshness{
+  background:#1c2d30!important;border-color:#30464a!important;
+  color:#a7c3b5!important;
+}
+.top-meta .badge{background:#1d3932!important;color:#a5ddbd!important}
+.hs-language-control{
+  background:#1b2e31!important;border-color:#354d4f!important;
+}
+.hs-language-control label{color:#abc3b7!important}
+.hs-language-control select{
+  color:#e9f6ed!important;background:#1b2e31!important;
+  color-scheme:dark;
+}
+.hs-language-control select option{
+  background:#1d3034;color:#edf7f0;
+}
+/* Chapter labels and publication notes. */
+.page > .section-ribbon{
+  border-bottom:1px solid #2d4445!important;
+  color:#bcd3ca!important;background:transparent!important;
+}
+.page > .section-ribbon strong{color:#c6e8d8!important}
+.page > .section-ribbon span{color:#97b0a7!important}
+.page .notice{
+  background:#1c2d2e!important;color:#b2c6ba!important;
+  border:1px solid #2a4240!important;box-shadow:none!important;
+}
+.page .notice::before{
+  background:transparent!important;border-color:#577c70!important;
+  color:#9fd7b8!important;
+}
+.page .card,.card{
+  background:#19282d!important;
+  border:1px solid #2d4247!important;
+  color:#dbe8e3!important;
+  box-shadow:none!important;
+}
+.page .card:hover,.card:hover{
+  background:#19282d!important;border-color:#3c5755!important;
+}
+.card :is(p,li,small){color:inherit}
+.label,.desc,.foot,.map-note,.metric span:first-child{
+  color:#a0b5ae!important;
+}
+.head .title,.title{color:#dfede5!important}
+.head .desc,.desc{color:#a0b4ae!important}
+/* Signal status: no assertion of risk beyond the existing published labels. */
+.signals .signal,
+.signals .signal:first-child,
+.signals .signal:nth-child(2),
+.signals .signal:nth-child(3){
+  background:#19282d!important;
+  border-color:#2d4247!important;
+  color:#dbe7e0!important;
+}
+.signals .signal-head strong{color:#b2cbc0!important}
+.signals .signal-value{
+  color:#e4f1e9!important;
+  font-weight:600!important;
+  font-variant-numeric:tabular-nums;
+}
+.signals .signal p{color:#a6bfb6!important}
+.signals .signal:first-child{
+  background:#1b3435!important;
+  border:1px solid #3a6f60!important;
+  box-shadow:inset 3px 0 0 #7dd2af!important;
+}
+.signals .signal:first-child .signal-value{color:#9feac8!important}
+.signals .signal:first-child .signal-head strong{color:#c5dfd2!important}
+.signal-level{
+  border:1px solid #375047!important;border-radius:5px!important;
+  background:#263a37!important;color:#b9d4c9!important;
+}
+.signal-level.watch{
+  background:#493923!important;color:#ffd69c!important;
+  border:1px solid #745532!important;
+}
+.signal-level.info{
+  background:#223a46!important;color:#b8dded!important;
+  border:1px solid #375d6d!important;
+}
+.signal-level.stable{
+  background:#203e34!important;color:#ade3c4!important;
+  border:1px solid #2e644e!important;
+}
+/* Most important numbers pop without excessively glowing or blinking. */
+.kpi,.page .kpi{background:#1a2b2f!important;border-color:#2d4547!important}
+.kpi .label{color:#aac3b7!important}
+.kpi .value{
+  color:#e4f6e8!important;
+  font-weight:600!important;
+  letter-spacing:-.055em!important;
+  font-variant-numeric:tabular-nums;
+  text-shadow:none!important;
+}
+.kpi .foot{color:#9cb2aa!important}
+#dashboard .kpi:first-child{
+  background:#21433d!important;
+  border:1px solid #4d9376!important;
+  box-shadow:inset 0 3px 0 #8eddb4!important;
+}
+#dashboard .kpi:first-child .value{color:#b6f7d1!important}
+#dashboard .kpi:first-child .label{color:#c7e3d2!important}
+#dashboard .kpi:first-child .foot{color:#b5d5c4!important}
+#dashboard .kpi:nth-child(2) .value{color:#a9d2fa!important}
+#dashboard .kpi:nth-child(3) .value{color:#f2d2a4!important}
+#dashboard .kpi:nth-child(4) .value{color:#d0e8d7!important}
+.value,.bigstat{color:#c4f0d5!important;font-variant-numeric:tabular-nums}
+/* Charts and supporting measurements. */
+.grid2,.equal{gap:14px}
+.chart{background:transparent}
+.metric{border-bottom-color:#304146!important}
+.metric span:first-child{color:#bacdc5!important}
+.metric span:last-child{
+  color:#d9efe3!important;
+  font-variant-numeric:tabular-nums;
+}
+.metric .status-up,.status-up{color:#edaa9b!important}
+.metric .status-stable,.status-stable{color:#a7dfbc!important}
+#dashboard .grid2 > .card:first-child{
+  border-color:#39594f!important;
+}
+#dashboard .grid2 > .card:first-child .title::before{
+  content:"";display:inline-block;width:6px;height:6px;
+  background:#85d4af;border-radius:50%;vertical-align:middle;
+  margin:0 10px 2px 0;
+}
+/* Tabular data is equally important: numbers have their own column rhythm. */
+.tablebox{background:transparent}
+table{background:transparent!important;color:#d9e7e2!important}
+thead th,th{
+  background:#1e3034!important;color:#b4cac0!important;
+  border-bottom:1px solid #395353!important;
+}
+td{
+  color:#d8e6df!important;border-bottom:1px solid #2c4144!important;
+  font-variant-numeric:tabular-nums;
+}
+td strong{color:#f0f8f2!important}
+td:last-child{text-align:right}
+th:last-child{text-align:right}
+tbody tr:hover{background:#21393b!important}
+/* Sources remain clearly visible but do not compete with the readings. */
+.source{
+  background:#1b2c30!important;
+  color:#a9beb5!important;
+  border:1px solid #30484a!important;
+}
+.source::before{color:#b0dfc5!important}
+.source a,.source a:visited{color:#a0e0c3!important}
+.source a:hover{color:#d2f9e4!important}
+/* Control panels and filters */
+.explorebar{
+  background:#192a2e!important;
+  border:1px solid #2f4849!important;
+}
+.control label{color:#b0c6bb!important}
+.control select,.page select,.page input,.page textarea{
+  background:#1d3134!important;
+  color:#edf5f0!important;
+  border:1px solid #3b5556!important;
+  color-scheme:dark!important;
+  box-shadow:none!important;
+}
+.page select option{background:#213538;color:#edf5f0}
+.page input::placeholder,.page textarea::placeholder{color:#95aca4!important}
+.action,.btn,.hs-f-submit{
+  background:#3b876d!important;
+  color:#fff!important;
+  border:1px solid #519c7c!important;
+  box-shadow:none!important;
+}
+.action:hover,.btn:hover,.hs-f-submit:hover:not(:disabled){
+  background:#36785f!important;border-color:#68b692!important;
+}
+.action.secondary{
+  background:#223a3b!important;color:#cee6db!important;
+  border-color:#3b5651!important;
+}
+.action.secondary:hover{background:#2b4c47!important}
+/* Geography: dark canvas and gently glowing selected borough boundary. */
+.map-shell,.map-panel{background:#19282d!important}
+.map-toolbar,.map-kicker{color:#b8d4c7!important}
+.map-wrap{
+  background:#152a2c!important;
+  border:1px solid #35514d!important;
+}
+.map-water-label{fill:#8ca9a9!important}
+.map-label{
+  fill:#f8fffc!important;
+  stroke:#1a3a38!important;
+  stroke-width:3px!important;
+  paint-order:stroke;
+}
+.map-sub-label{
+  fill:#f1faf5!important;
+  stroke:#183633!important;
+  stroke-width:3px!important;
+  paint-order:stroke;
+}
+.borough-shape{
+  stroke:#172f30!important;
+  stroke-width:5!important;
+  filter:none!important;
+}
+.borough-shape:hover,.borough-shape:focus,
+.borough-shape.selected{
+  stroke:#d1f6d6!important;
+  stroke-width:6!important;
+}
+.map-sidecard,.map-key{
+  background:#1c3033!important;
+  color:#b7cbc0!important;
+  border:1px solid #3c5651!important;
+  box-shadow:none!important;
+}
+.map-sidecard strong,.map-key strong{color:#e1f3e9!important}
+.map-tip{
+  color:#c6ebd6!important;background:#1d3837!important;
+  border:1px solid #3f6660!important;
+}
+.map-panel h2{color:#eef8f0!important}
+.map-stat{border-bottom-color:#2d4445!important}
+.map-stat span{color:#aac0b5!important}
+.map-stat strong{color:#b0edcb!important;font-variant-numeric:tabular-nums}
+.map-note{background:#223639!important;color:#abc3b8!important}
+.map-kicker{color:#91d5b6!important}
+.gradient{background:linear-gradient(90deg,#30564f,#478f7c,#8ad3b2)!important}
+.delta-up{color:#eeaa99!important}
+.delta-down{color:#a6dec1!important}
+/* Informational long-form content and quality register. */
+.callout h3,.linkcard h3,.map-panel h2{color:#e0f1e8!important}
+.callout p,.linkcard p,.method p{color:#aec2b8!important}
+.linkcard::before{background:#76cba5!important}
+.quality-row,.status-line,.metric{border-bottom-color:#314849!important;color:#c6dad0!important}
+.quality-row strong,.status-line strong{color:#e1f1e8!important}
+.tag,.status-pill{
+  border:1px solid #39564f!important;
+  background:#273d3c!important;
+  color:#cee6d7!important;
+}
+.status-pill.live{background:#23473a!important;color:#b3e8cd!important;border-color:#3c7559!important}
+.status-pill.cached{background:#493820!important;color:#efd29c!important;border-color:#79613c!important}
+.status-pill.fail{background:#4b2c31!important;color:#f1b0aa!important;border-color:#82515a!important}
+.pipe-step,.method{
+  background:#1c3033!important;
+  border:1px solid #354c4a!important;
+  color:#dbe8e0!important;
+}
+.pipe-step strong,.method strong{color:#d9eee0!important}
+.pipe-step span{color:#adbfba!important}
+.method .num{
+  background:#26473e!important;color:#a7edc7!important;
+}
+/* Daily health note: subtle tonal difference, readable link. */
+.hx-dashboard-tip{
+  background:#1d3333!important;
+  border:1px solid #365953!important;
+  border-radius:10px!important;
+}
+.hx-dashboard-tip .hx-tip-badge,
+.hx-dashboard-tip .hx-tip-badge>span:nth-child(2),
+.hx-dashboard-tip .hx-tip-spark{color:#9cdbb9!important}
+.hx-dashboard-tip .hx-tip-date{color:#a5c0b2!important}
+.hx-daily-message .hx-daily-label{color:#e0f5e7!important}
+.hx-dashboard-tip .hx-tip-description{color:#b8cfc0!important}
+.hx-dashboard-tip .hx-tip-link{color:#a9e9c7!important}
+.hx-dashboard-tip .hx-tip-link:hover{color:#d8ffe9!important}
+/* The feedback tab should look like the rest of the dashboard. */
+.hs-feedback-hero{border-color:#304749!important}
+.hs-feedback-eyebrow,.hs-feedback-step{color:#9bd7b7!important}
+.hs-feedback-dot{background:#8bdcb4!important}
+.hs-feedback-hero h2,.hs-feedback-panel-head h3,.hs-feedback-aside h3{
+  color:#e9f5ec!important;
+}
+.hs-feedback-hero p,.hs-feedback-aside>p{color:#afc5b8!important}
+.hs-feedback-panel,.hs-feedback-aside{
+  background:#192a2f!important;
+  border:1px solid #344b4b!important;
+  color:#d9e9e1!important;
+}
+.hs-feedback-panel-head,.hs-f-footer,.hs-f-aside-divider{border-color:#324a48!important}
+.hs-feedback-private{
+  background:#254238!important;color:#b9e6ce!important;
+  border:1px solid #3b6755!important;
+}
+.hs-f-field label,.hs-f-rating legend{color:#d2e6d9!important}
+.hs-f-optional,.hs-f-rating small{color:#9fb7ab!important}
+.hs-f-field input,.hs-f-field select,.hs-f-field textarea{
+  background:#1d3335!important;
+  border:1px solid #425c57!important;
+  color:#f3f9f3!important;
+  color-scheme:dark;
+}
+.hs-f-field input::placeholder,.hs-f-field textarea::placeholder{color:#96aea2!important}
+.hs-f-fieldhint,.hs-f-privacy,.hs-f-rating-hint,.hs-f-aside-item p{color:#aec2b5!important}
+.hs-f-rating-options label span{
+  background:#233a3b!important;
+  color:#bcd4c9!important;
+  border:1px solid #3b5754!important;
+}
+.hs-f-rating-options input:checked+span{
+  background:#3b8569!important;color:#f8fff9!important;
+  border-color:#7dd0a8!important;
+}
+.hs-f-rating-options label:hover span{border-color:#79bda4!important}
+.hs-f-aside-icon,.hs-f-aside-item>span{color:#9ad9b6!important}
+.hs-f-aside-item strong{color:#e4f5e8!important}
+.hs-f-formstatus[data-kind="error"]{color:#ffb9aa!important}
+.hs-f-formstatus[data-kind="success"]{color:#a4ebc2!important}
+.hs-f-submit:disabled{opacity:.58!important}
+/* Small notices, toast, action chips. */
+.toast{background:#223d3b!important;border:1px solid #3b6a5b!important;color:#e4f4ea!important}
+.freshness,#freshnessLabel{font-variant-numeric:tabular-nums}
+.nav:focus-visible,.btn:focus-visible,.action:focus-visible,
+a:focus-visible,.hs-f-submit:focus-visible,select:focus-visible,
+input:focus-visible,textarea:focus-visible{
+  outline:2px solid #9de3bc!important;outline-offset:2px!important;
+}
+::selection{background:#42765f;color:#f8fff8}
+@media(max-width:1080px){
+  .shell > aside{
+    background:#142327!important;
+    border-right:0!important;
+    border-bottom:1px solid #2e4846!important;
+  }
+  .shell > aside .brand{border:0!important}
+}
+@media(max-width:760px){
+  .signals{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .signals .signal:last-child{grid-column:1 / -1}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .signals{grid-template-columns:1fr}
+  .signals .signal:last-child{grid-column:auto}
+  .hx-dashboard-tip{align-items:flex-start}
+  .map-wrap{border-color:#354d4b!important}
+}
+/* The opening experience remains intentionally dark; no extra flashing. */
+#hsIntro{background:#101e24!important}
+#hsIntro::before{
+  background:radial-gradient(ellipse at 50% 72%,rgba(64,130,116,.12),transparent 65%),#101e24!important;
+}
