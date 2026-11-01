@@ -77,7 +77,7 @@
     estimated:"附近估計：",at:"紐約當地時間",sourceName:"Open-Meteo / CAMS",mapSideExplanation:"地圖顏色比較各區參考位置嘅模型估計。",modeled:"模型估計",result:"模型數據",boroughEstimate:"參考位置估計值"
    }
  };
- let data=null,active=false,loading=false,lastError=false;
+ let data=null,active=false,loading=false,lastError=false,lastRetrieved=0;
  const metricsKeys=Object.keys(metrics);
  const originalDesc=byId("hsMapDescription").textContent,
  originalNote=byId("hsMapMethodNote").textContent;
@@ -109,6 +109,13 @@
   }
  }
  function updateStatus(){
+  const pill=byId("statusPollutionPill");
+  const dateEl=byId("statusPollutionDate");
+  if(pill){
+    pill.textContent=loading?"Loading":lastError?(data?"Previous model":"Unavailable"):data?"Model loaded":"On demand";
+    pill.className="status-pill "+(data&&!lastError?"live":"cached");
+  }
+  if(dateEl)dateEl.textContent=data?stamp():lastError?"Model unavailable":"Open Air pollution map";
   if(!active)return;
   state.dataset.status=lastError?"error":loading?"loading":"ready";
   if(loading)state.textContent=tr("loading");
@@ -124,7 +131,7 @@
  }
  async function load(force=false){
   if(loading)return;
-  if(data&&!force){renderAll();return;}
+  if(data&&!force&&Date.now()-lastRetrieved<15*60*1000){renderAll();return;}
   loading=true;lastError=false;updateStatus();refresh.disabled=true;
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),11000);
   try{
@@ -132,7 +139,7 @@
    if(!response.ok)throw Error("Upstream unavailable");
    const result=await response.json();
    if(!valid(result))throw Error("Invalid pollution data");
-   data=result;lastError=false;
+   data=result;lastError=false;lastRetrieved=Date.now();
   }catch(e){
    lastError=true;
   }finally{
@@ -233,7 +240,7 @@
   panel.hidden=!active;comparison.hidden=!active;
   if(active){
    byId("hsMapViewport").classList.add("hs-pollution");
-   renderLocale();renderAll();load();
+   renderLocale();renderAll();load(Date.now()-lastRetrieved>15*60*1000);
   }else{
    byId("hsMapViewport").classList.remove("hs-pollution");
    setText("hsMapDescription",originalDesc);
@@ -245,7 +252,8 @@
  }
  window.hsPollution={
    get active(){return active},
-   renderMap,renderSelected
+   renderMap,renderSelected,
+   refresh(){return load(true)}
  };
  emergency.addEventListener("click",()=>toggle(false));
  pollution.addEventListener("click",()=>toggle(true));
@@ -267,4 +275,12 @@
    };
  }
  renderLocale();
+ updateStatus();
+ // Model estimates are refreshed only while their map mode is visible.
+ window.setInterval(()=>{
+   if(active&&!document.hidden&&Date.now()-lastRetrieved>15*60*1000)load(true);
+ },5*60*1000);
+ document.addEventListener("visibilitychange",()=>{
+   if(!document.hidden&&active&&Date.now()-lastRetrieved>15*60*1000)load(true);
+ });
 })();
