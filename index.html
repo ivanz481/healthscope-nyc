@@ -3975,11 +3975,14 @@ function renderSignals(){
  document.getElementById("responseSignalText").textContent=`${worst.borough} has the highest response-time value in the selected 911 time window.`;
  const live=Object.values(liveState).filter(x=>x==="live").length;
  const failed=Object.values(liveState).filter(x=>x==="fallback").length;
- document.getElementById("pipelineSignal").textContent=`${live} source${live===1?"":"s"} loaded`;
- document.getElementById("pipelineText").textContent=failed?`${failed} source is using cached fallback data.`:"Source adapters responded and passed validation; see individual reporting periods.";
+ const pending=Object.values(liveState).filter(x=>x==="loading").length;
+ document.getElementById("pipelineSignal").textContent=pending?`${live}/3 sources loaded`:`${live} source${live===1?"":"s"} loaded`;
+ document.getElementById("pipelineText").textContent=failed
+   ?`${failed} source${failed===1?" is":"s are"} using dated fallback data.`
+   :pending?"Checking official source endpoints…":"Source adapters responded; check each source's reporting period.";
  const lvl=document.getElementById("pipelineLevel");
- lvl.textContent=failed?"Saved snapshot in use":"Sources loaded";
- lvl.className="signal-level "+(failed?"watch":"stable");
+ lvl.textContent=failed?"Saved snapshot in use":pending?"Checking sources":"Sources loaded";
+ lvl.className="signal-level "+(failed?"watch":pending?"info":"stable");
 }
 function renderStatus(){
  const p911=document.getElementById("status911Pill");
