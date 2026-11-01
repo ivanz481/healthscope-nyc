@@ -3200,7 +3200,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
 
 <section class="page" id="vaccination"><div class="section-ribbon"><strong>Prevention</strong><span>Coverage and guidance are kept separate so users can distinguish observed uptake from recommendations.</span></div>
 <div class="grid2 equal">
-<div class="card callout"><div class="label" id="vaxSeasonLabel">2025–26 influenza season</div><div class="bigstat" id="vaxBigStat">40%</div><h3>NYC children and adolescents vaccinated for flu</h3><p id="vaxSummary">As of June 30, 2026, 40% of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the 2025–26 influenza season.</p></div>
+<div class="card callout"><div class="label" id="vaxSeasonLabel">2025–26 influenza season · latest published coverage</div><div class="bigstat" id="vaxBigStat">40%</div><h3>NYC children and adolescents vaccinated for flu</h3><p id="vaxSummary">As of June 30, 2026, 40% of NYC children and adolescents ages 6 months through 17 years had received an annual flu vaccine during the 2025–26 influenza season.</p></div>
 <div class="card callout"><h3>Current respiratory-season guidance</h3><p>Vaccination recommendations can change by season and individual risk. Use the linked NYC Health resources for the current COVID-19, influenza, and RSV immunization guidance rather than relying on a hard-coded season-specific recommendation.</p><p>Current vaccine-location information is available through the NYC Health Map.</p></div>
 </div>
 <div class="linkgrid">
@@ -3371,7 +3371,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <div class="card callout">
     <div class="map-kicker">Source transparency</div>
     <h3>Public-health data should be traceable</h3>
-    <p>Respiratory surveillance, vaccination, emergency response, chronic-disease guidance, and neurodegenerative-disease guidance all come from official public-health sources. Each source keeps its own publication schedule and level of certainty.</p>
+    <p>Respiratory surveillance, vaccination and 911 response data are linked to official NYC sources. Prevention guidance links to CDC and NIH. Air-pollution estimates are modeled separately and are not regulatory measurements.</p>
   </div>
 
   <div class="card callout">
@@ -3388,22 +3388,29 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <div class="status-line">
     <strong>Respiratory surveillance</strong>
     <span>NYC Department of Health and Mental Hygiene</span>
-    <span id="statusRespDate">Weekly</span>
-    <span class="status-pill live" id="statusRespPill">Live API</span>
+    <span id="statusRespDate">Week ending Oct. 24, 2026 · revised Oct. 29</span>
+    <span class="status-pill cached" id="statusRespPill">Checking source</span>
   </div>
 
   <div class="status-line">
     <strong>Vaccination</strong>
     <span>NYC Childhood Vaccination Data Explorer / Citywide Immunization Registry</span>
-    <span id="statusVaxDate">Periodic</span>
-    <span class="status-pill live" id="statusVaxPill">Live API</span>
+    <span id="statusVaxDate">Through Jun. 30, 2026</span>
+    <span class="status-pill cached" id="statusVaxPill">Checking source</span>
   </div>
 
   <div class="status-line" id="status911">
     <strong>911 emergency response</strong>
     <span>NYC Open Data • Local Law 119 dataset</span>
-    <span id="status911Date">Latest month</span>
-    <span class="status-pill live" id="status911Pill">Live API</span>
+    <span id="status911Date">September 2026</span>
+    <span class="status-pill cached" id="status911Pill">Checking source</span>
+  </div>
+
+  <div class="status-line">
+    <strong>Air pollution (modeled)</strong>
+    <span>Open-Meteo / CAMS · borough reference points</span>
+    <span id="statusPollutionDate">Loaded when pollution map opens</span>
+    <span class="status-pill cached" id="statusPollutionPill">On demand</span>
   </div>
 
   <div class="status-line">
@@ -3437,7 +3444,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <div class="card callout">
     <div class="map-kicker">Fallback protection</div>
     <h3>What happens if a source fails?</h3>
-    <p>If an endpoint is unavailable, blocked, or changes its structure, the dashboard retains the latest verified values. The source status changes to a cached/fallback state instead of silently presenting missing data as current.</p>
+    <p>If an official-data endpoint fails, the dashboard keeps its dated verified snapshot. Air pollution shows unavailable when no valid model estimate can be retrieved. The source register identifies both states.</p>
   </div>
 </div>
 
@@ -3465,7 +3472,7 @@ aside.hs-feedback-aside{height:auto!important;max-height:none!important;overflow
   <div class="map-kicker">Production architecture</div>
   <h3>How a fully self-updating version should work</h3>
   <p><strong>Official sources → scheduled collector → validation → versioned storage → dashboard API → website.</strong></p>
-  <p>The deployed backend now checks respiratory, vaccination, and 911 sources automatically when the dashboard loads or when users refresh sources. Each endpoint uses cache controls so newly published official values can replace older values without editing the site by hand.</p>
+  <p>The deployed backend checks respiratory, vaccination, and 911 sources when the dashboard opens, when users refresh sources, and periodically while a tab remains open. Each endpoint uses cache controls so newly published official values can replace older values without editing the site by hand.</p>
 </div>
 
 <div class="source">Data-quality notes apply to the current prototype architecture. A production deployment should also log failed updates, preserve historical versions, and expose the exact source URL and retrieval timestamp for every published dataset.</div>
@@ -4397,6 +4404,16 @@ loadCaches();
 syncPeriodOptions();
 applyTimeWindow();
 refreshAll(false);
+// Periodic updates for a dashboard left open for hours.
+let lastAutoRefresh=Date.now();
+const AUTO_REFRESH_INTERVAL=60*60*1000;
+function refreshIfDue(){
+  if(document.hidden||Date.now()-lastAutoRefresh<AUTO_REFRESH_INTERVAL)return;
+  lastAutoRefresh=Date.now();
+  refreshAll(false);
+}
+window.setInterval(refreshIfDue,15*60*1000);
+document.addEventListener("visibilitychange",refreshIfDue);
 </script>
 <script id="hsChineseTranslations">
 /* Simplified Chinese translations for Healthscope. */
